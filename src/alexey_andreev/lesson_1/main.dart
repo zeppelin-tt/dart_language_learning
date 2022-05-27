@@ -6,7 +6,7 @@ void main() {
   const n = 24;
   digitSum1(n);
 
-  double x = 2.13;
+  const x = 2.13;
   rounder(x);
 
   int z = 325;
