@@ -1,9 +1,9 @@
 void main() {
-  int q = 21;
-  var w = null;
+  const q = 21;
+  const w = 8;
   division(q, w);
 
-  int n = 24;
+  const n = 24;
   digitSum1(n);
 
   double x = 2.13;
@@ -21,10 +21,10 @@ void division(int num1, int num2){
 }
 
 void digitSum1(int num1){
-  String string1 = num1.toString();
+  final string1 = num1.toString();
 
-  String letter1 = string1[0];
-  String letter2 = string1[1];
+  final letter1 = string1[0];
+  final letter2 = string1[1];
 
   final digit1 = int.parse(letter1);
   final digit2 = int.parse(letter2);
