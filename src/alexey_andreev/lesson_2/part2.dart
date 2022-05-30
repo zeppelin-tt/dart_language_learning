@@ -24,7 +24,7 @@ class Student extends Person{
   }
 
   toString() {
-    return '$fullName поступил в ${yearOfAdmission.year} году, сейчас на $currentCourse курсе.';
+    return '$fullName поступил в $yearOfAdmission.year году, сейчас на $currentCourse курсе.';
   }
 }
 
@@ -45,6 +45,6 @@ void main(){
   john.talk();
   john.move();
 
-  Student bob = Student('Боб', 24, DateTime(2018, 12, 26));
+  Student bob = Student('Боб', 24, DateTime(2018));
   print(bob);
 }
