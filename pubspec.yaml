@@ -2,4 +2,4 @@ name: dart_lang_learning
 description: A simple command-line application.
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.17.0 <3.0.0'
