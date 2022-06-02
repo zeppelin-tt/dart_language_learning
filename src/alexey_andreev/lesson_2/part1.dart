@@ -5,28 +5,29 @@ class Transport{
 }
 
 class GroundTransport extends Transport{
-  int maxSpeed = 0;
+  final int maxSpeed;
 
   GroundTransport(name, this.maxSpeed) : super(name);
 }
 
 class RailwayTransport extends GroundTransport{
-  int trackGauge = 1435;
+  final int trackGauge;
 
   RailwayTransport(name, maxSpeed, this.trackGauge) : super(name, maxSpeed);
 }
 
 class Locomotives extends RailwayTransport{
-  String type = 'Magistral';
+  final String type;
 
   Locomotives(name, maxSpeed, trackGauge, this.type) : super(name, maxSpeed, trackGauge);
 }
 
 class ElectricLocomotives extends Locomotives{
-  int voltage = 5000;
+  final int voltage;
 
   ElectricLocomotives(name, maxSpeed, trackGauge, type, this.voltage) : super(name, maxSpeed, trackGauge, type);
 
+  @override
   String toString() {
     return 'Электровоз: $name, \nМаксимальная скорость: $maxSpeed, \nШирина колеи: $trackGauge, \nНазначение: $type, \nНапряжение сети: $voltage';
   }
