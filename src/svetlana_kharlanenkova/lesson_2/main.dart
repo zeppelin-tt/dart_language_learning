@@ -7,12 +7,12 @@ class Dinosaur {
 }
 
 class Theropoda extends Dinosaur {
-  String teeth = 'sharp';
+  final teeth;
   Theropoda(
     name,
     color,
     type,
-  ) : super(
+  ) : teeth = 'sharp',super(
           name,
           color,
           type,
@@ -95,7 +95,7 @@ class Person {
 
   void move() {}
   void talk() {
-    print("Такой-то  Person говорит");
+    print("Camel Brown говорит");
   }
 }
 
@@ -124,6 +124,7 @@ class Student extends User {
     return DateTime.now().year - yearOfAdmission.year;
   }
 
+  @override
   toString() {
     return '$fullName ${yearOfAdmission.year} $currentCourse';
   }
