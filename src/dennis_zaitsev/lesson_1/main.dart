@@ -19,11 +19,11 @@ void division(int q, int w){
   print('Результат деления: $res1, остаток: $res2');
 }
 // job 2
-void summ (int n){
-  int a = n ~/ 10;
-  int b = n % 10;
-  int c = a + b;
-  print('Сумма чисел двухначного числа $n равняется $c');
+void summ(int n){
+  final firstNum = n ~/ 10;
+  final secondNum = n % 10;
+  final res = firstNum + secondNum;
+  print('Сумма чисел двухначного числа $n равняется $res');
 }
 //job 3
 void rounding(double n) {
@@ -31,12 +31,12 @@ void rounding(double n) {
   print('Ближайшее целое число от $n составляет $num');
 }
 // job 4
-void summ2 (int n) {
-  int a = n ~/ 100;
-  int b = n - 108;
-  int c = n % 100;
-  int d = a + b + c;
-  print('Сумма чисел трёхзначного числа $n равняется $d');
+void summ2(int n) {
+  final firstNum = n ~/ 100;
+  final secondNum = n % 100 ~/ 10;
+  final thirdNum  = n % 100;
+  final res = firstNum + secondNum + thirdNum;
+  print('Сумма чисел трёхзначного числа $n равняется $res');
 }
 //extra job 1
 void rectangleArea(int a, int b) {
