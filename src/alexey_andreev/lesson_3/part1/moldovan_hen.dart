@@ -8,7 +8,7 @@ class MoldovanHen extends Hen{
   }
 
   @override
-  String get getDescription{
-    return '$description My country is Moldova. I lay $countOfEggsPerMonth eggs a month!';
+  String get description{
+    return '${super.description} My country is Moldova. I lay $countOfEggsPerMonth eggs a month!';
   }
 }

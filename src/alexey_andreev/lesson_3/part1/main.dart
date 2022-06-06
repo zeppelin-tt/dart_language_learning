@@ -4,5 +4,5 @@ void main() {
   final countryName = 'Poland';
   final henFactory = HenFactory(countryName);
   final hen = henFactory.getHen;
-  print(hen.getDescription);
+  print(hen.description);
 }
