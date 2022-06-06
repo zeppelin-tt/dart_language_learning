@@ -3,3 +3,6 @@ description: A simple command-line application.
 
 environment:
   sdk: '>=2.17.0 <3.0.0'
+
+dev_dependencies:
+  surf_lint_rules: ^1.5.0
