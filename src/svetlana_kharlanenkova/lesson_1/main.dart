@@ -5,7 +5,7 @@ double apelsin(int q, int w) {
 int apelsin2(int n) {
   final a = n%10;
   final b = n~/10;
-  return (a+b);
+  return a+b;
 }
 
 int apelsin3(double n) {
