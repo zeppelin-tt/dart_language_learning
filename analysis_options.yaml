@@ -1,0 +1,72 @@
+include: package:surf_lint_rules/analysis_options.yaml
+
+analyzer:
+  errors:
+    implicit_dynamic_type: false
+    implicit_dynamic_parameter: false
+    implicit_dynamic_map_literal: false
+    implicit_dynamic_function: false
+    implicit_dynamic_variable: false
+    implicit_dynamic_method: false
+    implicit_dynamic_list_literal: false
+    implicit_dynamic_invoke: false
+    avoid_dynamic_calls: false
+    use_build_context_synchronously: false
+    avoid_print: false
+    close_sinks: false
+    return_of_invalid_type: false
+    non_bool_condition: false
+    todo: ignore
+
+
+  exclude:
+    - "build/**"
+    - "script/**"
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "docs/templates/**"
+    - "plugins/**/**"
+
+dart_code_metrics:
+  anti-patterns:
+    long-method: false
+    long-parameter-list: false
+  metrics-exclude:
+    - test/**
+  rules:
+    avoid-unnecessary-setstate: true
+    no-boolean-literal-compare: true
+    prefer-intl-name: true
+    provide-correct-intl-args: true
+    avoid-wrapping-in-padding: true
+    double-literal-format: true
+    binary-expression-operand-order: true
+    prefer-single-widget-per-file:
+      ignore-private-widgets: true
+    no-empty-block: false
+    always-remove-listener: false
+    avoid-unused-parameters: false
+    newline-before-return: false
+    prefer-trailing-comma: false
+    prefer-conditional-expressions: false
+
+
+linter:
+  rules:
+    always_put_required_named_parameters_first: false # do not delete
+    always_use_package_imports: false # do not delete
+    avoid_positional_boolean_parameters: false # do not delete
+    constant_identifier_names: false
+    parameter_assignments: false
+    avoid_catches_without_on_clauses: false
+    unawaited_futures: false
+    prefer_constructors_over_static_methods: false
+    use_named_constants: false
+    avoid_returning_null: false
+    avoid_returning_this: false
+    use_late_for_private_fields_and_variables: false
+    avoid_implementing_value_types: false
+    one_member_abstracts: false
+    use_setters_to_change_properties: false
+    use_if_null_to_convert_nulls_to_bools: false
+    only_throw_errors: false

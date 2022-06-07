@@ -1,6 +1,6 @@
 void main() {
   int q = 21;
-  var w = null;
+  var w = 3;
   division(q, w);
 
   int n = 24;

@@ -1,17 +1,16 @@
 void main() {
-  final animal1 = Animal(45, name: 'Dog');
+  const animal1 = Animal(45, name: 'Dog');
+  final a = animal1.toString();
 
   final cat1 = Cat(size: 10, name: 'Peter');
   final cat2 = Cat(size: 5, name: 'Vasya');
   final dog = Dog(size: 15, name: 'Sharik');
-  final sergey = Sergey<Cat, Dog, String>();
-  sergey.handleSomething(object1: cat1);
-
+  final sergey = Sergey<Cat, Dog, String>()..handleSomething(object1: cat1);
 }
 
 class Sergey<T, B, C> {
   void handleSomething({T? object1, B? object2, C? object3}) {
-
+    print('');
   }
 }
 
@@ -40,7 +39,9 @@ class Dog extends Animal with NightVision implements Jumpable {
   }
 
   @override
-  void jump() {}
+  void jump() {
+    print('');
+  }
 }
 
 class Cat extends Animal {
