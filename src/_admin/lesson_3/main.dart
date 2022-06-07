@@ -6,6 +6,9 @@ void main() {
   final cat2 = Cat(size: 5, name: 'Vasya');
   final dog = Dog(size: 15, name: 'Sharik');
   final sergey = Sergey<Cat, Dog, String>()..handleSomething(object1: cat1);
+  dog
+    ..showVoice()
+    ..jump();
 }
 
 class Sergey<T, B, C> {
@@ -20,14 +23,11 @@ abstract class Jumpable {
 
 mixin NightVision {
   void switchOnNightVision() {
-   print('night vision switched on');
+    print('night vision switched on');
   }
 }
 
-
-
 class Dog extends Animal with NightVision implements Jumpable {
-
   Dog({
     required String name,
     required int size,
@@ -45,7 +45,6 @@ class Dog extends Animal with NightVision implements Jumpable {
 }
 
 class Cat extends Animal {
-
   Cat({
     required String name,
     required int size,
