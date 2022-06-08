@@ -34,10 +34,7 @@ void main() {
 */
 
   void roundingToNearestInteger(double n) {
-    void rounding(temp) {
-      print('Задание 3: Ближайшее целое от числа $temp равно ${temp.round()}');
-    }
-    rounding(n);
+    print('Задание 3: Ближайшее целое от числа $n равно ${n.round()}');
   }
 
 /*
