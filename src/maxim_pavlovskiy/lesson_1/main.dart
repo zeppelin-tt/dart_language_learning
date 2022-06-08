@@ -1,75 +1,55 @@
 void main() {
-
+  divisionWithRemainder(21, 8);
+  sumOfDigitsTwoDigit(25);
+  roundingToNearestInteger(25.64);
+  sumOfDigitsThreeDigit(345);
+}
 /*
 1. В переменных q и w хранятся два натуральных числа.
 Создайте функцию, выводящую на экран результат деления q на w с остатком.
 Пример вывода программы (для случая, когда в q хранится 21, а в w хранится 8)
 */
 
-  void task1() {
-    var q = 21;
-    var w = 8;
-    print('Задание 1: Результат деления $q на $w с остатком: частное ${(q / w)
-        .floor()}, остаток ${q % w}');
+  void divisionWithRemainder(int q, int w) {
+    final private = q ~/ w;
+    final remainder = q % w;
+    print('Задание 1: Результат деления $q на $w с остатком: частное $private, остаток $remainder');
   }
-
-  task1();
 
 /*
 2. В переменной n хранится натуральное двузначное число.
 Создайте функцию, вычисляющую и выводящую на экран сумму цифр числа n.
 */
 
-  void task2() {
-    var n = 25;
-    var summ = 0;
-    var temp = 0;
-
-    temp = n % 10;
-    summ = summ + temp;
-    temp = (n / 10).floor();
-    summ = summ + temp;
-
-    print('Задание 2: Сумма цифр числа $n равна $summ');
+  void sumOfDigitsTwoDigit(int n) {
+    final firstDigit = n % 10;
+    final secondDigit = n ~/ 10;
+    final sum = firstDigit + secondDigit;
+    print('Задание 2: Сумма цифр числа $n равна $sum');
   }
-
-  task2();
 
 /*
 3. В переменной n хранится вещественное число с ненулевой дробной частью.
 Создайте функцию, округляющую число n до ближайшего целого и выводящую результат на экран.
 */
 
-  void task3() {
-    var n = 25.64;
-
+  void roundingToNearestInteger(double n) {
     void rounding(temp) {
       print('Задание 3: Ближайшее целое от числа $temp равно ${temp.round()}');
     }
-
     rounding(n);
   }
-
-  task3();
 
 /*
 4. В переменной n хранится натуральное трёхзначное число.
 Создайте функцию, вычисляющую и выводящую на экран сумму цифр числа n.
 */
-
-  void task4() {
-    var n = 345;
-
-    void summFunc(fn) {
-      var summ = 0.0;
+  void sumOfDigitsThreeDigit(int n) {
+      int temp = n;
+      int sum = 0;
       for (var i = 0; i < 3; i++) {
-        summ += fn % 10;
-        fn = (fn / 10).floor();
+        sum += temp % 10;
+        temp = temp ~/ 10;
       }
-      print('Задание 4: Сумма цифр числа $n равна ${summ.round()}');
-    }
-    summFunc(n);
+      print('Задание 4: Сумма цифр числа $n равна ${sum.toInt()}');
   }
-
-  task4();
-}
