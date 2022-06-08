@@ -1,8 +1,8 @@
 void main() {
   divisionWithRemainder(21, 8);
-  sumOfDigitsTwoDigit(25);
+  sumOfDigitsOfTwoDigitNumber(25);
   roundingToNearestInteger(25.64);
-  sumOfDigitsThreeDigit(345);
+  sumOfDigitsOfThreeDigitNumber(345);
 }
 /*
 1. В переменных q и w хранятся два натуральных числа.
@@ -21,7 +21,7 @@ void main() {
 Создайте функцию, вычисляющую и выводящую на экран сумму цифр числа n.
 */
 
-  void sumOfDigitsTwoDigit(int n) {
+  void sumOfDigitsOfTwoDigitNumber(int n) {
     final firstDigit = n % 10;
     final secondDigit = n ~/ 10;
     final sum = firstDigit + secondDigit;
@@ -44,12 +44,13 @@ void main() {
 4. В переменной n хранится натуральное трёхзначное число.
 Создайте функцию, вычисляющую и выводящую на экран сумму цифр числа n.
 */
-  void sumOfDigitsThreeDigit(int n) {
-      int temp = n;
-      int sum = 0;
-      for (var i = 0; i < 3; i++) {
-        sum += temp % 10;
-        temp = temp ~/ 10;
+  void sumOfDigitsOfThreeDigitNumber(int n) {
+      int initialValueN = n;
+      int sumOfDigits = 0;
+      for (int i = 0; i < 3; i++) {
+        sumOfDigits += n % 10;
+        n = n ~/ 10;
       }
-      print('Задание 4: Сумма цифр числа $n равна ${sum.toInt()}');
+      sumOfDigits = sumOfDigits.floor();
+      print('Задание 4: Сумма цифр числа $initialValueN равна $sumOfDigits');
   }
