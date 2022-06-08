@@ -44,29 +44,19 @@ dart_code_metrics:
     prefer-single-widget-per-file:
       ignore-private-widgets: true
     no-empty-block: false
-    always-remove-listener: false
-    avoid-unused-parameters: false
+    always-remove-listener: true
+    avoid-unused-parameters: true
     newline-before-return: false
     prefer-trailing-comma: false
     prefer-conditional-expressions: false
 
-
 linter:
   rules:
-    always_put_required_named_parameters_first: false # do not delete
+    omit_local_variable_types: false
     always_use_package_imports: false # do not delete
-    avoid_positional_boolean_parameters: false # do not delete
-    constant_identifier_names: false
     parameter_assignments: false
-    avoid_catches_without_on_clauses: false
     unawaited_futures: false
-    prefer_constructors_over_static_methods: false
-    use_named_constants: false
     avoid_returning_null: false
-    avoid_returning_this: false
-    use_late_for_private_fields_and_variables: false
     avoid_implementing_value_types: false
-    one_member_abstracts: false
     use_setters_to_change_properties: false
-    use_if_null_to_convert_nulls_to_bools: false
     only_throw_errors: false
