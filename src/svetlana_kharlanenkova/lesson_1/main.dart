@@ -1,22 +1,22 @@
-double apelsin(q, w) {
+double apelsin(int q, int w) {
   return q/w;
 }
 
-int apelsin2(n) {
+int apelsin2(int n) {
   final a = n%10;
   final b = n~/10;
   return (a+b);
 }
 
-int apelsin3(n) {
+int apelsin3(double n) {
   return n.round();
 }
 
-int apelsin4(n) {
+int apelsin4(int n) {
   final a = n~/100;
   final b = (n/10%10).round();
   final c = n%10;
-  return (a+b+c);
+  return a+b+c;
 }
 
 void main(List<String> args) {
