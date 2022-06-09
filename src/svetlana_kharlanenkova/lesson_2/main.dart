@@ -7,7 +7,7 @@ class Dinosaur {
 }
 
 class Theropoda extends Dinosaur {
-  final teeth;
+  final String teeth;
   Theropoda(
     name,
     color,
@@ -95,7 +95,7 @@ class Person {
 
   void move() {}
   void talk() {
-    print("Camel Brown говорит");
+    print('$fullName говорит');
   }
 }
 
