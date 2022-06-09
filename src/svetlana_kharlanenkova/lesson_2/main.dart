@@ -9,10 +9,11 @@ class Dinosaur {
 class Theropoda extends Dinosaur {
   final String teeth;
   Theropoda(
-    name,
-    color,
-    type,
-  ) : teeth = 'sharp',super(
+    String name,
+    String color,
+    String type,
+  )   : teeth = 'sharp',
+        super(
           name,
           color,
           type,
@@ -22,9 +23,9 @@ class Theropoda extends Dinosaur {
 class Coelurosauria extends Theropoda {
   bool hasFeathers;
   Coelurosauria(
-    name,
-    color,
-    type,
+    String name,
+    String color,
+    String type,
     this.hasFeathers,
   ) : super(
           name,
@@ -36,9 +37,9 @@ class Coelurosauria extends Theropoda {
 class Maniraptora extends Coelurosauria {
   bool hasBeak;
   Maniraptora(
-    name,
-    color,
-    type,
+    String name,
+    String color,
+    String type,
     hasFeathers,
     this.hasBeak,
   ) : super(
@@ -52,9 +53,9 @@ class Maniraptora extends Coelurosauria {
 class Dromaeosauridae extends Maniraptora {
   bool hasBigClaw;
   Dromaeosauridae(
-    name,
-    color,
-    type,
+    String name,
+    String color,
+    String type,
     hasFeathers,
     hasBeak,
     this.hasBigClaw,
@@ -70,21 +71,25 @@ class Dromaeosauridae extends Maniraptora {
 void main() {
   final person = Person('Camel Brown', 100);
   final user = User('Llama White', 70);
-  final student =
-      Student('German Alpaca bananahammock', 55, DateTime(2006, 8, 1));
+  final student = Student('German Alpaca bananahammock', 55, DateTime(2006, 8));
   print(student);
 
   final dinosaur = Dinosaur('dino', 'green', 'unknown');
   final tRex = Theropoda('evil', 'brown', 'carnivore');
-  final therizinosaurus = Coelurosauria('kind', 'light brown', 'herbivore', true);
+  final therizinosaurus =
+      Coelurosauria('kind', 'light brown', 'herbivore', true);
   final oviraptor = Maniraptora('ovi', 'pink', 'carnivore', true, true);
-  final deinonychus = Dromaeosauridae('extra evil', 'grey', 'carnivore', true, true, true);
+  final deinonychus =
+      Dromaeosauridae('extra evil', 'grey', 'carnivore', true, true, true);
 
   print(dinosaur);
   print(tRex);
   print(therizinosaurus);
   print(oviraptor);
   print(deinonychus);
+
+  print(person);
+  print(user);
 }
 
 class Person {
@@ -125,7 +130,7 @@ class Student extends User {
   }
 
   @override
-  toString() {
+  String toString() {
     return '$fullName ${yearOfAdmission.year} $currentCourse';
   }
 }
