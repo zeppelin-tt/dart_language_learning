@@ -13,7 +13,7 @@ void main() {
 
 class Sergey<T, B, C> {
   void handleSomething({T? object1, B? object2, C? object3}) {
-    print('');
+    print(' ');
   }
 }
 
