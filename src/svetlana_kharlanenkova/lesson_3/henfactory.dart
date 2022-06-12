@@ -18,5 +18,6 @@ class HenFactory {
     if (country == 'Belarus') {
       return BelarusianHen();
     }
+    return null;
   }
 }
