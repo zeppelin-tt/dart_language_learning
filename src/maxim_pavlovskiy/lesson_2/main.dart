@@ -1,7 +1,7 @@
 void main() {
   print('Задание 1:');
-  final beatifulOwl = HornedVagueness();
-  print('Can Horned Vagueness fly? ${beatifulOwl.canFly}');
+  final beatifulOwl = HornedVagueness(25.5, true, true, false, 'Россия');
+  print(beatifulOwl);
 
   print('\nЗадание 2:');
   final maksim = Person('Максим Павловский', 25);
@@ -22,25 +22,44 @@ void main() {
 
 // chordal (хордовые) -> birds -> owl-like (совообразные) -> owls (совиные) -> horned vagueness (рогатая неясыть)
 class Chordal {
-  double? lengthOfChord;
+  double lengthOfChord;
+  String type = 'Хордовые';
+
+  Chordal(this.lengthOfChord);
 }
 
 class Birds extends Chordal {
-  bool canFly = true;
+  bool canFly;
+
+  Birds(lengthOfChord, this.canFly) : super(lengthOfChord);
 }
 
 class OwlLike extends Birds {
-  bool bigHead = true;
-  bool smallEyes = false;
-  String eyeDirection = 'forward';
+  bool bigHead;
+  bool smallEyes;
+  String eyeDirection = 'Прямое';
+
+  OwlLike(lengthOfChord, canFly, this.bigHead, this.smallEyes) : super(lengthOfChord, canFly);
 }
 
 class Owls extends OwlLike {
   bool huntsAtNight = true;
+  String habitat;
+
+  Owls(lengthOfChord, canFly, bigHead, smallEyes, this.habitat) : super (lengthOfChord, canFly, bigHead, smallEyes);
 }
 
 class HornedVagueness extends Owls {
-  String colorOfEars = 'white';
+  String colorOfEars = 'Белый';
+  String kind = 'Неясыть Рогатая';
+
+  HornedVagueness(lengthOfChord, canFly, bigHead, smallEyes, habitat)
+      : super (lengthOfChord, canFly, bigHead, smallEyes, habitat);
+
+  @override
+  String toString() {
+    return 'Вид: $kind, \nТип: $type, \nДлина хорды $lengthOfChordсм, \nУмеет летать: $canFly, \nБольшая голова: $bigHead, \nМаленькие глаза: $smallEyes, \nНаправление взгляда: $eyeDirection, \nОхотится ночью: $huntsAtNight, \nМесто обитания: $habitat, \nЦвет ушей: $colorOfEars';
+  }
 }
 
 /*
@@ -52,8 +71,8 @@ class HornedVagueness extends Owls {
 */
 
 class Person {
-  String? fullName;
-  int? age;
+  String fullName;
+  int age;
 
   void move() {
     print('$fullName ходит');
@@ -90,11 +109,11 @@ class User {
 }
 
 class Student extends User {
-  final DateTime yearOfAdmission;
+  DateTime yearOfAdmission;
 
   Student(fullName, age, this.yearOfAdmission) : super(fullName, age);
 
-  int get currentCourse{
+  int get currentCourse {
     return DateTime.now().year - yearOfAdmission.year;
   }
 
@@ -103,6 +122,3 @@ class Student extends User {
     return '$fullName поступил в ${yearOfAdmission.year} году, сейчас на $currentCourse курсе.';
   }
 }
-
-
-
