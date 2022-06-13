@@ -10,18 +10,9 @@ void main() {
   maksim.move();
   kirill.talk();
 
-//   print('\nЗадание 3:');
-//   var date25 = 2022;
-//   var date1 = DateTime(2021);
-//   var date2 = DateTime(date25);
-//   var differ = (date2.difference(date1));
-// //   differ = differ.toString();
-//   print(differ);
-//   print(date2.year);
-// //  var x = Student('2022-06-08 21:37:32.498');
-//   var x = Student('2022');
-//   print(x.yearOfAdmission);
-
+  print('\nЗадание 3:');
+  final max = Student('Максим', 23, DateTime(2019));
+  print(max);
 }
 
 /*
@@ -51,8 +42,6 @@ class Owls extends OwlLike {
 class HornedVagueness extends Owls {
   String colorOfEars = 'white';
 }
-
-
 
 /*
 2. Создать класс Person, который содержит:
@@ -92,20 +81,28 @@ currentCourse:int (текущий курс): рассчитывается сле
 год поступления
 текущий курс
 */
-// class User {
-// //    String toString() {
 
-// //   }
-// }
+class User {
+  String fullName;
+  int age;
 
-// class Student extends User {
-//   DateTime yearOfAdmission = DateTime.now();
+  User(this.fullName, this.age);
+}
 
-// //   void set qwe(int )
+class Student extends User {
+  final DateTime yearOfAdmission;
 
-//   Student(DateTime yOA)  {
-//     this.yearOfAdmission = yOA;
-//   }
-// }
+  Student(fullName, age, this.yearOfAdmission) : super(fullName, age);
+
+  int get currentCourse{
+    return DateTime.now().year - yearOfAdmission.year;
+  }
+
+  @override
+  toString() {
+    return '$fullName поступил в ${yearOfAdmission.year} году, сейчас на $currentCourse курсе.';
+  }
+}
+
 
 
