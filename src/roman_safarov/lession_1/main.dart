@@ -1,20 +1,18 @@
 
 void main() {
-  final div  = divisionWithDecimalPart(21, 8);
-  print("$div остаток от деления 21 на 8 - ");
+  final div1  = division(21, 8);
+  print('$div1 остаток от деления 21 на 8 - ');
 
   division2(21, 8);
+  sumNumbers(13);
 
 
-
-  int div2 = divisionWithDecimalPart(17,4);
-  print(" остаток от деления - $div2 ");
+  final div2 = division(17,4);
+  print(' остаток от деления - $div2 ');
 
   division2(77,6);
 
 
-  print(sumNumbers(17));
-  sumNumbers2(77);
 
   rounder(3.1416894);
 
@@ -27,39 +25,38 @@ void main() {
 //      выводящую на экран результат деления q на w с остатком.
 //    Пример вывода программы (для случая, когда в q хранится 21, а в w хранится 8)
 
-int divisionWithDecimalPart(final q, final w){//через return
-  print("остаток от деления");
+int division(int q, int w){//через return
+  print('остаток от деления');
   return q%w;
 }
-void division2(final q, final w){//с  выводом текста и результата на экран
+void division2(int q, int w){//с  выводом текста и результата на экран
   final div2 = q~/w;
   final remainder = q%w;
-  print("$q / $w = $div2, остаток от деления $q на $w равен $remainder");
+  print('$q / $w = $div2, остаток от деления $q на $w равен $remainder');
 }
 // 2. В переменной n хранится натуральное двузначное число. Создайте функцию,
 // вычисляющую и выводящую на экран сумму цифр числа n.
 
-int sumNumbers(final a) {
-  //через return
-    final firstNumber = a ~/ 10;
-    final secondNumber = a % 10;
-    print("сумма двух чисел, двузначного числа ");
-    return firstNumber + secondNumber;
-}
+
 //лично мне на данном этапе удобнее делать void фукнции выводящую на экран сразу
 // и результат и текст, но для восприятия дублирую функцию в return
 //но можно будет делать функции через @override toString
-void sumNumbers2(int a){
-  final firstNumber = a~/10;
-  final secondNumber = a%10;
-  final sum = firstNumber+secondNumber;
-  print("сумма чисел числа $a равна $sum");
+void sumNumbers(int a) {
+  if (a >= 10 && a < 100) {
+    final int firstNumber = a ~/ 10;
+    final secondNumber = a % 10;
+    final sum = firstNumber + secondNumber;
+    print('сумма чисел числа $a равна $sum');
+  }
+  else    {
+    print('число должно быть двузначным');
+  }
 }
 //3. В переменной n хранится вещественное число с ненулевой дробной частью. Создайте функцию,
 //      округляющую число n до ближайшего целого и выводящую результат на экран.
-void rounder(final x){
+void rounder(double x){
   final y = x.round();
-  print("$x округляем до $y");
+  print('$x округляем до $y');
 }
 //4. В переменной n хранится натуральное трёхзначное число. Создайте функцию,
 //      вычисляющую и выводящую на экран сумму цифр числа n.
@@ -69,7 +66,9 @@ void sumNumbers3(int a) {
     final secondNumber = a % 100 ~/ 10;
     final thirdNumber = a % 10;
     final sum = firstNumber + secondNumber + thirdNumber;
-    print("сумма чисел числа $a равна $sum");
+    print('сумма чисел числа $a равна $sum');
   }
-  else print("число $a должно быть трехзначным");
+  else {
+    print('число $a должно быть трехзначным');
+  }
 }
