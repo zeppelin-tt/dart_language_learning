@@ -1,12 +1,29 @@
 void main() {
-  final startoflife = StartOfLife('Vovo4ka', 'male', DateTime(1984));
-  final kindergarden = KinderGarden('Pete4ka', 'male', DateTime(2000), 'friendships');
+  final startOfLife = StartOfLife('Vovo4ka', 'male', DateTime(1984));
+  final kinderGarden = KinderGarden('Pete4ka', 'male', DateTime(2000), 'friendships');
   final school = School('Leno4ka', 'female', DateTime(1998), 'communication', 'Red diplom');
   final university = University('Slavo4ka', 'male', DateTime(1969), 'hooliganism', 'No diplom', 'omissions');
-  final job = Job('Ole4ka', 'female', DateTime(1990), 'female friendship', 'usual diplom', 'technical diplom', 'IT specialist');
-  final cemetery = Cemetery('Ane4ka', 'female', DateTime(1980), 'communication', 'Red diplom', 'humanitarian diplom', 'Charmer', DateTime(2012));
-  print(startoflife);
-  print(kindergarden);
+  final job = Job(
+    'Ole4ka',
+    'female',
+    DateTime(1990),
+    'female friendship',
+    'usual diplom',
+    'technical diplom',
+    'IT specialist',
+  );
+  final cemetery = Cemetery(
+    'Ane4ka',
+    'female',
+    DateTime(1980),
+    'communication',
+    'Red diplom',
+    'humanitarian diplom',
+    'Charmer',
+    DateTime(2012),
+  );
+  print(startOfLife);
+  print(kinderGarden);
   print(school);
   print(university);
   print(job);
@@ -14,51 +31,108 @@ void main() {
 }
 
 class StartOfLife {
-  String humanName;
-  String gender;
-  final yearOfBirth;
-  StartOfLife (this.humanName, this.gender, this.yearOfBirth);
+  final humanName;
+  final gender;
+  DateTime yearOfBirth;
+
+  StartOfLife(
+    this.humanName,
+    this.gender,
+    this.yearOfBirth,
+  );
 }
 
 class KinderGarden extends StartOfLife {
-  String socialisation;
+  final socialisation;
 
-  KinderGarden(String humanName, String gender, final yearOfBirth, this.socialisation,)
-      : super(humanName, gender, yearOfBirth,);
+  KinderGarden(
+    final humanName,
+    final gender,
+    DateTime yearOfBirth,
+    this.socialisation,
+  ) : super(
+          humanName,
+          gender,
+          yearOfBirth,
+        );
 }
 
-class School {
-  String basicKnowledge;
+class School extends KinderGarden {
+  final basicKnowledge;
 
-  School(String humanName, String gender, final yearOfBirth, String socialisation, this.basicKnowledge,)
-      : super(humanName, gender, yearOfBirth, socialisation,);
+  School(
+    final humanName,
+    final gender,
+    DateTime yearOfBirth,
+    final socialisation,
+    this.basicKnowledge,
+  ) : super(
+          humanName,
+          gender,
+          yearOfBirth,
+          socialisation,
+        );
 }
 
-class University {
-  String specialKnowledge;
+class University extends School {
+  final specialKnowledge;
 
-  University(String humanName, String gender, final yearOfBirth, String socialisation, String basicKnowledge,
-      this.specialKnowledge,) : super (humanName, gender, yearOfBirth, socialisation, basicKnowledge,);
+  University(
+    final humanName,
+    final gender,
+    DateTime yearOfBirth,
+    final socialisation,
+    final basicKnowledge,
+    this.specialKnowledge,
+  ) : super(
+          humanName,
+          gender,
+          yearOfBirth,
+          socialisation,
+          basicKnowledge,
+        );
 }
 
-class Job {
-  String experience;
+class Job extends University {
+  final experience;
 
-  Job(String humanName, String gender, final yearOfBirth, String socialisation, String basicKnowledge,
-      String specialKnowledge, this.experience,)
-      : super(humanName, gender, yearOfBirth, socialisation, basicKnowledge, specialKnowledge,);
+  Job(
+    final humanName,
+    final gender,
+    DateTime yearOfBirth,
+    final socialisation,
+    final basicKnowledge,
+    final specialKnowledge,
+    this.experience,
+  ) : super(
+          humanName,
+          gender,
+          yearOfBirth,
+          socialisation,
+          basicKnowledge,
+          specialKnowledge,
+        );
 }
 
-class Cemetery {
+class Cemetery extends Job {
   final yearOfDeath;
 
-  Cemetery(String humanName, String gender, final yearOfBirth, String socialisation, String basicKnowledge,
-      String specialKnowledge, String experience, this.yearOfDeath,) : super(
-    humanName,
-    gender,
-    yearOfBirth,
-    socialisation,
-    basicKnowledge,
-    specialKnowledge,
-    experience,);
+  Cemetery(
+    final humanName,
+    final gender,
+    DateTime yearOfBirth,
+    final socialisation,
+    final basicKnowledge,
+    final specialKnowledge,
+    final experience,
+    this.yearOfDeath,
+  ) : super(
+          humanName,
+          gender,
+          yearOfBirth,
+          socialisation,
+          basicKnowledge,
+          specialKnowledge,
+          experience,
+        );
 }
