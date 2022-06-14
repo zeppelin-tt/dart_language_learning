@@ -13,8 +13,7 @@ void main() {
     ..out()
     ..driving();
   final Car mercedes = Car('mers', 400000);
-  final car = mercedes
-    ..brand = 'Mercedes'
+    mercedes..brand = 'Mercedes'
     ..out()
     ..maxSpeed = 100
     ..power = 50
