@@ -1,35 +1,37 @@
 void main() {
   Car volvo = Car();
-  volvo.drivin();
-  volvo.brand = "volvo";
+  volvo.driving();
+  volvo.brand = 'volvo';
   volvo.price=5000000;
   volvo.out();
   print(volvo.brand);
   Car bmw =Car();
   bmw.price=6000000;
-  bmw.brand="BMW";
+  bmw.brand='BMW';
   bmw.out();
-  bmw.drivin();
+  bmw.driving();
   Car mercedes = Car();
-  mercedes.brand ="Mercedes";
+  mercedes.brand ='Mercedes';
   mercedes.out();
-  mercedes.speed= 100;
+  mercedes.maxSpeed= 100;
   mercedes.power = 50;
   mercedes.type = 'sedan';
   print(bmw.runtimeType);
-  print(mercedes.speed);
+  print(mercedes.maxSpeed);
+  mercedes.typeOut();
 
 
 
-  Person denn = Person("Roman", 32);
+  Person denn = Person('Roman', 32);
   denn.printOut();
   denn.age=17;
-  denn.fullName="Dennis";
+  denn.fullName='Dennis';
   denn.move();
   denn.talk();
   denn.printOut();
 
-  var student = Student("Maxim", "Shennikov", DateTime(2011));
+
+  var student = Student('Maxim', 'Shennikov', DateTime(2011));
   print(student.toString());
 
 }
@@ -37,28 +39,31 @@ void main() {
 // У каждого объекта должны быть поля и каждый child должен добавлять новые поля
 
 class Engine{
-  String type = "";
+  String type = '';
+  void typeOut(){
+    print('вид транспортного средства $type');
+  }
 }
 class Vehicles extends Engine{
-  int speed = 0;
+  int maxSpeed = 0;
 }
-class AutoMechanical extends Vehicles{
+class AutoMechanicalVehicles extends Vehicles{
   int power=0;
 }
-class LandVehicles extends AutoMechanical{
+class LandVehicles extends AutoMechanicalVehicles{
   int wheelValues =0;
 }
 
-class Car extends AutoMechanical{
-  String brand = "";
+class Car extends AutoMechanicalVehicles{
+  String brand = '';
   int price = 0;
 
 
-  void drivin(){
-    print( "car is drivin");
+  void driving(){
+    print( 'car is driving');
   }
   void out(){
-    print("Brand $brand Prise is $price");}
+    print('Brand $brand Prise is $price');}
 
 }
 
@@ -70,7 +75,7 @@ class Car extends AutoMechanical{
 // Добавьте конструктор Person(fullName, age).
 // Создайте два объект этого класса. Объект инициализируется конструктором Person(fullName, age).
 class Person {
-  String fullName = "";
+  String fullName = '';
 
   int age = 0;
 
@@ -79,10 +84,10 @@ class Person {
   Person.personDefault();
 
   void move(){
-    print("$fullName идет гулять");
+    print('$fullName идет гулять');
   }
   void talk(){
-    print("$fullName ,общается");
+    print('$fullName ,общается');
   }
   void printOut(){
     print ('имя $fullName возраст $age');
@@ -101,12 +106,12 @@ class Person {
 // год поступления
 // текущий курс
 class User {
-  String name = "";
-  String surname = "";
+  String name = '';
+  String surname = '';
 
   @override
   toString() {
-    return "Имя: $name, фамилия: $surname";
+    return 'Имя: $name, фамилия: $surname';
   }
 }
 
