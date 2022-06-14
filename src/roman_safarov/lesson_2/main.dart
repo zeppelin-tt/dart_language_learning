@@ -1,73 +1,89 @@
 void main() {
-  Car volvo = Car();
+  final Car volvo = Car('volvo1', 400000);
   volvo.driving();
-  volvo.brand = 'volvo';
-  volvo.price=5000000;
-  volvo.out();
+  volvo
+    ..brand = 'volvo'
+    ..price = 5000000
+    ..out();
   print(volvo.brand);
-  Car bmw =Car();
-  bmw.price=6000000;
-  bmw.brand='BMW';
-  bmw.out();
-  bmw.driving();
-  Car mercedes = Car();
-  mercedes.brand ='Mercedes';
-  mercedes.out();
-  mercedes.maxSpeed= 100;
-  mercedes.power = 50;
-  mercedes.type = 'sedan';
+  final Car bmw = Car('bmw2', 25);
+  bmw
+    ..price = 6000000
+    ..brand = 'BMW'
+    ..out()
+    ..driving();
+  final Car mercedes = Car('mers', 400000);
+  final car = mercedes
+    ..brand = 'Mercedes'
+    ..out()
+    ..maxSpeed = 100
+    ..power = 50
+    ..type = 'sedan';
   print(bmw.runtimeType);
   print(mercedes.maxSpeed);
   mercedes.typeOut();
 
-
-
   Person denn = Person('Roman', 32);
   denn.printOut();
-  denn.age=17;
-  denn.fullName='Dennis';
-  denn.move();
-  denn.talk();
-  denn.printOut();
-
+  denn..age = 17
+  ..fullName = 'Dennis'
+  ..move()
+  ..talk()
+  ..printOut();
 
   var student = Student('Maxim', 'Shennikov', DateTime(2011));
   print(student.toString());
-
 }
 //1. Создайте цепочку реальных объектов наследования, длиною 5 объектов.
 // У каждого объекта должны быть поля и каждый child должен добавлять новые поля
 
-class Engine{
+class Engine {
   String type = '';
-  void typeOut(){
+  void typeOut() {
     print('вид транспортного средства $type');
   }
-}
-class Vehicles extends Engine{
-  int maxSpeed = 0;
-}
-class AutoMechanicalVehicles extends Vehicles{
-  int power=0;
-}
-class LandVehicles extends AutoMechanicalVehicles{
-  int wheelValues =0;
+
+  Engine(this.type);
 }
 
-class Car extends AutoMechanicalVehicles{
+class Vehicles extends Engine {
+  int maxSpeed;
+
+  Vehicles(String type, this.maxSpeed) : super(type);
+}
+
+class AutoMechanicalVehicles extends Vehicles {
+  int power;
+
+  AutoMechanicalVehicles(String type, int maxSpeed, this.power)
+      : super(type, maxSpeed);
+}
+
+class LandVehicles extends AutoMechanicalVehicles {
+  int wheelValues = 0;
+
+  LandVehicles(super.type, super.maxSpeed, super.power, this.wheelValues);
+}
+
+class Car extends AutoMechanicalVehicles {
   String brand = '';
   int price = 0;
 
+  Car(this.brand, this.price) : super('', 0, 0);
 
-  void driving(){
-    print( 'car is driving');
+  @override
+  String toString() {
+    return 'Car{brand: $brand, price: $price}';
   }
-  void out(){
-    print('Brand $brand Prise is $price');}
 
+  void driving() {
+    print('car is driving');
+  }
+
+  void out() {
+    print('Brand $brand Prise is $price');
+  }
 }
-
-
 
 // 2. Создать класс Person, который содержит:
 // переменные fullName, age;
@@ -83,16 +99,19 @@ class Person {
 
   Person.personDefault();
 
-  void move(){
+  void move() {
     print('$fullName идет гулять');
   }
-  void talk(){
+
+  void talk() {
     print('$fullName ,общается');
   }
-  void printOut(){
-    print ('имя $fullName возраст $age');
+
+  void printOut() {
+    print('имя $fullName возраст $age');
   }
 }
+
 // 3. Реализуйте класс Student (Студент), который будет наследоваться от класса User.
 // Класс должен иметь следующие свойства:
 //
@@ -110,13 +129,12 @@ class User {
   String surname = '';
 
   @override
-  toString() {
+  String toString() {
     return 'Имя: $name, фамилия: $surname';
   }
 }
 
 class Student extends User {
-
   DateTime yearOfAdmission = DateTime.now();
 
   Student(String name, String surname, this.yearOfAdmission) {
@@ -126,7 +144,6 @@ class Student extends User {
 
   int get currentCourse => DateTime.now().year - yearOfAdmission.year;
 
-
   @override
   toString() {
     return super.toString() +
@@ -134,4 +151,3 @@ class Student extends User {
         ', курс: $currentCourse';
   }
 }
-
