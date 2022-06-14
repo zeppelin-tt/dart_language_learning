@@ -29,7 +29,7 @@ void main() {
   denn.talk();
   denn.printOut();
 
-  var student = Student("Maxim", "Shennikov", DateTime(2007));
+  var student = Student("Maxim", "Shennikov", DateTime(2011));
   print(student.toString());
 
 }
@@ -114,7 +114,7 @@ class Student extends User {
 
   DateTime yearOfAdmission = DateTime.now();
 
-  Student(String name, String surname, DateTime yearOfAdmission) {
+  Student(String name, String surname, this.yearOfAdmission) {
     this.name = name;
     this.surname = surname;
   }
@@ -124,7 +124,9 @@ class Student extends User {
 
   @override
   toString() {
-    return "${super}, год поступления: ${yearOfAdmission.year}, курс: $currentCourse";
+    return super.toString() +
+        ', год поступления: ${yearOfAdmission.year}' +
+        ', курс: $currentCourse';
   }
 }
 
