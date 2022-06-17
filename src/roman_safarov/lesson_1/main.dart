@@ -2,7 +2,7 @@ void main() {
   final modulo = divisionToIntegerAndModulo(21, 8);
   print('остаток от деления 21 на 8 - $modulo ');
 
-  division2(21, 8);
+  divisionToIntegerAndModulo2(17, 8);
   sumNumbers(13);
 
   final modulo2 = divisionToIntegerAndModulo(17, 4);
@@ -26,11 +26,11 @@ int divisionToIntegerAndModulo(int q, int w) {
   return q % w;
 }
 
-void division2(int q, int w) {
+void divisionToIntegerAndModulo2(int q, int w) {
   //с  выводом текста и результата на экран
-  final div2 = q ~/ w;
+  final divisionToInt = q ~/ w;
   final remainder = q % w;
-  print('$q / $w = $div2, остаток от деления $q на $w равен $remainder');
+  print('$q / $w = $divisionToInt, остаток от деления $q на $w равен $remainder');
 }
 // 2. В переменной n хранится натуральное двузначное число. Создайте функцию,
 // вычисляющую и выводящую на экран сумму цифр числа n.
