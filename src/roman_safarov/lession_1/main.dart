@@ -1,14 +1,14 @@
 void main() {
-  final modulo = division(21, 8);
-  print('$modulo остаток от деления 21 на 8 - ');
+  final modulo = divisionToIntegerAndModulo(21, 8);
+  print('остаток от деления 21 на 8 - $modulo ');
 
   division2(21, 8);
   sumNumbers(13);
 
-  final modulo2 = division(17, 4);
+  final modulo2 = divisionToIntegerAndModulo(17, 4);
   print(' остаток от деления - $modulo2');
 
-  division2(77, 6);
+
 
   rounder(3.1416894);
 
@@ -21,9 +21,8 @@ void main() {
 //      выводящую на экран результат деления q на w с остатком.
 //    Пример вывода программы (для случая, когда в q хранится 21, а в w хранится 8)
 
-int division(int q, int w) {
+int divisionToIntegerAndModulo(int q, int w) {
   //через return
-  print('остаток от деления');
   return q % w;
 }
 
@@ -52,7 +51,7 @@ void sumNumbers(int a) {
 
 //3. В переменной n хранится вещественное число с ненулевой дробной частью. Создайте функцию,
 //      округляющую число n до ближайшего целого и выводящую результат на экран.
-void rounder(double x) {
+void rounder(final x) {
   final y = x.round();
   print('$x округляем до $y');
 }
