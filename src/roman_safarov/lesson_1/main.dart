@@ -1,12 +1,12 @@
 void main() {
-  final modulo = division(21, 8);
+  final modulo = divisionToIntegerAndModulo(21, 8);
   print('остаток от деления 21 на 8 - $modulo ');
 
   division2(21, 8);
   sumNumbers(13);
 
-  final modulo2 = division(17, 4);
-  print(' остаток от деления - $modulo2');
+  final modulo2 = divisionToIntegerAndModulo(17, 4);
+  print(' остаток от деления 17 на 4- $modulo2');
 
 
 
@@ -21,7 +21,7 @@ void main() {
 //      выводящую на экран результат деления q на w с остатком.
 //    Пример вывода программы (для случая, когда в q хранится 21, а в w хранится 8)
 
-int division(int q, int w) {
+int divisionToIntegerAndModulo(int q, int w) {
   //через return
   return q % w;
 }
