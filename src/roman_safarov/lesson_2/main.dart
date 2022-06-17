@@ -22,7 +22,7 @@ void main() {
   print(mercedes.maxSpeed);
   mercedes.typeOut();
 
-  Person denn = Person('Roman', 32);
+  final Person denn = Person('Roman', 32);
   denn.printOut();
   denn..age = 17
   ..fullName = 'Dennis'
@@ -30,7 +30,7 @@ void main() {
   ..talk()
   ..printOut();
 
-  var student = Student('Maxim', 'Shennikov', DateTime(2011));
+  final student = Student('Maxim', 'Shennikov', DateTime(2011));
   print(student.toString());
 }
 //1. Создайте цепочку реальных объектов наследования, длиною 5 объектов.
@@ -144,9 +144,7 @@ class Student extends User {
   int get currentCourse => DateTime.now().year - yearOfAdmission.year;
 
   @override
-  toString() {
-    return super.toString() +
-        ', год поступления: ${yearOfAdmission.year}' +
-        ', курс: $currentCourse';
+  String toString() {
+    return '${super}, год поступления: ${yearOfAdmission.year}, курс: $currentCourse';
   }
 }
