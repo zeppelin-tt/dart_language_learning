@@ -13,7 +13,7 @@ void main() {
     ..out()
     ..driving();
   final Car mercedes = Car('mers', 400000);
-    mercedes..brand = 'Mercedes'
+  mercedes..brand = 'Mercedes'
     ..out()
     ..maxSpeed = 100
     ..power = 50
@@ -25,10 +25,10 @@ void main() {
   final Person denn = Person('Roman', 32);
   denn.printOut();
   denn..age = 17
-  ..fullName = 'Dennis'
-  ..move()
-  ..talk()
-  ..printOut();
+    ..fullName = 'Dennis'
+    ..move()
+    ..talk()
+    ..printOut();
 
   final student = Student('Maxim', 'Shennikov', DateTime(2011));
   print(student.toString());
@@ -148,3 +148,4 @@ class Student extends User {
     return '${super}, год поступления: ${yearOfAdmission.year}, курс: $currentCourse';
   }
 }
+
