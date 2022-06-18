@@ -16,6 +16,7 @@
 
 
 Не успел или забыл рассказать, изучите самим:
-1. Сортировки. Необходимо для задачи 1.
-2. Прочитайте про деревья https://javarush.ru/groups/posts/3111-strukturih-dannihkh-dvoichnoe-derevo-v-java
+1. Сортировки. Необходимо для задачи 2.
+2. Посмотреть и пощупать стандартные методы классов String, bool, int, double
+3. Прочитайте про деревья https://javarush.ru/groups/posts/3111-strukturih-dannihkh-dvoichnoe-derevo-v-java
    Для чего они нужны и как прозходить элементы дерева при помощи рекурсии.
