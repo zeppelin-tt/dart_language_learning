@@ -33,11 +33,8 @@ void main() {
 
   print(list3.indexWhere((item) => item > 100));
 
-  print(list3.contains(100));
-  print(list3.contains(37));
-  print(list3.contains(55));
-  print(list3.contains(99));
-  print(list3.contains(64));
+  final testList = [100, 37, 55, 99, 64];
+  print('${list1.toSet().intersection(testList.toSet()).isNotEmpty}');
 
   final sum = list3.reduce((value, item) => value + item);
   print(sum);
@@ -65,21 +62,21 @@ void main() {
 }
 
 int evenOddComparator(int a, int b) {
-  if (a % 2 == b % 2 && a > b) {
-    return 1;
-  }
   if (a.isEven && b.isOdd) {
+    return -1;
+  }
+  if (a.isOdd && b.isEven) {
     return 1;
   }
   return 0;
 }
 
 class GoldenRationSize {
-  int smallSide;
+  final int smallSide;
 
-  GoldenRationSize(this.smallSide);
+  final int bigSide;
 
-  late final bigSide = (smallSide * 1.62).round();
+  GoldenRationSize(this.smallSide) : bigSide = (smallSide * 1.41).round();
 
   @override
   String toString() {
