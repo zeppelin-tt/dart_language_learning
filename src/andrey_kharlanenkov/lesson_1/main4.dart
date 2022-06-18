@@ -7,5 +7,5 @@ void main () {
 
   d = a + b + c;
 
-  print ("сумма цифр: $d");
+  print ('сумма цифр: $d');
 }
