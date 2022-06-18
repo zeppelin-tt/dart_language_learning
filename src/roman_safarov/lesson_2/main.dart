@@ -145,7 +145,6 @@ class Student extends User {
 
   @override
   String toString() {
-    return '${super}, год поступления: ${yearOfAdmission.year}, курс: $currentCourse';
+    return  '$name $surname, год поступления: ${yearOfAdmission.year}, курс: $currentCourse';
   }
 }
-
