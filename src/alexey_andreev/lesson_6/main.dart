@@ -3,11 +3,19 @@ import 'dart:math';
 void main() {
   const n = 12345;
   final nString = n.toString();
-  final nReversedString = nString.split('').reversed.join();
+  final List<String> nList = nString.split('');
+  for (var i = 0; i < nList.length / 2; i++) {
+    final temp = nList[i];
+    nList[i] = nList[nList.length - 1 - i];
+    nList[nList.length - 1 - i] = temp;
+  }
+  final nReversedString = nList.reduce((value, element) => '$value$element');
   final nReversed = int.parse(nReversedString);
   print(nReversed);
 
-  final list1 = List<int>.generate(15, (item) => 5 + Random().nextInt(55));
+  final rnd = Random();
+
+  final list1 = List<int>.generate(15, (item) => 5 + rnd.nextInt(55));
   print(list1);
 
   list1.sort();
@@ -20,8 +28,8 @@ void main() {
   list1.shuffle();
   print(list1);
 
-  final list2 = bubbleSort(list1);
-  print(list2);
+  final getBubbleSorted = bubbleSort(list1);
+  print(getBubbleSorted);
 
   const numb = 500;
   primeNumbers(numb);
