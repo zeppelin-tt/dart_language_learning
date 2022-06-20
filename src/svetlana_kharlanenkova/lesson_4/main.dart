@@ -13,7 +13,7 @@ void main() {
   print(getDayOfWeekAndTime(6, 9, Lang.eng));
   print(getDayOfWeekAndTime(11, 12, Lang.eng));
   print(getDayOfWeekAndTime(5, 24, Lang.ru));
-  print(getDayOfWeekAndTime(3, 15, Lang.eng, callback: printWithStars));
+  print(getDayOfWeekAndTime(3, 15, Lang.eng, onResult: printWithStars));
 }
 
 String isCorrect(int a) {
@@ -47,43 +47,22 @@ String partOfHour(int min) {
   return 'В четвертую четверть часа';
 }
 
-String getDayOfWeekAndTime(int day, int time, Lang lang,
-    {ResultCallback? callback}) {
+String getDayOfWeekAndTime(
+  int day,
+  int time,
+  Lang lang, {
+  ResultCallback? onResult,
+}) {
   String result = '';
-
-  if (day < 1 || day > 7) {
-    return lang == Lang.eng ? 'Wrong day' : 'Неверный день';
-  }
-  if (time < 0 || time > 23) {
-    return lang == Lang.eng ? 'Wrong time' : 'Неверное время';
+  if (!checkDayAndTime(day, time, lang)) {
+    return result;
   }
 
-  if (day == 1) {
-    result += lang == Lang.eng ? 'Monday' : 'Понедельник';
-  } else if (day == 2) {
-    result += lang == Lang.eng ? 'Tuesday' : 'Вторник';
-  } else if (day == 3) {
-    result += lang == Lang.eng ? 'Wednesday' : 'Среда';
-  } else if (day == 4) {
-    result += lang == Lang.eng ? 'Thursday' : 'Четверг';
-  } else if (day == 5) {
-    result += lang == Lang.eng ? 'Friday' : 'Пятница';
-  } else {
-    result += lang == Lang.eng ? 'Weekend' : 'Выходной';
-  }
+  final stringDay = getDay(day, lang);
+  final stringTime = getTime(time, lang);
+  result = '$stringDay, $stringTime';
 
-  if (time >= 0 && time < 8) {
-    result += lang == Lang.eng ? ', night' : ', ночь';
-  } else if (time >= 8 && time < 12) {
-    result += lang == Lang.eng ? ', morning' : ', утро';
-  } else if (time >= 12 && time < 20) {
-    result += lang == Lang.eng ? ', afternoon' : ', день';
-  } else {
-    result += lang == Lang.eng ? ', evening' : ', вечер';
-  }
-  if (callback != null) {
-    callback(result);
-  }
+  onResult?.call(result);
   return result;
 }
 
@@ -93,4 +72,44 @@ typedef ResultCallback = void Function(String result);
 
 void printWithStars(String result) {
   print('***** $result *****');
+}
+
+bool checkDayAndTime(int day, int time, Lang lang) {
+  if (day < 1 || day > 7) {
+    print(lang == Lang.eng ? 'Wrong day' : 'Неверный день');
+    return false;
+  }
+  if (time < 0 || time > 23) {
+    print(lang == Lang.eng ? 'Wrong time' : 'Неверное время');
+    return false;
+  }
+  return true;
+}
+
+String getDay(int day, Lang lang) {
+  if (day == 1) {
+    return lang == Lang.eng ? 'Monday' : 'Понедельник';
+  } else if (day == 2) {
+    return lang == Lang.eng ? 'Tuesday' : 'Вторник';
+  } else if (day == 3) {
+    return lang == Lang.eng ? 'Wednesday' : 'Среда';
+  } else if (day == 4) {
+    return lang == Lang.eng ? 'Thursday' : 'Четверг';
+  } else if (day == 5) {
+    return lang == Lang.eng ? 'Friday' : 'Пятница';
+  } else {
+    return lang == Lang.eng ? 'Weekend' : 'Выходной';
+  }
+}
+
+String getTime(int time, Lang lang) {
+  if (time >= 0 && time < 8) {
+    return lang == Lang.eng ? 'night' : 'ночь';
+  } else if (time >= 8 && time < 12) {
+    return lang == Lang.eng ? 'morning' : 'утро';
+  } else if (time >= 12 && time < 20) {
+    return lang == Lang.eng ? 'afternoon' : 'день';
+  } else {
+    return lang == Lang.eng ? 'evening' : 'вечер';
+  }
 }
