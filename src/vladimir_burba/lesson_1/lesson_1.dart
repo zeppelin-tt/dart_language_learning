@@ -20,7 +20,7 @@ void task1(int q, int w) {
 }
 
 void task2(int n) {
-  print('сумма цифр числа $n = ${sumOfDigits(n)}');
+  print('Сумма цифр числа $n = ${sumOfDigits(n)}');
 }
 
 void task3(double n) {
@@ -28,5 +28,5 @@ void task3(double n) {
 }
 
 void task4(int n) {
-  print('сумма цифр числа $n = ${sumOfDigits(n)}');
+  print('Сумма цифр числа $n = ${sumOfDigits(n)}');
 }
