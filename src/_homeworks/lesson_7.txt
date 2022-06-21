@@ -36,6 +36,9 @@
 выполнить функцию можно следующим образом:
   readTxtFile(r'<абсолютный путь к проекту>\dart_language_learning\src\_homeworks\lesson_7_text.txt').then(task1);
 
+  Для поиска по регуляркам - используете методы класса RegExp - stringMatch, allMatches, hasMatch - и т.д.
+  там и примеры есть.
+
 3. Выполните 1-ое задание, используя расширения к классу String. Названия должны быть
 
 2. Try-Catch
@@ -57,4 +60,3 @@ WrongPasswordException и WrongLoginException - пользовательские
 Не успел или забыл рассказать, изучите самим:
 1. Статейка про расширения https://habr.com/ru/post/476930/
 2. Регулярные выражения https://regex101.com/
-3. Подсказка
