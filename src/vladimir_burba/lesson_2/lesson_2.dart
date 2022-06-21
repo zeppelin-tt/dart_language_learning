@@ -26,12 +26,12 @@ class Person extends Human {
 
   Person(this.fullName, super.height, super.dateOfBirth, super.mass);
 
-  void move({String? destination}) {
-    print('$fullName двигается в пункт - ${destination ?? 'Респаун'}');
+  void move({String destination = 'Респаун'}) {
+    print('$fullName двигается в пункт - $destination');
   }
 
-  void talk({String? speech}) {
-    print('$fullName говорит ${speech ?? r'!@#$%^&'}');
+  void talk({String speech = r'!@#$%^&'}) {
+    print('$fullName говорит $speech');
   }
 }
 
