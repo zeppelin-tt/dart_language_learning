@@ -22,15 +22,15 @@ class Person extends Human {
     final int age, {
     final double? height,
     final double? mass,
-  }) : super(height ?? 0, fewYearsAgo(age), mass ?? 0);
+  }) : super(height ?? 0, getDateYearsAgo(age), mass ?? 0);
 
   Person(this.fullName, super.height, super.dateOfBirth, super.mass);
 
-  void move({final String? destination}) {
+  void move({String? destination}) {
     print('$fullName двигается в пункт - ${destination ?? 'Респаун'}');
   }
 
-  void talk({final String? speech}) {
+  void talk({String? speech}) {
     print('$fullName говорит ${speech ?? r'!@#$%^&'}');
   }
 }

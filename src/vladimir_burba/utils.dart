@@ -11,11 +11,10 @@ int sumOfDigits(int number) {
   return res;
 }
 
-DateTime fewYearsAgo(final int years) {
-  return DateTime(
-      DateTime.now().year - years, DateTime.now().month, DateTime.now().day);
+DateTime getDateYearsAgo(int years) {
+  return DateTime(DateTime.now().year - years, DateTime.now().month, DateTime.now().day);
 }
 
-int yearsPassed(final DateTime fromDate){
+int yearsPassed(DateTime fromDate) {
   return DateTime.now().difference(fromDate).inDays ~/ 365;
 }
