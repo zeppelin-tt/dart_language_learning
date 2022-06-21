@@ -10,7 +10,7 @@ void main() {
 
   final set = <int>{1, 2, 3, 4, 5, 6};
 
-  print('String'[2]);
+  print(Person.func());
 
   final list = <Person>[
     const Person(height: 165, shoulderWidth: 30, name: 'Maxim', gender: Gender.male),
@@ -36,6 +36,12 @@ int personHeightComparator(Person a, Person b) {
   return 0;
 }
 
+extension Foo on Person {
+  bool someFunc() {
+    return _isMale;
+  }
+}
+
 class Person implements Comparable<Person> {
   final int height;
   final int shoulderWidth;
@@ -49,7 +55,7 @@ class Person implements Comparable<Person> {
     required this.gender,
   });
 
-  bool get isMale => gender == Gender.male;
+  bool get _isMale => gender == Gender.male;
 
   @override
   String toString() {
@@ -66,6 +72,8 @@ class Person implements Comparable<Person> {
     }
     return 0;
   }
+
+  static String func() => 'String';
 }
 
 enum Gender { male, female }
