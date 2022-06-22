@@ -8,8 +8,6 @@ void main() {
   final modulo2 = divisionToIntegerAndModulo(17, 4);
   print(' остаток от деления 17 на 4- $modulo2');
 
-
-
   rounder(3.1416894);
 
   sumNumbers3(100);
@@ -30,7 +28,8 @@ void divisionToIntegerAndModulo2(int q, int w) {
   //с  выводом текста и результата на экран
   final divisionToInt = q ~/ w;
   final remainder = q % w;
-  print('$q / $w = $divisionToInt, остаток от деления $q на $w равен $remainder');
+  print(
+      '$q / $w = $divisionToInt, остаток от деления $q на $w равен $remainder');
 }
 // 2. В переменной n хранится натуральное двузначное число. Создайте функцию,
 // вычисляющую и выводящую на экран сумму цифр числа n.
@@ -51,7 +50,7 @@ void sumNumbers(int a) {
 
 //3. В переменной n хранится вещественное число с ненулевой дробной частью. Создайте функцию,
 //      округляющую число n до ближайшего целого и выводящую результат на экран.
-void rounder(final x) {
+void rounder(double x) {
   final y = x.round();
   print('$x округляем до $y');
 }
@@ -59,7 +58,7 @@ void rounder(final x) {
 //4. В переменной n хранится натуральное трёхзначное число. Создайте функцию,
 //      вычисляющую и выводящую на экран сумму цифр числа n.
 void sumNumbers3(int a) {
-  if ((a >= 100) && (a < 1000)) {
+  if (a >= 100 && a < 1000) {
     final firstNumber = a ~/ 100;
     final secondNumber = a % 100 ~/ 10;
     final thirdNumber = a % 10;
