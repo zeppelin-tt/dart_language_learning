@@ -1,13 +1,12 @@
-void main () {
+void main() {
   int n = 62;
-  summaChisel(n);
+  sumNumbers(n);
 }
 
-void summaChisel (int n2) {
+void sumNumbers(int n) {
   int a; int b; int c;
-  a = n2 ~/10;
-  b = n2 - a * 10;
+  a = n ~/ 10;
+  b = n - a * 10;
   c = a + b;
-  print ('сумма цифр: $c');
+  print('сумма цифр: $c');
 }
-

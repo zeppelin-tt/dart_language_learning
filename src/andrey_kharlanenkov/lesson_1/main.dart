@@ -1,17 +1,16 @@
-void main () {
+void main() {
   int q = 21;
   int w = 8;
-  delenie (q, w);
+  divisionResult(q, w);
 }
 
-void delenie (int q2, int w2) {
-  int a; int b;
-  a = q2 ~/ w2;
-  b = q2 - a * w2;
-  print ('целая часть: $a');
-  print ('остаток: $b');
-
-  b = q2 % w2;
-  print ('остаток ещё раз: $b');
+void divisionResult(int q, int w) {
+  final int a;
+  int b;
+  a = q ~/ w;
+  b = q - a * w;
+  print('целая часть: $a');
+  print('остаток: $b');
+  b = q % w;
+  print('остаток другим способом: $b');
 }
-
