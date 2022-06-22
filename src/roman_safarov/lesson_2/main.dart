@@ -1,32 +1,18 @@
 void main() {
-  final Car volvo = Car('volvo1', 400000);
-  volvo.driving();
-  volvo
-    ..brand = 'volvo'
-    ..price = 5000000
-    ..out();
-  print(volvo.brand);
-  final Car bmw = Car('bmw2', 25);
-  bmw
-    ..price = 6000000
-    ..brand = 'BMW'
-    ..out()
-    ..driving();
-  final Car mercedes = Car('mers', 400000);
-  mercedes..brand = 'Mercedes'
-    ..out()
-    ..maxSpeed = 100
-    ..power = 50
-    ..type = 'sedan';
-  print(bmw.runtimeType);
-  print(mercedes.maxSpeed);
-  mercedes.typeOut();
-
-  final Person denn = Person('Roman', 32);
-  denn.printOut();
-  denn..age = 17
-    ..fullName = 'Dennis'
-    ..move()
+  const volvo = Car(
+    brand: 'volvo1',
+    price: 400000,
+    type: 'sedan',
+    power: 15000,
+    maxSpeed: 300,
+  );
+  volvo.typeOut();
+  volvo.out();
+  const den = Person(fullName: 'Roman', age: 32,);
+  final realDen = den.copyWith(fullName: 'Денис Зайцев');
+  realDen.printOut();
+  den.printOut();
+  den
     ..talk()
     ..printOut();
 
@@ -37,38 +23,45 @@ void main() {
 // У каждого объекта должны быть поля и каждый child должен добавлять новые поля
 
 class Engine {
-  String type = '';
+  final String type;
+
   void typeOut() {
     print('вид транспортного средства $type');
   }
 
-  Engine(this.type);
+  const Engine(this.type);
 }
 
 class Vehicles extends Engine {
-  int maxSpeed;
+  final int maxSpeed;
 
-  Vehicles(String type, this.maxSpeed) : super(type);
+  const Vehicles(String type, this.maxSpeed) : super(type);
 }
 
 class AutoMechanicalVehicles extends Vehicles {
-  int power;
+  final int power;
 
-  AutoMechanicalVehicles(String type, int maxSpeed, this.power)
+  const AutoMechanicalVehicles(String type, int maxSpeed, this.power)
       : super(type, maxSpeed);
 }
 
 class LandVehicles extends AutoMechanicalVehicles {
-  int wheelValues = 0;
+  final int wheelValues;
 
-  LandVehicles(super.type, super.maxSpeed, super.power, this.wheelValues);
+  const LandVehicles(super.type, super.maxSpeed, super.power, this.wheelValues);
 }
 
 class Car extends AutoMechanicalVehicles {
-  String brand = '';
-  int price = 0;
+  final String? brand;
+  final int? price;
 
-  Car(this.brand, this.price) : super('', 0, 0);
+  const Car({
+    required String type,
+    required int maxSpeed,
+    required int power,
+    this.brand,
+    this.price,
+  }) : super(type, maxSpeed, power);
 
   @override
   String toString() {
@@ -90,13 +83,20 @@ class Car extends AutoMechanicalVehicles {
 // Добавьте конструктор Person(fullName, age).
 // Создайте два объект этого класса. Объект инициализируется конструктором Person(fullName, age).
 class Person {
-  String fullName = '';
+  final String fullName;
 
-  int age = 0;
+  final int age;
 
-  Person(this.fullName, this.age);
+  const Person({
+    required this.fullName,
+    required this.age,
+  });
 
-  Person.personDefault();
+  const Person.fromName(this.fullName) : age = 0;
+
+  const Person.empty()
+      : fullName = 'unknown',
+        age = 0;
 
   void move() {
     print('$fullName идет гулять');
@@ -108,6 +108,16 @@ class Person {
 
   void printOut() {
     print('имя $fullName возраст $age');
+  }
+
+  Person copyWith({
+    String? fullName,
+    int? age,
+  }) {
+    return Person(
+      fullName: fullName ?? this.fullName,
+      age: age ?? this.age,
+    );
   }
 }
 
@@ -145,6 +155,6 @@ class Student extends User {
 
   @override
   String toString() {
-    return  '$name $surname, год поступления: ${yearOfAdmission.year}, курс: $currentCourse';
+    return '$name $surname, год поступления: ${yearOfAdmission.year}, курс: $currentCourse';
   }
 }
