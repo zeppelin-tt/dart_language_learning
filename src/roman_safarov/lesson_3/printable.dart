@@ -13,13 +13,14 @@ void main (){
   final Book ants = Book.noName();
   ants..name = 'Муравьи'
   ..printName();
+  ants.burn();
 
 
 }
 abstract class Printable{
   void printName();
 }
-class Book implements Printable {
+class Book  with Burnable implements Printable {
   String? name;
   Book (this.name);
   Book.noName();
@@ -27,11 +28,19 @@ class Book implements Printable {
   @override
   void printName() => print(name);
 }
-class Magazine implements Printable{
+class Magazine with Burnable implements Printable {
   String? name;
   Magazine.noName();
   Magazine(this.name);
 
   @override
   void printName() => print(name);
+
+}
+// 3.1 Создать миксин Burnable с методом void burn() и реализацией (писать в консоль что предмет горит)
+// 3.2 Добавить этот миксин к классам Book и Magazine из второго задания
+class Burnable{
+  void burn(){
+    print('горит');
+  }
 }
