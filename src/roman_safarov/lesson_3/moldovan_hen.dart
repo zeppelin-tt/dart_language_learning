@@ -1,9 +1,9 @@
 import 'hen.dart';
 // 1.4. Создать класс MoldovanHen, который наследуется от Hen
 class MoldovanHen extends Hen {
-  final int eggsCount = 0;
+  final int eggsCount = 150;
 
-  String get country => '';
+  String get country => 'Молдавия';
   @override
   int getCountOfEggsPerMonth() {
     return eggsCount;

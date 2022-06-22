@@ -15,7 +15,7 @@ class HenFactory {
     else if (country.toString() == 'Беларусь'){
       return BelarusianHen();
     }
-    else if (country.toString() == 'Молдова'){
+    else if (country.toString() == 'Молдавия'){
       return MoldovanHen();
     }
   }
