@@ -1,7 +1,7 @@
 import 'dart:io';
 
 void main() {
-  final File file1 = File(r'C:\project\dart_application\bin\lesson_7_text.txt');
+  final File file1 = File('src/alexey_andreev/lesson_7/lesson_7_text.txt');
   final String text = file1.readAsStringSync()..printAsRepeatedWords;
 }
 
