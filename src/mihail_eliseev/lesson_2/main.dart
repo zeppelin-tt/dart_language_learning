@@ -1,7 +1,7 @@
 void main() {
-  final pers = Person('Mica Cuca', 30);
-  pers.talk();
-  pers.move();
+  final person = Person('Mica Cuca', 30);
+  person.talk();
+  person.move();
   final stud = Student(age: 29, fullName: 'Распутин', dateOfAdmission: DateTime(2012));
   final studentDescription = stud.toString();
   print(studentDescription);

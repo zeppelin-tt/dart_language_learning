@@ -1,5 +1,0 @@
-void main() {}
-
-abstract class Hen(){
-int getCountOfEggsPerMonth()
-}
