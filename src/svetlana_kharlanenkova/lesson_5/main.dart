@@ -75,7 +75,9 @@ void main() {
   print(map1);
 
   final Map<int, GoldenRationSize> map2 = {};
-  map1.forEach((key, value) {map2[key]=GoldenRationSize(value);});
+  map1.forEach((key, value) {
+    map2[key] = GoldenRationSize(value);
+  });
   print(map2);
 }
 
