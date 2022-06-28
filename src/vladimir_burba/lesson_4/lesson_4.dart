@@ -10,20 +10,16 @@ void task1(int n) {
 void main() {
   final r = Random();
 
-  final int t1N = r.nextInt(10);
+  final t1N = r.nextInt(10);
   task1(t1N);
-  final int t2N = r.nextInt(4);
+  final t2N = r.nextInt(4);
   task2(t2N);
-  final int t3N = r.nextInt(60);
+  final t3N = r.nextInt(60);
   task3(t3N);
-  int t4W = r.nextInt(8) + 1;
-  int t4H = r.nextInt(25);
-  Lang t4L = Lang.values[r.nextInt(2)];
+  final t4W = r.nextInt(8) + 1;
+  final t4H = r.nextInt(25);
+  final Lang t4L = Lang.values[r.nextInt(2)];
   task4(t4W, t4H, t4L);
-  t4W = r.nextInt(8) + 1;
-  t4H = r.nextInt(25);
-  t4L = Lang.values[r.nextInt(2)];
-  task4(t4W, t4H, t4L, callbackFunc);
 }
 
 String numBetween0and5(int num) {
@@ -57,33 +53,18 @@ void task3(int n) {
   print('$n минут - это ${getHourQuarter(n)}-я четверть часа');
 }
 
-void task4(
-  int w,
-  int d,
-  Lang lang, [
-  ResultCallback? onResult,
-]) {
-  print('На входе: $w, $d, $lang, $onResult');
-  getTimeInfo(w, d, lang, onResult).then(print);
+void task4(int w, int d, Lang lang) {
+  print('in: $w, $d, $lang');
+  getTimeInfo(w, d, lang).then(print);
 }
 
-typedef ResultCallback = String Function(String result);
-
-String callbackFunc(String str) {
-  return '$str (здесь могла бы быть Ваша реклама. Реклама в коллбэках - 8 912 3456789)';
-}
-
-Future<String> getTimeInfo(
-  int weekDay,
-  int hour,
-  Lang lang, [
-  ResultCallback? onResult,
-]) async {
-  assert(weekDay.isBetween(1, 7, 3), 'Неверный день недели. Принимаются значения от 1 до 7');
-  assert(weekDay.isBetween(0, 24, 2), 'Неверный час дня. Принимаются значения от 0 до 23');
+Future<String> getTimeInfo(int weekDay, int hour, Lang lang) async {
+  assert (weekDay.isBetween(1, 7, 3), 'Неверный день недели. Принимаются значения от 1 до 7');
+  assert (weekDay.isBetween(0, 24, 2), 'Неверный час дня. Принимаются значения от 0 до 23');
 
   const String strWeek = 'week';
-  final List<String> dir = Platform.script.pathSegments.toList()..removeLast();
+  final List<String> dir = Platform.script.pathSegments.toList()
+  ..removeLast();
   final String path = '${dir.join(Platform.pathSeparator)}${Platform.pathSeparator}localisation';
   final Localisation localisation = Localisation(lang, path);
   final String week = await localisation.getString([strWeek, weekDay - 1]);
@@ -92,17 +73,12 @@ Future<String> getTimeInfo(
     dayPart = 3;
   } else if (hour.isBetween(8, 12, 2)) {
     dayPart = 0;
-  } else if (hour.isBetween(12, 20, 2)) {
+  }else if (hour.isBetween(12, 20, 2)) {
     dayPart = 1;
-  } else {
+  }else {
     dayPart = 2;
   }
   const String strDay = 'day';
   final String day = await localisation.getString([strDay, dayPart]);
-  final String result = '$week, $day';
-  if (onResult != null) {
-    return onResult(result);
-  } else {
-    return result;
-  }
+  return '$week, $day';
 }
