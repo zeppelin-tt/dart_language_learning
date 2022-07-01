@@ -1,8 +1,4 @@
 void main(){
-  final Human romanSafarov = Human()
-  ..name = 'Роман'
-  ..age = 32
-  ..info();
 
   final PunkRockDrummer alexSidyakin = PunkRockDrummer()
   ..name = 'Александр'
