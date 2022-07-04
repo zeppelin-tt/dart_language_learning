@@ -1,19 +1,19 @@
 import 'dart:math' show Random;
 
 void main() {
-  final rng = Random();
-  final l = List.generate(20, (_) => rng.nextInt(100));
-  print(l);
-  print(l.length);
+  final rnd = Random();
+  final list = List.generate(20, (_) => rnd.nextInt(100));
+  print(list);
+  print(list.length);
 
-  final l2 = <int>[...l]
+  final l2 = <int>[...list]
     ..retainWhere((element) => element % 5 == 0 && element % 7 == 0);
   print(l2);
 
-  final List<int> l3 = [...l]..sort();
+  final List<int> l3 = [...list]..sort();
   print(l3);
 
-  final List<int> l4 = [...l]..sort((a, b) {
+  final List<int> l4 = [...list]..sort((a, b) {
       if (a.isEven && !b.isEven) {
         return -1;
       } else if (b.isEven && !a.isEven) {
@@ -24,16 +24,17 @@ void main() {
     });
   print(l4);
 
-  final List<int> l5 = l.sublist(1, l.length - 1);
+  final List<int> l5 = list.sublist(1, list.length - 1);
   print(l5);
 
-  final List<int> l6 = l.map((e) => e + 1).toList();
+  final List<int> l6 = list.map((e) => e + 1).toList();
   print(l6);
 
-  final List<int> l7 = l.expand((element) => [element, element + 100]).toList();
+  final List<int> l7 =
+      list.expand((element) => [element, element + 100]).toList();
   print(l7);
 
-  final List<int> l8 = [...l]..shuffle();
+  final List<int> l8 = [...list]..shuffle();
   print(l8);
 
   final greater = l7.where((element) => element > 100).toList()..sort();
@@ -43,7 +44,7 @@ void main() {
   if (index != -1) {}
   print(index);
 
-  final contain = l.where((element) =>
+  final contain = list.where((element) =>
       element == 100 ||
       element == 37 ||
       element == 55 ||
@@ -52,12 +53,12 @@ void main() {
   print(contain);
 
   int sum = 0;
-  for (final int element in l) {
+  for (final int element in list) {
     sum += element;
   }
   print(sum);
 
-  final List<String> l9 = l.map((element) => 'Number $element').toList();
+  final List<String> l9 = list.map((element) => 'Number $element').toList();
   print(l9);
 
   final List<int> l10 = l9
