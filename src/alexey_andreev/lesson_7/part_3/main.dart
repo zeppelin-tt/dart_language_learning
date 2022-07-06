@@ -21,15 +21,13 @@ void main() {
 
 class Confirmation {
   static bool confirm(String login, String password, String confirmPassword) {
-    final RegExp confirm = RegExp('[^A-Za-z0-9_]');
+    final confirm = RegExp('[^A-Za-z0-9_]');
     final wrongSymbolsLogin = confirm.stringMatch(login);
-    if (wrongSymbolsLogin == null && login.length < 20) {
-    } else {
+    if (wrongSymbolsLogin != null || login.length > 20){
       throw WrongLoginException('Wrong Login!');
     }
     final wrongSymbolsPassword = confirm.stringMatch(password);
-    if (wrongSymbolsPassword == null && password.length < 20 && password == confirmPassword) {
-    } else {
+    if (wrongSymbolsPassword != null || password.length > 20 || password != confirmPassword) {
       throw WrongPasswordException('Wrong Password!');
     }
     return true;

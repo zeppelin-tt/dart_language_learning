@@ -8,16 +8,16 @@ void main() {
 }
 
 Map<int, List<String>> task1(String text) {
-  final RegExp getWords = RegExp('[А-Яа-я]+', caseSensitive: false);
-  final Map<int, List<String>> map = <int, List<String>>{};
+  final wordsRegExp = RegExp('[а-я]+', caseSensitive: false);
+  final map = <int, List<String>>{};
   final wordList = List<String>.empty(growable: true);
-  final Iterable<Match> matches = getWords.allMatches(text);
+  final Iterable<Match> matches = wordsRegExp.allMatches(text);
   final Set<String> setOfWords =
-      ((matches.map((e) => e.input.substring(e.start, e.end).toLowerCase())).toList()).toSet();
+      (matches.map((e) => e.input.substring(e.start, e.end).toLowerCase()).toList()).toSet();
 
   for (final String item in setOfWords) {
     wordList.clear();
-    final RegExp counter = RegExp('(^|[^а-яА-Я_])$item(?![а-яА-Я_])', caseSensitive: false);
+    final counter = RegExp('(^|[^а-яА-Я_])$item(?![а-яА-Я_])', caseSensitive: false);
     final Iterable<Match> repeatsOfWord = counter.allMatches(text);
     final k = repeatsOfWord.length;
     final key = map.containsKey(k);

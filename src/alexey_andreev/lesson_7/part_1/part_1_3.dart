@@ -8,14 +8,14 @@ void main() {
 }
 
 Map<String, int> task3(String text) {
-  final RegExp getLetters = RegExp('[А-Яа-я]', caseSensitive: false);
-  final Map<String, int> map = <String, int>{};
-  final Iterable<Match> matches = getLetters.allMatches(text);
+  final lettersRegExp = RegExp('[а-я]', caseSensitive: false);
+  final map = <String, int>{};
+  final Iterable<Match> matches = lettersRegExp.allMatches(text);
   final Set<String> setOfLetters =
-      ((matches.map((e) => e.input.substring(e.start, e.end).toUpperCase())).toList()).toSet();
+      (matches.map((e) => e.input.substring(e.start, e.end).toUpperCase()).toList()).toSet();
 
   for (final String item in setOfLetters) {
-    final RegExp counter = RegExp(item, caseSensitive: false);
+    final counter = RegExp(item, caseSensitive: false);
     final Iterable<Match> repeatsOfLetter = counter.allMatches(text);
     final int k = repeatsOfLetter.length;
     map.putIfAbsent(item, () => k);

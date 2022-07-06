@@ -7,14 +7,14 @@ void main() {
 
 extension PrintingAsNumberOfLetters on String {
   void get printAsNumberOfLetters {
-    final RegExp getLetters = RegExp('[А-Яа-я]', caseSensitive: false);
-    final Map<String, int> map = <String, int>{};
-    final Iterable<Match> matches = getLetters.allMatches(this);
+    final lettersRegexp = RegExp('[А-Яа-я]', caseSensitive: false);
+    final map = <String, int>{};
+    final Iterable<Match> matches = lettersRegexp.allMatches(this);
     final Set<String> setOfLetters =
-        ((matches.map((e) => e.input.substring(e.start, e.end).toUpperCase())).toList()).toSet();
+        (matches.map((e) => e.input.substring(e.start, e.end).toUpperCase())).toList().toSet();
 
     for (final item in setOfLetters) {
-      final RegExp counter = RegExp(item, caseSensitive: false);
+      final counter = RegExp(item, caseSensitive: false);
       final Iterable<Match> repeatsOfLetter = counter.allMatches(this);
       final k = repeatsOfLetter.length;
       map.putIfAbsent(item, () => k);

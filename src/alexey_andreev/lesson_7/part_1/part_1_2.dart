@@ -8,12 +8,11 @@ void main() {
 }
 
 Map<int, List<String>> task2(String text) {
-  final RegExp getWords = RegExp('[А-Яа-я]+', caseSensitive: false);
-  final Map<int, List<String>> map = <int, List<String>>{};
+  final wordsRegExp = RegExp('[а-я]+', caseSensitive: false);
+  final map = <int, List<String>>{};
   final wordList = List<String>.empty(growable: true);
-  final Iterable<Match> matches = getWords.allMatches(text);
-  final Set<String> setOfWords =
-      ((matches.map((e) => e.input.substring(e.start, e.end).toLowerCase())).toList()).toSet();
+  final Iterable<Match> matches = wordsRegExp.allMatches(text);
+  final Set<String> setOfWords = (matches.map((e) => e.input.substring(e.start, e.end).toLowerCase()).toList()).toSet();
 
   for (final String item in setOfWords) {
     wordList.clear();
