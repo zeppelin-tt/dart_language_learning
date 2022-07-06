@@ -7,7 +7,7 @@ void main() {
 
 extension PrintingAsWordLengths on String {
   void get printAsWordLengths {
-    final RegExp wordsRegExp = RegExp('[а-я]+', caseSensitive: false);
+    final wordsRegExp = RegExp('[а-я]+', caseSensitive: false);
     final map = <int, List<String>>{};
     final wordList = List<String>.empty(growable: true);
     final Iterable<Match> matches = wordsRegExp.allMatches(this);

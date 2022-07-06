@@ -7,9 +7,9 @@ void main() {
 
 extension PrintingAsNumberOfLetters on String {
   void get printAsNumberOfLetters {
-    final lettersRegexp = RegExp('[А-Яа-я]', caseSensitive: false);
+    final lettersRegExp = RegExp('[а-я]', caseSensitive: false);
     final map = <String, int>{};
-    final Iterable<Match> matches = lettersRegexp.allMatches(this);
+    final Iterable<Match> matches = lettersRegExp.allMatches(this);
     final Set<String> setOfLetters =
         (matches.map((e) => e.input.substring(e.start, e.end).toUpperCase())).toList().toSet();
 
