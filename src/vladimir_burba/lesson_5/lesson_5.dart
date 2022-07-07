@@ -8,6 +8,7 @@ void main() {
   mapOperations(set);
 }
 
+// 3. Операции с Map
 void mapOperations(Set<int> set) {
   // a) Создайте Лист из последнего сета. Создайте Map<int, int> из листа, используя функцию asMap() листа.
   // Выведите в консоль.
@@ -35,6 +36,7 @@ class GoldenRationSize {
   }
 }
 
+// 2. Операции с Set
 Set setOperations(List list) {
   // Создайте Set из последнего результирующего листа прошлого задания.
   final Set result = {...list};
