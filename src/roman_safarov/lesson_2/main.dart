@@ -15,6 +15,7 @@ void main() {
   den
     ..talk()
     ..printOut();
+  realDen.move();
 
   final student = Student('Maxim', 'Shennikov', DateTime(2011));
   print(student.toString());
@@ -146,10 +147,11 @@ class User {
 class Student extends User {
   DateTime yearOfAdmission = DateTime.now();
 
-  Student(String name, String surname, this.yearOfAdmission) {
+Student(String name, String surname, this.yearOfAdmission) {
     this.name = name;
     this.surname = surname;
   }
+
 
   int get currentCourse => DateTime.now().year - yearOfAdmission.year;
 
