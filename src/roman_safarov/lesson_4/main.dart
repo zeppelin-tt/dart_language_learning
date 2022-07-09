@@ -90,8 +90,8 @@ String? dayOfWeek(int? numOfDay, int? partOfDayTime, Lang lang, ) {
       lang == Lang.ru ? dayTime = 'день' : dayTime = 'afternoon';
     } else if (partOfDayTime > 18 && partOfDayTime <= 24) {
       lang == Lang.ru ? dayTime = 'вечер' : dayTime = 'afternoon';
-    } else if (partOfDayTime >= 12 && partOfDayTime < 18) {
-      lang == Lang.ru ? dayTime = 'день' : dayTime = 'afternoon';
+    } else if (partOfDayTime >= 0 && partOfDayTime < 6) {
+      lang == Lang.ru ? dayTime = 'ночь' : dayTime = 'night';
     }
   }
 
