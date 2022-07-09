@@ -3,6 +3,10 @@ void main() {
   print(intInDoubleOut(2));
   print(intInDoubleOut(2));
   print(partOfHour(50));
+  print(dayOfWeek(4, 7, Lang.ru));
+
+
+
 }
 
 //1. Создайте функцию, получающие на вход int и возвращающие String 'верно' или 'неверно'
@@ -19,11 +23,11 @@ String intInStringOut(int num) {
 // Если переменная a равна нулю или равна двум, то прибавьте к ней 7, иначе поделите ее на 10.
 // Проделайте это дважды при помощи тернарного оператора и конструкции if-else
 double intInDoubleOut(int num) {
-  (num == 0)
-      ? num += 7
-      : (num == 2)
-          ? num += 7
-          : num = num / 10 as int;
+  if (num == 0 || num == 2) {
+    num += 7;
+  } else {
+    num = num / 10 as int;
+  }
   return num.toDouble();
 }
 
@@ -32,17 +36,18 @@ double intInDoubleOut(int num) {
 // Определите в какую четверть часа попадает это число (в первую, вторую, третью или четвертую).
 String? partOfHour(int min) {
   if (min >= 0 && min < 15) {
-    return'первая четверть часа';
+    return 'первая четверть часа';
   } else if (min >= 15 && min < 30) {
-    return'вторая четверть часа';
+    return 'вторая четверть часа';
   } else if (min >= 30 && min < 45) {
-    return'третья четверть часа';
+    return 'третья четверть часа';
   } else if (min >= 45 && min < 60) {
-    return'вторая четверть часа';
+    return 'вторая четверть часа';
   } else {
-    return'число должно быть от 0 до 59';
+    return 'число должно быть от 0 до 59';
   }
 }
+
 // 4. Дни недели;
 // аргументы функции
 // int - номера дня недели
@@ -58,3 +63,37 @@ String? partOfHour(int min) {
 // в) сделать у функции необязательный четвертый аргумент - коллбек, возвращающий результат.
 // г) дважды вызвать функцию и вывести в консоль значения из коллбека и из ретерна
 // д) создание вспомогательных функций приветствуется'
+enum Lang { ru, eng }
+
+String? dayOfWeek(int? numOfDay, int? partOfDayTime, Lang lang, ) {
+  String? dayName;
+  String? dayTime;
+  if (numOfDay! > 0 && numOfDay <= 7) {
+    if (numOfDay == 1) {
+      lang == Lang.ru ? dayName = 'понедельник' : dayName = 'monday';
+    } else if (numOfDay == 2) {
+      lang == Lang.ru ? dayName = 'вторник' : dayName = 'tuesday';
+    } else if (numOfDay == 3) {
+      lang == Lang.ru ? dayName = 'среда' : dayName = 'wednesday';
+    } else if (numOfDay == 4) {
+      lang == Lang.ru ? dayName = 'четверг' : dayName = 'thursday';
+    } else if (numOfDay == 5) {
+      lang == Lang.ru ? dayName = 'пятница' : dayName = 'friday';
+    } else if (numOfDay == 6 || numOfDay == 7) {
+      lang == Lang.ru ? dayName = 'выходной' : dayName = 'day off';
+    }
+  }
+  if (partOfDayTime! >= 0 && partOfDayTime < 24) {
+    if (partOfDayTime >= 6 && partOfDayTime < 12) {
+      lang == Lang.ru ? dayTime = 'утро' : dayTime = 'morning';
+    } else if (partOfDayTime >= 12 && partOfDayTime < 18) {
+      lang == Lang.ru ? dayTime = 'день' : dayTime = 'afternoon';
+    } else if (partOfDayTime > 18 && partOfDayTime <= 24) {
+      lang == Lang.ru ? dayTime = 'вечер' : dayTime = 'afternoon';
+    } else if (partOfDayTime >= 12 && partOfDayTime < 18) {
+      lang == Lang.ru ? dayTime = 'день' : dayTime = 'afternoon';
+    }
+  }
+
+  return '${dayName!} ${dayTime!}';
+}
