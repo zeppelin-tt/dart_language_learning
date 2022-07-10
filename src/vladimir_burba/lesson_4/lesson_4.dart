@@ -3,27 +3,27 @@ import 'dart:math';
 import '../localisation.dart';
 import '../number_utils.dart';
 
-void task1(int n) {
-  print('$n между 0 и 5 - ${numBetween0and5(n)}');
-}
-
 void main() {
-  final r = Random();
+  final rnd = Random();
 
-  final int t1N = r.nextInt(10);
-  task1(t1N);
-  final int t2N = r.nextInt(4);
-  task2(t2N);
-  final int t3N = r.nextInt(60);
-  task3(t3N);
-  int t4W = r.nextInt(8) + 1;
-  int t4H = r.nextInt(25);
-  Lang t4L = Lang.values[r.nextInt(2)];
-  task4(t4W, t4H, t4L);
-  t4W = r.nextInt(8) + 1;
-  t4H = r.nextInt(25);
-  t4L = Lang.values[r.nextInt(2)];
-  task4(t4W, t4H, t4L, callbackFunc);
+  int rndInt = rnd.nextInt(10);
+  print('$rndInt между 0 и 5 - ${numBetween0and5(rndInt)}');
+
+  rndInt = rnd.nextInt(4);
+  print('Странное тернарное вычисление для $rndInt = ${calcStrangeV1(rndInt)}');
+  print('Странное условное вычисление для $rndInt = ${calcStrangeV2(rndInt)}');
+
+  rndInt = rnd.nextInt(60);
+  print('$rndInt минут - это ${getHourQuarter(rndInt)}-я четверть часа');
+
+  int rndWeek = rnd.nextInt(8) + 1;
+  int rndHour = rnd.nextInt(25);
+  Lang lang = Lang.values[rnd.nextInt(2)];
+  task4(rndWeek, rndHour, lang);
+  rndWeek = rnd.nextInt(8) + 1;
+  rndHour = rnd.nextInt(25);
+  lang = Lang.values[rnd.nextInt(2)];
+  task4(rndWeek, rndHour, lang, callbackFunc);
 }
 
 String numBetween0and5(int num) {
@@ -46,15 +46,6 @@ double calcStrangeV2(int n) {
 
 int getHourQuarter(int n) {
   return n % 60 ~/ 15 + 1;
-}
-
-void task2(int n) {
-  print('Странное тернарное вычисление для $n = ${calcStrangeV1(n)}');
-  print('Странное условное вычисление для $n = ${calcStrangeV2(n)}');
-}
-
-void task3(int n) {
-  print('$n минут - это ${getHourQuarter(n)}-я четверть часа');
 }
 
 void task4(
