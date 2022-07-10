@@ -35,13 +35,7 @@ double calcStrangeV1(int n) {
 }
 
 double calcStrangeV2(int n) {
-  final double d;
-  if (n == 0 || n == 2) {
-    d = n + 7;
-  } else {
-    d = n / 10;
-  }
-  return d;
+  return n == 0 || n == 2 ? n + 7 : n / 10;
 }
 
 int getHourQuarter(int n) {
@@ -70,8 +64,8 @@ Future<String> getTimeInfo(
   Lang lang, [
   ResultCallback? onResult,
 ]) async {
-  assert(weekDay.isBetween(1, 7, 3), 'Неверный день недели. Принимаются значения от 1 до 7');
-  assert(weekDay.isBetween(0, 24, 2), 'Неверный час дня. Принимаются значения от 0 до 23');
+  assert(weekDay.isBetween(1, 7, inclusive: 3), 'Неверный день недели. Принимаются значения от 1 до 7');
+  assert(weekDay.isBetween(0, 24, inclusive: 2), 'Неверный час дня. Принимаются значения от 0 до 23');
 
   const String strWeek = 'week';
   final List<String> dir = Platform.script.pathSegments.toList()..removeLast();
@@ -79,11 +73,11 @@ Future<String> getTimeInfo(
   final Localisation localisation = Localisation(lang, path);
   final String week = await localisation.getString([strWeek, weekDay - 1]);
   final int dayPart;
-  if (hour.isBetween(0, 8, 2)) {
+  if (hour.isBetween(0, 8, inclusive: 2)) {
     dayPart = 3;
-  } else if (hour.isBetween(8, 12, 2)) {
+  } else if (hour.isBetween(8, 12, inclusive: 2)) {
     dayPart = 0;
-  } else if (hour.isBetween(12, 20, 2)) {
+  } else if (hour.isBetween(12, 20, inclusive: 2)) {
     dayPart = 1;
   } else {
     dayPart = 2;
