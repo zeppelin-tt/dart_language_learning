@@ -1,12 +1,10 @@
 void main() {
   print(intInStringOut(5));
   print(intInDoubleOut(2));
-  print(intInDoubleOut(2));
+  print(intInDoubleOut(7));
   print(partOfHour(50));
-  print(dayOfWeek(4, 7, Lang.ru));
-
-
-
+  print(dayOfWeek(4, 7, Lang.ru, onRes: (callBack) {  },));
+  dayOfWeek(6, 18, Lang.eng, onRes: callCallBack);
 }
 
 //1. Создайте функцию, получающие на вход int и возвращающие String 'верно' или 'неверно'
@@ -26,7 +24,7 @@ double intInDoubleOut(int num) {
   if (num == 0 || num == 2) {
     num += 7;
   } else {
-    num = num / 10 as int;
+    num = num ~/ 10;
   }
   return num.toDouble();
 }
@@ -42,7 +40,7 @@ String? partOfHour(int min) {
   } else if (min >= 30 && min < 45) {
     return 'третья четверть часа';
   } else if (min >= 45 && min < 60) {
-    return 'вторая четверть часа';
+    return 'четвертая четверть часа';
   } else {
     return 'число должно быть от 0 до 59';
   }
@@ -65,9 +63,10 @@ String? partOfHour(int min) {
 // д) создание вспомогательных функций приветствуется'
 enum Lang { ru, eng }
 
-String? dayOfWeek(int? numOfDay, int? partOfDayTime, Lang lang, ) {
+String? dayOfWeek(int? numOfDay, int? partOfDayTime, Lang lang, {CallBack? onRes}) {
   String? dayName;
   String? dayTime;
+  final  res = '$numOfDay, $partOfDayTime, $lang';
   if (numOfDay! > 0 && numOfDay <= 7) {
     if (numOfDay == 1) {
       lang == Lang.ru ? dayName = 'понедельник' : dayName = 'monday';
@@ -81,6 +80,8 @@ String? dayOfWeek(int? numOfDay, int? partOfDayTime, Lang lang, ) {
       lang == Lang.ru ? dayName = 'пятница' : dayName = 'friday';
     } else if (numOfDay == 6 || numOfDay == 7) {
       lang == Lang.ru ? dayName = 'выходной' : dayName = 'day off';
+    } else {
+      return 'значение $numOfDay не входит в диапазон';
     }
   }
   if (partOfDayTime! >= 0 && partOfDayTime < 24) {
@@ -88,12 +89,21 @@ String? dayOfWeek(int? numOfDay, int? partOfDayTime, Lang lang, ) {
       lang == Lang.ru ? dayTime = 'утро' : dayTime = 'morning';
     } else if (partOfDayTime >= 12 && partOfDayTime < 18) {
       lang == Lang.ru ? dayTime = 'день' : dayTime = 'afternoon';
-    } else if (partOfDayTime > 18 && partOfDayTime <= 24) {
-      lang == Lang.ru ? dayTime = 'вечер' : dayTime = 'afternoon';
+    } else if (partOfDayTime > 18 && partOfDayTime <= 23) {
+      lang == Lang.ru ? dayTime = 'вечер' : dayTime = 'evening';
     } else if (partOfDayTime >= 0 && partOfDayTime < 6) {
       lang == Lang.ru ? dayTime = 'ночь' : dayTime = 'night';
+    } else {
+      return 'значение $partOfDayTime не входит в диапазон';
     }
   }
-
-  return '${dayName!} ${dayTime!}';
+  onRes?.call(res);
+  return '$dayTime ${dayName!}';
 }
+
+typedef CallBack = void Function(String res);
+
+void callCallBack(String res) {
+  print(res);
+}
+
