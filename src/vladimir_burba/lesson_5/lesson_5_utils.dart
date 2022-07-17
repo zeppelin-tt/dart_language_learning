@@ -1,10 +1,3 @@
-import 'dart:math';
-
-List<int> generateRandomIntList(int length, int maxValue) {
-  final Random rnd = Random();
-  return List.generate(length, (index) => rnd.nextInt(maxValue), growable: false);
-}
-
 List<int> deleteMultiplesFromListMass(List<int> listInt, List<int> multipliers) {
   List<int> result = listInt.toList();
   for (int i = 0; i < multipliers.length; i++) {

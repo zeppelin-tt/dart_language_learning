@@ -47,3 +47,8 @@ Iterable propagateElement(Object? element, int count) sync* {
     yield element;
   }
 }
+
+List<int> generateRandomIntList(int length, int maxValue) {
+  final Random rnd = Random();
+  return List.generate(length, (index) => rnd.nextInt(maxValue), growable: false);
+}
