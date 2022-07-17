@@ -1,8 +1,6 @@
 // 1. Операции с List
 // В этом задании можно (и даже нужно) иногда создавать новые экземпляры листов и продолжать уже с ними
 
-
-
 import 'dart:math';
 
 void main() {
@@ -32,14 +30,15 @@ void main() {
   //       System.out.print("массив с четными числами" + " ");
   list
     ..sort(evenOddComparator)
-  // f) Удалите первый и последний элемент списка. Выведите в консоль.
+    // f) Удалите первый и последний элемент списка. Выведите в консоль.
     ..removeAt(0)
     ..removeLast();
   print(list);
   // g) Измените все элементы листа, добавив к ним 1. Выведите в консоль.
   for (int i = 0; i < list.length; i++) {
-    final int j = list[i] + 1;
-    list[i] = j;
+    list[i] += 1;
+    // final int j = list[i] + 1;
+    // list[i] = j;
   }
   print(list);
 // h) Добавьте в лист еще елементы, каждый из которых будет на 100 больше элемента из списка. Выведите в консоль.
@@ -56,7 +55,7 @@ void main() {
   // l) Проверить, находится ли в списке хотя бы одно число из 100, 37, 55, 99, 64. Результат проверки вывестив  консоль.
 
   final containList = list.where((element) =>
-  element == 100 ||
+      element == 100 ||
       element == 37 ||
       element == 55 ||
       element == 99 ||
@@ -83,6 +82,33 @@ void main() {
 // и функциями класса String.
 // При помощи функции expand каждый элемент запишите трижды в лист.
 // Выведите в консоль.
+  final list5 = list4
+      .map((e) => e.replaceAll('Number', ''))
+      .expand((e) => [e, e, e])
+      .toList();
+  print(list5);
+  // 2. Операции с Set (так как создается по дефолту LinkedHashSet, они, в большинстве своем, повторяют операции из List)
+  //
+  // Создайте Set из последнего результирующего листа прошлого задания.
+  //
+  final Set set = list5.toSet();
+  print(set);
+  // 3. Операции с Map
+  //
+
+  // a) Создайте Лист из последнего сета. Создайте Map<int, int> из листа, используя функцию asMap() листа.
+  // Выведите в консоль.
+  // Обратите внимание на специфику метода asMap().
+  final map1 = set.toList().asMap();
+  print(map1);
+
+  // c) Заменить values в мапе на объекты GoldenRationSize, передавая значение в конструктор.
+  // должна получиться Map<int, GoldenRationSize>. Выведите в консоль.
+  final Map<int, GoldenRationSize> map2 =
+      map1.map((key, value) => MapEntry(key, GoldenRationSize(value)));
+// b) Создать объект GoldenRationSize(int smallSide), c полями int smallSide,
+// int bigSide и переопределением поля toString().
+// Большая сторона высчитывается через коэффициент золотого сечения и округляется.
 }
 
 int evenOddComparator(int a, int b) {
@@ -93,4 +119,18 @@ int evenOddComparator(int a, int b) {
     return 1;
   }
   return 0;
+}
+
+class GoldenRationSize {
+  int smallSize;
+  late int bigSize;
+
+  GoldenRationSize(this.smallSize) {
+    bigSize = (smallSize * 1.62).round();
+  }
+
+  @override
+  String toString() {
+    return 'GoldenRationSize{smallSize: $smallSize, bigSize: $bigSize}';
+  }
 }
