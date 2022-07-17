@@ -66,3 +66,21 @@ List<int> generateRandomIntList(int length, {int minValue = 0, int maxValue = 10
   final Random rnd = Random();
   return List.generate(length, (index) => rnd.nextInt(maxValue - minValue) + minValue, growable: growable);
 }
+
+List<num> bubbleSort(List<num> list) {
+  int upLim = list.length - 1;
+  int delta;
+  while (upLim > 0) {
+    delta = 1;
+    for (int iter = 0; iter < upLim; iter++) {
+      if (list[iter] > list[iter + 1]) {
+        list.insert(iter + 1, list.removeAt(iter));
+        delta = 1;
+      } else {
+        delta++;
+      }
+    }
+    upLim -= delta;
+  }
+  return list;
+}

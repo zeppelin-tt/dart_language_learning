@@ -12,7 +12,8 @@ void main() {
   print('Рандомный лист от 5 до 60 - $rndList');
   print('Минимальное значение - ${getMinElement(rndList)}');
   print('Максимальное значение - ${getMaxElement(rndList)}');
-  print('Среднее значение - ${getElementsAvg(rndList as List<num>)}');
+  print('Среднее значение - ${getElementsAvg(rndList.cast<num>())}');
+  print('Пузырьковая сортировка - ${bubbleSort(rndList)}');
 
   const int n = 500;
   print('Простые числа до $n - ${getPrimeNumbers(n)}');
@@ -20,6 +21,8 @@ void main() {
   final a = rnd.nextInt(100);
   final b = rnd.nextInt(100);
   print('числа от $a до $b - ${getNumbersRange(a, b)}');
+
+
 }
 
 int revertNumber(int n) {
