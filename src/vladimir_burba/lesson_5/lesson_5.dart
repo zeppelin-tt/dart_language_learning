@@ -47,7 +47,7 @@ List<int> listOperations() {
 // a) Создайте List<int> из 20 случайных чисел в диапазоне от 0 до 100. Выведите в консоль.
 // Для генерации случайного числа использовать Random().nextInt(100) из пакета math.
 // Не следует каждый раз создавать экземляр класса Random()
-  final rndList = generateRandomIntList(20, 100);
+  final rndList = generateRandomIntList(20, growable: false);
   print('Изначальный лист - $rndList');
 // b) Выведите в консоль длину листа.
   print('Длина листа - ${rndList.length}');
