@@ -21,7 +21,7 @@ void main() {
   final getBubbleSort = bubbleSort(list1);
   final min = list1.first;
   final max = list1.last;
-  final mid = max + min / 2;
+  final mid = list1.reduce((value, element) => value + element) / list1.length;
   print('Минимальное значение $min, Максимальное значение $max, Среднее значение $mid');
   print('Сортировка пузырьком $getBubbleSort');
 
