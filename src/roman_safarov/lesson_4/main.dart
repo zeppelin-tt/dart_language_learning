@@ -3,8 +3,13 @@ void main() {
   print(intInDoubleOut(2));
   print(intInDoubleOut(7));
   print(partOfHour(50));
-  print(dayOfWeek(4, 7, Lang.ru, onRes: (callBack) {  },));
-  dayOfWeek(6, 18, Lang.eng, onRes: callCallBack);
+  dayOfWeek(
+    4,
+    7,
+    Lang.ru,
+    onResult: print,
+  );
+  dayOfWeek(6, 18, Lang.eng, onResult: print);
 }
 
 //1. Создайте функцию, получающие на вход int и возвращающие String 'верно' или 'неверно'
@@ -63,10 +68,15 @@ String? partOfHour(int min) {
 // д) создание вспомогательных функций приветствуется'
 enum Lang { ru, eng }
 
-String? dayOfWeek(int? numOfDay, int? partOfDayTime, Lang lang, {CallBack? onRes}) {
+String? dayOfWeek(
+  int? numOfDay,
+  int? partOfDayTime,
+  Lang lang, {
+  ResultCallBack? onResult,
+}) {
   String? dayName;
   String? dayTime;
-  final  res = '$numOfDay, $partOfDayTime, $lang';
+  final res = '$numOfDay, $partOfDayTime, $lang';
   if (numOfDay! > 0 && numOfDay <= 7) {
     if (numOfDay == 1) {
       lang == Lang.ru ? dayName = 'понедельник' : dayName = 'monday';
@@ -97,13 +107,12 @@ String? dayOfWeek(int? numOfDay, int? partOfDayTime, Lang lang, {CallBack? onRes
       return 'значение $partOfDayTime не входит в диапазон';
     }
   }
-  onRes?.call(res);
+  onResult?.call(res);
   return '$dayTime ${dayName!}';
 }
 
-typedef CallBack = void Function(String res);
+typedef ResultCallBack = void Function(String result);
 
 void callCallBack(String res) {
   print(res);
 }
-
