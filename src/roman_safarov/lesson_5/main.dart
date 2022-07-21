@@ -12,15 +12,17 @@ void main() {
   print(list.length);
   print(list);
   // с) Уберите из листа все числа, кратные 5 и 7. Выведите в консоль.
-  for (int i = 0; i < list.length; i++) {
-    if (list[i] % 5 == 0) {
-      list.removeAt(i);
-    } else if (list[i] % 7 == 0) {
-      list.removeAt(i);
-    }
-  }
+  // for (int i = 0; i < list.length; i++) {
+  //   if (list[i] % 5 == 0) {
+  //     list.removeAt(i);
+  //   } else if (list[i] % 7 == 0) {
+  //     list.removeAt(i);
+  //   }
+  // }
 
-  print(list);
+  final list7 = list.where((element) => element % 5 == 0 || element % 7 == 0);
+
+  print(list7);
   // d) Отсортируйте лист по возрастанию. Выведите в консоль.
   list.sort();
   print(list);
@@ -35,12 +37,8 @@ void main() {
     ..removeLast();
   print(list);
   // g) Измените все элементы листа, добавив к ним 1. Выведите в консоль.
-  for (int i = 0; i < list.length; i++) {
-    list[i] += 1;
-    // final int j = list[i] + 1;
-    // list[i] = j;
-  }
-  print(list);
+  final list8 = list.map((e) => e + 1);
+  print(list8);
 // h) Добавьте в лист еще елементы, каждый из которых будет на 100 больше элемента из списка. Выведите в консоль.
 // Используйте функцию expand
   final list2 = list.expand((item) => [item, item + 100]).toList();
@@ -49,17 +47,13 @@ void main() {
   list.shuffle();
   print(list);
 // j) Найдите первое число больше 100 в листе. Выведите в консоль.
-  print(list2.firstWhere((element) => element > 100));
+  final list9 = list2.firstWhere((element) => element > 100);
+  print(list9);
 // k) Найдите индекс этого числа. Выведите в консоль.
-  print(list2.indexWhere((element) => element > 100));
+  final list10 = list2.indexWhere((element) => element > 100);
+  print(list10);
   // l) Проверить, находится ли в списке хотя бы одно число из 100, 37, 55, 99, 64. Результат проверки вывестив  консоль.
-
-  final containList = list.where((element) =>
-      element == 100 ||
-      element == 37 ||
-      element == 55 ||
-      element == 99 ||
-      element == 64);
+  final containList = list.where((element) => [100, 37, 55, 99, 64].contains(element));
   print(containList);
   //через условный интерфейс any
   final list3 = [100, 37, 55, 99, 64];
@@ -83,7 +77,7 @@ void main() {
 // При помощи функции expand каждый элемент запишите трижды в лист.
 // Выведите в консоль.
   final list5 = list4
-      .map((e) => e.replaceAll('Number', ''))
+      .map((e) => int.parse(e.replaceAll('Number', '')))
       .expand((e) => [e, e, e])
       .toList();
   print(list5);
@@ -91,7 +85,7 @@ void main() {
   //
   // Создайте Set из последнего результирующего листа прошлого задания.
   //
-  final Set set = list5.toSet();
+  final set = list5.toSet();
   print(set);
   // 3. Операции с Map
   //
@@ -104,11 +98,11 @@ void main() {
 
   // c) Заменить values в мапе на объекты GoldenRationSize, передавая значение в конструктор.
   // должна получиться Map<int, GoldenRationSize>. Выведите в консоль.
-  final Map<int, GoldenRationSize> map2 =
-      map1.map((key, value) => MapEntry(key, GoldenRationSize(value)));
+  final map2 = map1.map((key, value) => MapEntry(key, GoldenRationSize(value)));
 // b) Создать объект GoldenRationSize(int smallSide), c полями int smallSide,
 // int bigSide и переопределением поля toString().
 // Большая сторона высчитывается через коэффициент золотого сечения и округляется.
+  print(map2);
 }
 
 int evenOddComparator(int a, int b) {
@@ -122,12 +116,10 @@ int evenOddComparator(int a, int b) {
 }
 
 class GoldenRationSize {
-  int smallSize;
-  late int bigSize;
+  final int smallSize;
+  final int bigSize;
 
-  GoldenRationSize(this.smallSize) {
-    bigSize = (smallSize * 1.62).round();
-  }
+  GoldenRationSize(this.smallSize) : bigSize = (smallSize * 1.62).round();
 
   @override
   String toString() {
