@@ -7,7 +7,7 @@ extension Comparison on List {
 }
 
 num getElementsSum(List<num> list) {
-  return list.toList().reduce((value, element) => value + element);
+  return list.reduce((value, element) => value + element);
 }
 
 List shuffleElements(List listInt, [Random? rnd]) {

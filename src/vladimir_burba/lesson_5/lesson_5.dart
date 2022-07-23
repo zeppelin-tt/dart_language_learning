@@ -12,7 +12,7 @@ void mapOperations(Set<int> set) {
   // a) Создайте Лист из последнего сета. Создайте Map<int, int> из листа, используя функцию asMap() листа.
   // Выведите в консоль.
   // Обратите внимание на специфику метода asMap().
-  final Map<int, int> map = [...set].asMap();
+  final map = [...set].asMap();
   print('Map - $map');
   // c) Заменить values в мапе на объекты GoldenRationSize, передавая значение в конструктор.
   // должна получиться Map<int, GoldenRationSize>. Выведите в консоль.
@@ -27,7 +27,7 @@ class GoldenRationSize {
   final int smallSide;
   final int bigSide;
 
-  GoldenRationSize(this.smallSide) : bigSide = (smallSide * Fi).round();
+  GoldenRationSize(this.smallSide) : bigSide = (smallSide * fi).round();
 
   @override
   String toString() {
@@ -58,7 +58,7 @@ List<int> listOperations() {
 // e) Отсортируйте лист таким образом, что сначала идут четные, затем нечетные,
 // при этом не нарушая сортировку по возрастанию, внутри четной и нечетных частей. Выведите в консоль.
 // Для этого создайте собственную функцию-компаратор.
-  print('Отсортированный по четности список - ${sortList(rndList, evenComparator)}');
+  print('Отсортированный по четности список - ${sortList(rndList, comparator: evenComparator)}');
 // f) Удалите первый и последний элемент списка. Выведите в консоль.
   print('Список без крайних элементов - ${deleteListBorders(rndList)}');
 // g) Измените все элементы листа, добавив к ним 1. Выведите в консоль.

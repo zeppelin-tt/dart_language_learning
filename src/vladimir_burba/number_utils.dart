@@ -1,7 +1,6 @@
 import 'dart:math';
 
-// ignore: non_constant_identifier_names
-final double Fi = (sqrt(5) + 1) / 2;
+final double fi = (sqrt(5) + 1) / 2;
 
 int integerDivision(int numerator, int denominator) {
   return numerator ~/ denominator;
