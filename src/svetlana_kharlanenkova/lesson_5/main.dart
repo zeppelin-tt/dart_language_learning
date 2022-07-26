@@ -6,26 +6,26 @@ void main() {
   print(list);
   print(list.length);
 
-  final l2 = <int>[...list]
+  final list2 = list
     ..retainWhere((element) => element % 5 == 0 && element % 7 == 0);
-  print(l2);
+  print(list2);
 
-  final List<int> l3 = [...list]..sort();
-  print(l3);
+  final list3 = list..sort();
+  print(list3);
 
-  final List<int> l4 = [...list]..sort((a, b) {
+  final list4 = list..sort((a, b) {
       if (a.isEven && !b.isEven) {
         return -1;
       } else if (b.isEven && !a.isEven) {
-        return 1;
+        return 0;
       } else {
         return a.compareTo(b);
       }
     });
-  print(l4);
+  print(list4);
 
-  final List<int> l5 = list.sublist(1, list.length - 1);
-  print(l5);
+  final list5 = list.sublist(1, list.length - 1);
+  print(list5);
 
   final List<int> l6 = list.map((e) => e + 1).toList();
   print(l6);
