@@ -6,79 +6,69 @@ void main() {
   print(list);
   print(list.length);
 
-  final list2 = list
+  final list2 = list.toList()
     ..retainWhere((element) => element % 5 == 0 && element % 7 == 0);
   print(list2);
 
-  final list3 = list..sort();
+  final list3 = list.toList()..sort();
   print(list3);
 
-  final list4 = list..sort((a, b) {
-      if (a.isEven && !b.isEven) {
-        return -1;
-      } else if (b.isEven && !a.isEven) {
-        return 0;
-      } else {
-        return a.compareTo(b);
-      }
-    });
+  int sortList4(int a, int b) {
+    if (a.isEven && !b.isEven) {
+      return -1;
+    } else if (b.isEven && !a.isEven) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
+  final list4 = list.toList()..sort(sortList4);
   print(list4);
 
-  final list5 = list.sublist(1, list.length - 1);
+  final list5 = list.toList().sublist(1, list.length - 1).toList();
   print(list5);
 
-  final List<int> l6 = list.map((e) => e + 1).toList();
-  print(l6);
+  final list6 = list.map((e) => e + 1).toList();
+  print(list6);
 
-  final List<int> l7 =
-      list.expand((element) => [element, element + 100]).toList();
-  print(l7);
+  final list7 =
+      list.toList().expand((element) => [element, element + 100]).toList();
+  print(list7);
 
-  final List<int> l8 = [...list]..shuffle();
-  print(l8);
+  final list8 = list.toList()..shuffle();
+  print(list8);
 
-  final greater = l7.where((element) => element > 100).toList()..sort();
-  print(greater.first);
+  final firstMoreThen100 = list7.firstWhere((e) => e > 100);
+  print(firstMoreThen100);
 
-  final int index = l7.indexWhere((element) => element > 100);
-  if (index != -1) {}
+  final int index = list7.indexOf(firstMoreThen100);
   print(index);
 
-  final contain = list.where((element) =>
-      element == 100 ||
-      element == 37 ||
-      element == 55 ||
-      element == 99 ||
-      element == 64);
-  print(contain);
+  final containsNumbers = list7.any((e) => [100, 37, 55, 99, 64].contains(e));
+  print(containsNumbers);
 
-  int sum = 0;
-  for (final int element in list) {
-    sum += element;
-  }
+  final sum = list7.reduce((value, element) => value + element);
   print(sum);
 
-  final List<String> l9 = list.map((element) => 'Number $element').toList();
-  print(l9);
+  final list9 = list.map((element) => 'Number $element').toList();
+  print(list9);
 
-  final List<int> l10 = l9
+  final list10 = list9
       .map((e) => e.replaceAll(RegExp('[^0-9]+'), ''))
       .map(int.parse)
       .expand((e) => [e, e, e])
       .toList();
-  print(l10);
+  print(list10);
 
-  final Set<int> set1 = Set.from(l10);
+  final Set<int> set1 = Set.from(list10);
   print(set1);
 
-  final List<int> l11 = set1.toList();
-  final Map<int, int> map1 = l11.asMap();
+  final Map<int, int> map1 = set1.toList().asMap();
   print(map1);
 
-  final Map<int, GoldenRationSize> map2 = {};
-  map1.forEach((key, value) {
-    map2[key] = GoldenRationSize(value);
-  });
+  final Map<int, GoldenRationSize> map2 =
+      map1.map((key, value) => MapEntry(key, GoldenRationSize(value)));
   print(map2);
 }
 
