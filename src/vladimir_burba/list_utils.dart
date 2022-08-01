@@ -15,27 +15,15 @@ List shuffleElements(List listInt, [Random? rnd]) {
 }
 
 List<num> incListElements(List<num> listInt, [int increment = 1]) {
-  final List<num> result = listInt.toList();
-  for (var i = 0; i < result.length; i++) {
-    result[i] += increment;
-  }
-  return result;
+  return listInt.toList().expand((element) => [element + increment]).toList();
 }
 
 List<String> setPrefix(List list, String prefix) {
-  final List<String> result = [];
-  for (var i = 0; i < list.length; i++) {
-    result.add('$prefix ${list[i]}');
-  }
-  return result;
+  return list.toList().expand((element) => ['$prefix $element']).toList();
 }
 
 List<int> parseIntList(List<String> list) {
-  final List<int> result = [];
-  for (var i = 0; i < list.length; i++) {
-    result.add(int.parse(list[i].replaceAll(RegExp(r'\D'), '')));
-  }
-  return result;
+  return list.toList().expand((element) => [int.parse(element.replaceAll(RegExp(r'\D'), ''))]).toList();
 }
 
 List propagateList(List list, int count) {

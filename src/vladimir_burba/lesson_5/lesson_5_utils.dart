@@ -25,12 +25,7 @@ List deleteListBorders(List list) {
 }
 
 List<num> addIncElements(List<num> listInt, [int increment = 1]) {
-  return listInt.toList().expand((element) => addIncElement(element, increment)).toList();
-}
-
-Iterable<num> addIncElement(num element, [int increment = 1]) sync* {
-  yield element;
-  yield element + increment;
+  return listInt.toList().expand((element) => [element, element + increment]).toList();
 }
 
 num? getFirstElementMoreThen(List<num> list, num that) {
