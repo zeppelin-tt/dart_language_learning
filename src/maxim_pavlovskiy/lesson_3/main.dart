@@ -1,27 +1,24 @@
+// import 'dart:core';
+// import 'belarusian_hen.dart';
+import 'german_hen.dart';
+import 'hen_factory.dart';
+// import 'moldovan_hen.dart';
+// import 'russian_hen.dart';
+
 void main() {
-
+  // final henFactory = HenFactory();
+  // print(henFactory.getHen('Россия'));
+  // final germanHen1 = GermanHen();
+  // print(germanHen1.getCountOfEggsPerMonth());
+  // final germanHen2 = henFactory.getHen('Germany');
+  // final germanHen1 = henFactory.getHen('Германия');
+  //print(germanHen2.getCountOfEggsPerMonth());
+  // print(henFactory.getHen('Germany'));
+  // print(germanHen.getCountOfEggsPerMonth());
+  // print(henFactory.getHen('Молдова'));
+  // print(henFactory.getHen('Беларусь'));
+  // print(henFactory.getHen('Индия'));
 }
-
-// Куриная фабрика
-// Написать Фабрику(Factory) по производству кур(Hen)
-// 1.1. Создать класс Hen
-// 1.1.1. Сделать его абстрактным
-// 1.1.2. Добавить в класс абстрактный метод  int getCountOfEggsPerMonth()
-// 1.1.3. Добавить в класс метод геттер String description, который возвращает строку "Я курица."
-// 1.2. Создать класс RussianHen, который наследуется от Hen
-// 1.3. Создать класс GermanHen, который наследуется от Hen
-// 1.4. Создать класс MoldovanHen, который наследуется от Hen
-// 1.5. Создать класс BelarusianHen, который наследуется от Hen
-// 1.6. В каждом из четырех последних классов написать свою реализацию метода getCountOfEggsPerMonth.
-// Методы должны возвращать количество яиц в месяц от данного типа куриц.
-// 1.7. В каждом из четырех последних классов написать свою реализацию метода getDescription.
-// Методы должны возвращать строку вида:
-// <getDescription() родительского класса>  + <" Моя страна - SSSSS. Я несу N яиц в месяц.">
-// где SSSSS - название страны
-// где N - количество яиц в месяц
-// 1.8. В классе HenFactory реализовать меетод getHen, который возвращает соответствующую стране породу кур
-// 1.9. Все созданные вами классы должны быть в отдельных файлах
-//
 // 2.1 Создать интерфейс Printable, содержащий метод void print().
 // 2.2 Создать класс Book с полем name, реализующий интерфейс Printable. (писать в консоль имя книги)
 // 2.3 Создать класс Magazine с полем name, реализующий интерфейс Printable. (писать в консоль имя журнала)
