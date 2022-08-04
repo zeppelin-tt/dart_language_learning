@@ -3,7 +3,7 @@
    Имеется текст в файле lesson_7_text.txt.
    Имеется функция для чтения
    Future<String> readTxtFile(String path) => File(path).readAsString();
-   где path - абсолютный путь до файла с текстом
+   где path - путь до файла с текстом
    Создайте функцию
    void task1(String text)
    в которой будет считаться возвращать:
