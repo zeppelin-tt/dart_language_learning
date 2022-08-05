@@ -1,3 +1,7 @@
+import 'dart:math';
+
+final double fi = (sqrt(5) + 1) / 2;
+
 int integerDivision(int numerator, int denominator) {
   return numerator ~/ denominator;
 }
