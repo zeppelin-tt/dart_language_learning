@@ -6,22 +6,13 @@ extension Comparison on List {
   }
 }
 
-num getElementsSum(List<num> list) {
-  return list.toList().reduce((value, element) => value + element);
-}
-
-num getElementsAvg(List<num> list) {
-  return getElementsSum(list) / list.length;
-}
-
-num getMaxElement(List<num> list) {
-  final result = list.toList()..sort();
-  return result.last;
-}
-
-num getMinElement(List<num> list) {
-  final result = list.toList()..sort();
-  return result.first;
+extension AggregateList on List<num> {
+  num sum() {
+    return reduce((value, element) => value + element);
+  }
+  num avg() {
+    return sum() / length;
+  }
 }
 
 List shuffleElements(List listInt, [Random? rnd]) {
@@ -56,14 +47,14 @@ List propagateList(List list, int count) {
   return list.toList().expand((element) => propagateElement(element, count)).toList();
 }
 
-Iterable propagateElement(Object? element, int count) sync* {
+Iterable<T?> propagateElement<T>(T? element, int count) sync* {
   for (int i = 0; i < count; i++) {
     yield element;
   }
 }
 
 List<int> generateRandomIntList(int length, {int minValue = 0, int maxValue = 100, bool growable = true}) {
-  final Random rnd = Random();
+  final rnd = Random();
   return List.generate(length, (index) => rnd.nextInt(maxValue - minValue) + minValue, growable: growable);
 }
 

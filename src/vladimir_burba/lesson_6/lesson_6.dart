@@ -10,9 +10,9 @@ void main() {
 
   final rndList = generateRandomIntList(15, minValue: 5, maxValue: 60);
   print('Рандомный лист от 5 до 60 - $rndList');
-  print('Минимальное значение - ${getMinElement(rndList)}');
-  print('Максимальное значение - ${getMaxElement(rndList)}');
-  print('Среднее значение - ${getElementsAvg(rndList.cast<num>())}');
+  print('Минимальное значение - ${rndList.reduce(min)}');
+  print('Максимальное значение - ${rndList.reduce(max)}');
+  print('Среднее значение - ${rndList.cast<num>().avg()}');
   print('Пузырьковая сортировка - ${bubbleSort(rndList)}');
 
   const int n = 500;
@@ -21,8 +21,6 @@ void main() {
   final a = rnd.nextInt(100);
   final b = rnd.nextInt(100);
   print('числа от $a до $b - ${getNumbersRange(a, b)}');
-
-
 }
 
 int revertNumber(int n) {
@@ -36,7 +34,12 @@ int revertNumber(int n) {
 }
 
 List<int> getPrimeNumbers(int above) {
-  final List<int> result = [2];
+  final List<int> result;
+  if (above >= 2) {
+    result = [2];
+  } else {
+    return [];
+  }
   bool isPrime;
   for (int i = 3; i <= above; i++) {
     isPrime = true;
