@@ -1,0 +1,17 @@
+{
+  "week": [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Holiday",
+    "Holiday"
+  ],
+  "day": [
+    "morning",
+    "day",
+    "evening",
+    "night"
+  ]
+}
