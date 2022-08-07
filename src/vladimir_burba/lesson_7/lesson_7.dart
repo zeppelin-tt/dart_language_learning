@@ -6,7 +6,11 @@ import '../string_utils.dart';
 void main() {
   final path =
       '${Directory(Platform.script.toFilePath()).parent.parent.parent.path}${Platform.pathSeparator}_homeworks${Platform.pathSeparator}lesson_7_text.txt'; //..\..\_homeworks\lesson_7_text.txt
-  readTxtFile(path).then(task1);
+  readTxtFile(path).then((value) {
+    task1(value);
+    print('--------------------------------------------------------------------');
+    task2(value);
+  });
 }
 
 Future<String> readTxtFile(String path) => File(path).readAsString();
@@ -16,6 +20,16 @@ void task1(String text) {
   calcListWords(words).printAsRepeatedWords();
   calcListWordsLength(words).printAsWordLengths();
   calcTextRuLetters(text).printAsNumberOfLetters();
+  print('Количество заглавных букв - ${text.getCapitalLettersCount()}');
+  print('Количество прописных букв - ${text.getCursiveLettersCount()}');
+  print('Количество знаков препинания - ${text.getPunctuationsCount()}');
+  print('Количество цифр - ${text.getDigitsCount()}');
+}
+
+void task2(String text) {
+  text.calcWords().printAsRepeatedWords();
+  text.calcWordsLength().printAsWordLengths();
+  text.calcRuLetters().printAsNumberOfLetters();
   print('Количество заглавных букв - ${text.getCapitalLettersCount()}');
   print('Количество прописных букв - ${text.getCursiveLettersCount()}');
   print('Количество знаков препинания - ${text.getPunctuationsCount()}');
@@ -41,10 +55,6 @@ List<String> getRegExpMatches(String text, RegExp regExp) {
       .toList();
 }
 
-Map<int, List<String>> calcTextWords(String text) {
-  return calcListWords(getTextWords(text));
-}
-
 Map<int, List<String>> calcListWords(List<String> list) {
   final Map<int, List<String>> result = {};
   final lowerList = list.map((e) => e.toLowerCase()).toList();
@@ -59,10 +69,6 @@ Map<int, List<String>> calcListWords(List<String> list) {
     }
   });
   return SplayTreeMap<int, List<String>>.from(result, (keys1, keys2) => keys2.compareTo(keys1));
-}
-
-Map<int, List<String>> calcTextWordsLength(String text) {
-  return calcListWordsLength(getTextWords(text));
 }
 
 Map<int, List<String>> calcListWordsLength(List<String> list) {
@@ -138,4 +144,17 @@ extension SemanticAnalysis on String {
     const anyDigit = r'\d';
     return getRegExpMatches(this, RegExp(anyDigit)).length;
   }
+
+  Map<int, List<String>> calcWords() {
+    return calcListWords(getTextWords(this));
+  }
+
+  Map<int, List<String>> calcWordsLength() {
+    return calcListWordsLength(getTextWords(this));
+  }
+
+  Map<String, int> calcRuLetters() {
+    return calcTextRuLetters(this);
+  }
 }
+
