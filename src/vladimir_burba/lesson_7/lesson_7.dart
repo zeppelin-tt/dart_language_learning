@@ -7,10 +7,14 @@ void main() {
   final path =
       '${Directory(Platform.script.toFilePath()).parent.parent.parent.path}${Platform.pathSeparator}_homeworks${Platform.pathSeparator}lesson_7_text.txt'; //..\..\_homeworks\lesson_7_text.txt
   readTxtFile(path).then((value) {
+    print('--------------------------------------------------------------------');
     task1(value);
     print('--------------------------------------------------------------------');
     task2(value);
   });
+  print(CredentialsCheck.areCredentialsCorrect('login', 'password', 'password'));
+  print(CredentialsCheck.areCredentialsCorrect('login', 'password', 'confirmPassword'));
+  print(CredentialsCheck.areCredentialsCorrect('login', 'password', 'confirmPassword'));
 }
 
 Future<String> readTxtFile(String path) => File(path).readAsString();
@@ -158,3 +162,40 @@ extension SemanticAnalysis on String {
   }
 }
 
+class CredentialsCheck {
+  static bool areCredentialsCorrect(String login, String password, String confirmPassword) {
+    try {
+      final loginRegExp = RegExp(r'^\w{1,20}$');
+      if (!loginRegExp.hasMatch(login)) {
+        throw WrongLoginException('Логин должен содержать только латинские буквы, цифры и знак подчеркивания и не должен превышать длины 20 символов');
+      }
+      final passRegExp = RegExp(r'^\w{1,20}$');
+      if (!passRegExp.hasMatch(password) || password != confirmPassword) {
+        throw WrongPasswordException('Пароль должен содержать только латинские буквы, цифры и знак подчеркивания, не должен превышать длины 20 символов, а также должен совпадать с подтвержденным паролем');
+      }
+    } on WrongLoginException catch (e) {
+      print(e.message);
+      return false;
+    } on WrongPasswordException catch (e) {
+      print(e.message);
+      return false;
+    }
+    return true;
+  }
+}
+
+class WrongLoginException implements Exception {
+  final String message;
+
+  WrongLoginException(this.message);
+
+  WrongLoginException.toParent(this.message) : super();
+}
+
+class WrongPasswordException implements Exception {
+  final String message;
+
+  WrongPasswordException(this.message);
+
+  WrongPasswordException.toParent(this.message) : super();
+}
