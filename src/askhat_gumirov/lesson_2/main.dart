@@ -12,10 +12,10 @@ class HomoSapiens extends Human {
 
   HomoSapiens(
       {required this.height,
-      required this.weight,
-      required super.sex,
-      required super.isAlive,
-      required super.race});
+        required this.weight,
+        required super.sex,
+        required super.isAlive,
+        required super.race});
 }
 
 class Person extends HomoSapiens {
@@ -24,12 +24,12 @@ class Person extends HomoSapiens {
 
   Person(
       {required this.age,
-      required this.fullName,
-      required super.height,
-      required super.weight,
-      required super.sex,
-      required super.isAlive,
-      required super.race});
+        required this.fullName,
+        required super.height,
+        required super.weight,
+        required super.sex,
+        required super.isAlive,
+        required super.race});
 
   void move() {
     print('${this.fullName}  идет');
@@ -44,19 +44,19 @@ class Student extends Person {
   final String universityName;
   final String facultyName;
   final DateTime yearOfAdmission;
-   int currentCourse;
+  int currentCourse;
 
   Student(
       {required super.age,
-      required super.fullName,
-      required this.universityName,
-      required this.facultyName,
-      required this.currentCourse,
-      required super.height,
-      required super.weight,
-      required super.sex,
-      required super.isAlive,
-      required super.race})
+        required super.fullName,
+        required this.universityName,
+        required this.facultyName,
+        required this.currentCourse,
+        required super.height,
+        required super.weight,
+        required super.sex,
+        required super.isAlive,
+        required super.race})
       : yearOfAdmission = DateTime(2019);
 
   @override
