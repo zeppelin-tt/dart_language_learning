@@ -1,9 +1,7 @@
-import 'dart:ffi';
-
 void main() {
   //Задание №1
- double division(int first, int second) {
-   final double result = first / second;
+  double division(int first, int second) {
+    final double result = first / second;
     print(result);
     return result;
   }
@@ -20,13 +18,12 @@ void main() {
     }
     print(c);
     return c;
-
   }
 
   summary(nOne);
 
 //Задание №3
- const double nTwo = 15.4;
+  const double nTwo = 15.4;
   int roundFunction(double value) {
     print(value.round());
     return value.round();
