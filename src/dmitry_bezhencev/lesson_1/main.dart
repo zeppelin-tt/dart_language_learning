@@ -1,8 +1,14 @@
+const int q = 21;
+const int w = 8;
+const int n = 46;
+const double d = 3.8;
+const int i = 372;
+
 void main() {
-  one(21, 8);
-  two(46);
-  three(3.8);
-  four(372);
+  one(q, w);
+  two(n);
+  three(d);
+  four(i);
 }
 
 // 1. В переменных q и w хранятся два натуральных числа. Создайте функцию,
@@ -20,13 +26,13 @@ void two(int n) {
 
 // 3. В переменной n хранится вещественное число с ненулевой дробной частью. Создайте функцию,
 //    округляющую число n до ближайшего целого и выводящую результат на экран.
-void three(double n) => print('${n.roundToDouble()}');
+void three(double d) => print('${d.roundToDouble()}');
 
 // 4. В переменной n хранится натуральное трёхзначное число. Создайте функцию,
 //    вычисляющую и выводящую на экран сумму цифр числа n.
-void four(int n){
-  final int numberOne = (n ~/ 100) * 100;
-  final int numberTwo = (n - n % 10) - (n ~/ 100) * 100;
-  final int numberThree = n % 10;
+void four(int i) {
+  final int numberOne = (i ~/ 100) * 100;
+  final int numberTwo = (i - i % 10) - (i ~/ 100) * 100;
+  final int numberThree = i % 10;
   print('$numberOne + $numberTwo + $numberThree');
 }
