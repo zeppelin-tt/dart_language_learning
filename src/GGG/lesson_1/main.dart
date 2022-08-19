@@ -1,29 +1,35 @@
-main() {
+import 'dart:ffi';
+
+void main() {
   //Задание №1
-  division(int first, int second) {
-    double result = first / second;
+ double division(int first, int second) {
+   final double result = first / second;
     print(result);
+    return result;
   }
 
   division(21, 8);
 
 // универсальная функция для задания №2 и №4
-  final int nOne = 624;
-  summary(value) {
+  const int nOne = 624;
+  int summary(value) {
     int c = 0;
     List<String> b = nOne.toString().split('');
-    b.forEach((element) {
+    for (final element in b) {
       c += int.parse(element);
-    });
+    }
     print(c);
+    return c;
+
   }
 
   summary(nOne);
 
 //Задание №3
-  double nTwo = 15.4;
-  roundFunction(double value) {
+ const double nTwo = 15.4;
+  int roundFunction(double value) {
     print(value.round());
+    return value.round();
   }
 
   roundFunction(nTwo);
