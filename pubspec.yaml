@@ -8,6 +8,6 @@ dev_dependencies:
   surf_lint_rules: ^1.5.0
 
 dependencies:
-  http: ^0.13.4
+  http: ^0.13.5
+  rxdart: ^0.27.5
   translator: ^0.1.7
-  rxdart: ^0.27.4
