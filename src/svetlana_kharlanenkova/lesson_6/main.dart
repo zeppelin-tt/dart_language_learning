@@ -27,7 +27,7 @@ void main() {
 
 // b) Создайте формулы для получения максимального, минимального и среднего значения.
 
-  print(max(list));
+  print(max(list).round());
   print(min(list));
   print(avg(list));
 
