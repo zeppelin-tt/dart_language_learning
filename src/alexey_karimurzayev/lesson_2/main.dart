@@ -14,9 +14,9 @@ class Insect extends Protozoa {
 }
 
 class Invertebrate  extends Insect {
-  bool? fly;
+  bool fly = false;
 
-  Invertebrate(String skeleton, String type, {this.fly}) : super(skeleton, type);
+  Invertebrate(String skeleton, String type, {required this.fly}) : super(skeleton, type);
 }
 
 class Arthropod extends Invertebrate {
