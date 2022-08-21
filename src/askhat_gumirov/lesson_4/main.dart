@@ -30,7 +30,7 @@ void main() {
 
 // Задание 3;
   int partOfHour(int value) {
-    int? part;
+    late int part;
 
     if (value > 0 && value <= 15) {
       part = 1;
@@ -44,7 +44,7 @@ void main() {
     if (value > 45 && value < 60) {
       part = 4;
     }
-    return part!;
+    return part;
   }
 
   print(partOfHour(46));
@@ -57,7 +57,7 @@ void main() {
     required int day,
     required Lang lang,
   }) {
-    String result = '';
+   late String result;
     switch (day) {
       case 1:
         {
@@ -125,7 +125,7 @@ void main() {
     return result;
   }
 
-  print(daysOfWeek((value){},time: 1, day: 1, lang: Lang.ru));
+  print(daysOfWeek((value){},time: 555, day: 1, lang: Lang.ru));
   print(daysOfWeek(print,time: 1, day: 1, lang: Lang.ru));
 }
 
@@ -135,7 +135,7 @@ enum Lang {
 }
 
 String partOfDayFunc(int value, Lang lang) {
-  String result = '';
+ late String result;
   if (value > 0 && value <= 8) {
     lang == Lang.ru ? result = 'Ночь $value' : result = 'Night $value';
   }
