@@ -26,8 +26,6 @@
 // 3.1 Создать миксин Burnable с методом void burn() и реализацией (писать в консоль что предмет горит)
 // 3.2 Добавить этот миксин к классам Book и Magazine из второго задания
 
-
-
 import './classes/belarusian_hen.dart';
 import './classes/german_hen.dart';
 import './classes/magazine.dart';
@@ -38,13 +36,23 @@ import 'classes/get_hen.dart';
 void main() {
   final belarusianHen = BelarusianHen('Belarusian', eggs: 30);
   print(belarusianHen.getDescription());
+
   final germanHen = GermanHen();
   print(germanHen.getDescription());
-  print(germanHen.getCountOfEggsPerMonth());
-  final henFactory = HenFactory();
-  print(henFactory.getHen('Germany'));
+  // print(germanHen.getCountOfEggsPerMonth());
+
   final moldovanHen = MoldovanHen();
-  print(moldovanHen.getDescription());// разобратся с выводом в консоль
-  Magazine('Мурзилка').printName();
+  print(moldovanHen.getDescription());
+
+  final henFactory1 = HenFactory();
+  print(henFactory1.getHen('Germany'));
+
+  final henFactory2 = HenFactory();
+  print(henFactory2.getHen('Moldova'));
+
   Book('Вы конечно шутите, мистер Фейнман').printName();
+  Book('Песнь льда и пламени').printName();
+
+  Magazine('Мурзилка').printName();
+  Magazine('Игромания').printName();
 }

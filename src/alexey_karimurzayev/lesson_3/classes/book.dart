@@ -1,6 +1,7 @@
 import '../interface/printable.dart';
+import '../mixin/burnable.dart';
 
-class Book implements Printable {
+class Book with Burnable implements Printable {
   String name;
 
   Book(this.name);
@@ -8,5 +9,6 @@ class Book implements Printable {
   @override
   void printName() {
     print('Бестселлер года - $name');
+    burn();
   }
 }

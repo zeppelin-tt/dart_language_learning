@@ -1,5 +1,3 @@
-
-
-class  Printable {
-  void printName(){}
+abstract class Printable {
+  void printName() {}
 }
