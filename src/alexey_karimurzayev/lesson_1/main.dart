@@ -24,11 +24,16 @@ int roundUp(double n) {
 // 4. В переменной n хранится натуральное трёхзначное число. Создайте функцию,
 // вычисляющую и выводящую на экран сумму цифр числа n.
 
-int sumOfThreeNumbers(int n) {
-  final int a = n ~/ 100;
-  final int b = n % 100 ~/ 10;
-  final int c = n % 10;
-  return a + b + c;
+void sumOfThreeNumbers(int n) {
+
+  if (n >= 100 && n <=999) {
+    final int a = n ~/ 100;
+    final int b = n % 100 ~/ 10;
+    final int c = n % 10;
+    return print(a + b + c);
+  } else {
+    return print('Введите 3-х значное число!');
+  }
 }
 
 void main() {
@@ -39,5 +44,8 @@ void main() {
   // Задание № 3
   print(roundUp(7.8));
   // Задание № 4
-  print(sumOfThreeNumbers(294));
+  // print(sumOfThreeNumbers(299));
+  // print(sumOfThreeNumbers(2941));
+  sumOfThreeNumbers(99);
+  sumOfThreeNumbers(234);
 }
