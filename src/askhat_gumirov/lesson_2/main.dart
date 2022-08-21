@@ -12,10 +12,10 @@ class HomoSapiens extends Human {
 
   HomoSapiens(
       {required this.height,
-        required this.weight,
-        required super.sex,
-        required super.isAlive,
-        required super.race});
+      required this.weight,
+      required super.sex,
+      required super.isAlive,
+      required super.race});
 }
 
 class Person extends HomoSapiens {
@@ -24,12 +24,12 @@ class Person extends HomoSapiens {
 
   Person(
       {required this.age,
-        required this.fullName,
-        required super.height,
-        required super.weight,
-        required super.sex,
-        required super.isAlive,
-        required super.race});
+      required this.fullName,
+      required super.height,
+      required super.weight,
+      required super.sex,
+      required super.isAlive,
+      required super.race});
 
   void move() {
     print('$fullName  идет');
@@ -48,19 +48,19 @@ class Student extends Person {
 
   Student(
       {required super.age,
-        required super.fullName,
-        required this.universityName,
-        required this.facultyName,
-        required this.currentCourse,
-        required super.height,
-        required super.weight,
-        required super.sex,
-        required super.isAlive,
-        required super.race})
+      required super.fullName,
+      required this.universityName,
+      required this.facultyName,
+      required this.currentCourse,
+      required super.height,
+      required super.weight,
+      required super.sex,
+      required super.isAlive,
+      required super.race})
       : yearOfAdmission = DateTime(2019);
 
   @override
- String toString(){
+  String toString() {
     return 'Имя: $fullName, Возраст: $age, Год поступления: $yearOfAdmission, Текущий курс: $currentCourse';
   }
 }
@@ -96,10 +96,11 @@ final GreatStudent _greatStudent = GreatStudent(
     isAlive: true,
     race: 'European');
 
-
 void main() {
-
-  _greatStudent.currentCourse = DateTime.now().year - _greatStudent.yearOfAdmission.year;
+  _greatStudent.currentCourse =
+      DateTime.now().year - _greatStudent.yearOfAdmission.year;
   print(_greatStudent);
-  _greatStudent..talk()..move();
+  _greatStudent
+    ..talk()
+    ..move();
 }
