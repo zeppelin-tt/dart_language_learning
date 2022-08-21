@@ -14,25 +14,28 @@ void main() {
 // 1. В переменных q и w хранятся два натуральных числа. Создайте функцию,
 //    выводящую на экран результат деления q на w с остатком.
 //    Пример вывода программы (для случая, когда в q хранится 21, а в w хранится 8)
-void one(int q, int w) => print(q ~/ w);
+void one(int q, int w) =>
+    print('1 задание: остаток от деления $q на $w = ${q ~/ w}');
 
 // 2. В переменной n хранится натуральное двузначное число. Создайте функцию,
 //    вычисляющую и выводящую на экран сумму цифр числа n.
 void two(int n) {
-  final int numberOne = (n ~/ 10) * 10;
+  final int numberOne = n ~/ 10;
   final double numberTwo = n % 10;
-  print('$numberOne + $numberTwo');
+  print('2 задание: сумма цифр числа $n = ${numberOne + numberTwo}');
 }
 
 // 3. В переменной n хранится вещественное число с ненулевой дробной частью. Создайте функцию,
 //    округляющую число n до ближайшего целого и выводящую результат на экран.
-void three(double d) => print('${d.roundToDouble()}');
+void three(double d) =>
+    print('3 задание: ваше число = $d округлилось до: ${d.roundToDouble()}');
 
 // 4. В переменной n хранится натуральное трёхзначное число. Создайте функцию,
 //    вычисляющую и выводящую на экран сумму цифр числа n.
 void four(int i) {
-  final int numberOne = (i ~/ 100) * 100;
-  final int numberTwo = (i - i % 10) - (i ~/ 100) * 100;
+  final int numberOne = i ~/ 100;
+  final int numberTwo = (i % 100) ~/ 10;
   final int numberThree = i % 10;
-  print('$numberOne + $numberTwo + $numberThree');
+  print(
+      '4 задание: число $i, сумма цифр = ${numberOne + numberTwo + numberThree}');
 }
