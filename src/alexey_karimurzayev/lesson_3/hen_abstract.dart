@@ -1,4 +1,4 @@
-abstract class MainHen {
+abstract class Hen {
 
   int getCountOfEggsPerMonth();
 

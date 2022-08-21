@@ -1,0 +1,5 @@
+
+
+class  Printable {
+  void printName(){}
+}

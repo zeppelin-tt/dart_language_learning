@@ -1,10 +1,10 @@
 import '../hen_abstract.dart';
 
-class GermanHen extends MainHen {
-  final int eggs;
-  final String country;
+class GermanHen extends Hen {
+  int eggs = 26;
+  String country = 'Germany';
 
-  GermanHen(this.country, {required this.eggs});
+  // GermanHen(this.country, this.eggs);
 
   int get countOfEggsPerMonth {
     return eggs;
