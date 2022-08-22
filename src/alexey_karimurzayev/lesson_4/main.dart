@@ -143,18 +143,23 @@ String? partsOfTheDay(int hour, Lang lang) {
       } // А можно ли тут вместо default написать просто else??? Ведь любая не заложенная в кейс цифра выдаст loose и ретернется
   }
 }
-
+/*
+    Если честно, именно этот момент я подсмотрел, так как потратил много времени на изыскания, безрезультатно...
+    И все равно не совсем понял процесс и не могу понять, как в функции dayAndHour написать условие,
+    для того, чтобы при запуске коллбэком в консоле сообщение не дублировалось
+ */
 typedef ResultCallBack = void Function(String callback);
 
 void printMessage(message) {
-  print(message);
+  print(message.runtimeType);
 }
 
 String? dayAndHour(int day, int hour, Lang lang, [ResultCallBack? onResult]) {
-  final message = '${weekday(day, lang)}, ${partsOfTheDay(hour, lang)}';
+  final message = 'Функция вызванна другой функцией: ${weekday(day, lang)}, ${partsOfTheDay(hour, lang)}';
   onResult?.call(message);
-  return '${weekday(day, lang)}, ${partsOfTheDay(hour, lang)}';
+  //Тут хочу добавить условие для устранения дублирования сообщения в консоль
 
+  return '${weekday(day, lang)}, ${partsOfTheDay(hour, lang)}';
 }
 
 void main() {
@@ -171,9 +176,8 @@ void main() {
   print(quarterHour(61));
 
   // task 4
-  print(weekday(11, Lang.eng));
+  print(weekday(1, Lang.eng));
   print(partsOfTheDay(26, Lang.eng));
   print(dayAndHour(4, 6, Lang.eng));
   print(dayAndHour(1, 3, Lang.ru, print));
-
 }
