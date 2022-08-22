@@ -29,8 +29,10 @@ double intToDoubleTernary(int a) {
 // В переменной min лежит число от 0 до 59.
 // Определите в какую четверть часа попадает это число (в первую, вторую, третью или четвертую).
 
-String quarterHour(int h) {
-  if (h >= 0 && h <= 14) {
+String? quarterHour(int h) {
+  if (h < 0 && h > 59) {
+    return 'Не корректный ввод';
+  } else if (h < 0 && h <= 14) {
     return 'Первая четверть часа';
   } else if (h >= 15 && h <= 29) {
     return 'Вторая четверть часа';
@@ -38,9 +40,8 @@ String quarterHour(int h) {
     return 'Третья четверть часа';
   } else if (h >= 45 && h <= 59) {
     return 'Четвертая четверть часа';
-  } else {
-    return 'Так то вводить число больше 59 не стоит';
   }
+  return null;
 }
 
 // 4. Дни недели;
@@ -64,73 +65,96 @@ enum Lang {
   eng,
 }
 
-String? dayByDay(int day, Lang lang) {
+String? weekday(int day, Lang lang) {
   switch (lang) {
     case Lang.ru:
       switch (day) {
+        case 0:
+          return 'Введите коректно число от 1 до 7';
         case 1:
-          {
-            return 'Понедельник';
-          }
+          return 'Понедельник';
         case 2:
-          {
-            return 'Вторник';
-          }
+          return 'Вторник';
         case 3:
-          {
-            return 'Среда';
-          }
+          return 'Среда';
         case 4:
-          {
-            return 'Четверг';
-          }
+          return 'Четверг';
         case 5:
-          {
-            return 'Пятница';
-          }
+          return 'Пятница';
         case 6:
         case 7:
-          {
-            return 'Выходной';
-          }
+          return 'Выходной';
         default:
-          {
-            return 'В неделе всего 7 дней! И не больше!!!';
-          }
+          return 'В неделе всего 7 дней! Ни меньше и не больше!';
       }
     case Lang.eng:
       switch (day) {
+        case 0:
+          return 'Enter valid number 1 to 7';
         case 1:
-          {
-            return 'Monday';
-          }
+          return 'Monday';
         case 2:
-          {
-            return 'Tuesday';
-          }
+          return 'Tuesday';
         case 3:
-          {
-            return 'Wednesday';
-          }
+          return 'Wednesday';
         case 4:
-          {
-            return 'thursday';
-          }
+          return 'thursday';
         case 5:
-          {
-            return 'Friday';
-          }
+          return 'Friday';
         case 6:
         case 7:
-          {
-            return 'Weekend';
-          }
+          return 'Weekend';
         default:
-          {
-            return 'There are only 7 days in a week! And no more!!!';
-          }
+          return 'There are only 7 days in a week! No less and no more!';
       }
   }
+}
+
+// Так же по времени - от 0 до 8 - ночь, от 8 до 12 - утро, от 12 до 20 день, от 20 до 23 - вечер.
+String? partsOfTheDay(int hour, Lang lang) {
+  switch (lang) {
+    case Lang.ru:
+      if (hour >= 0 && hour < 8) {
+        return 'Ночь';
+      } else if (hour >= 8 && hour < 12) {
+        return 'Утро';
+      } else if (hour >= 12 && hour < 20) {
+        return 'День';
+      } else if (hour >= 20 && hour <= 23) {
+        return 'Вечер';
+      } else if (hour == 24) {
+        return 'Не знаю от куда вы прилетели своим автостопом, но на нашей планете 24 часа в сутках! Но 24 час тоже нельзя запросить, учитывайте наличие 0';
+      } else {
+        return 'мимо';
+      }
+    case Lang.eng:
+      if (hour >= 0 && hour < 8) {
+        return 'Night';
+      } else if (hour >= 8 && hour < 12) {
+        return 'Morning';
+      } else if (hour >= 12 && hour < 20) {
+        return 'Day';
+      } else if (hour >= 20 && hour <= 23) {
+        return 'Evening';
+      } else if (hour == 24) {
+        return "24 hours is 0, and if it's 0, it's NIGHT!";
+      } else {
+        return 'Loose';
+      } // А можно ли тут вместо default написать просто else??? Ведь любая не заложенная в кейс цифра выдаст loose и ретернется
+  }
+}
+
+typedef ResultCallBack = void Function(String callback);
+
+void printMessage(message) {
+  print(message);
+}
+
+String? dayAndHour(int day, int hour, Lang lang, [ResultCallBack? onResult]) {
+  final message = '${weekday(day, lang)}, ${partsOfTheDay(hour, lang)}';
+  onResult?.call(message);
+  return '${weekday(day, lang)}, ${partsOfTheDay(hour, lang)}';
+
 }
 
 void main() {
@@ -147,5 +171,9 @@ void main() {
   print(quarterHour(61));
 
   // task 4
-  print(dayByDay(11, Lang.eng));
+  print(weekday(11, Lang.eng));
+  print(partsOfTheDay(26, Lang.eng));
+  print(dayAndHour(4, 6, Lang.eng));
+  print(dayAndHour(1, 3, Lang.ru, print));
+
 }
