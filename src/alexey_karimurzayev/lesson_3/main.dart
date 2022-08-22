@@ -39,7 +39,6 @@ void main() {
 
   final germanHen = GermanHen();
   print(germanHen.getDescription());
-  // print(germanHen.getCountOfEggsPerMonth());
 
   final moldovanHen = MoldovanHen();
   print(moldovanHen.getDescription());
