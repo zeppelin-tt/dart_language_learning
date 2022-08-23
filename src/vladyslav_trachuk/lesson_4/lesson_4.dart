@@ -105,7 +105,6 @@ String dayOfTheWeek(int checkDay, Lang lang) {
       }
   }
 }
-
 String timeOfDay(int time, Lang lang) {
   switch (lang) {
     case Lang.ru:
