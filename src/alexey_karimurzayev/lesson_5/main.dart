@@ -45,10 +45,10 @@ void ascendingOrderList() {
 void compareFunction() {
   final sortListWithACondition = <int>[1, 8, 3, 10, 11, 6, 5, 12, 9, 2, 4, 7];
   sortListWithACondition.sort((a, b) {
-    if (a.isEven && b.isOdd) {
+    if (a.isEven || b.isEven) {
       return -1;
     }
-    if (a.isOdd && b.isEven) {
+    if (a.isOdd || b.isOdd) {
       return 1;
     }
     return 0;
