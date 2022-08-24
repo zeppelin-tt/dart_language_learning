@@ -1,7 +1,7 @@
 void main() {
   //Задание №1
 
-  print('результат деления равен ${division(21, 8)}');
+  division(10, 22);
 
 // универсальная функция для задания №2 и №4
   const int nOne = 624;
@@ -11,13 +11,12 @@ void main() {
 //Задание №3
   const double nTwo = 15.4;
 
- print ('Округленное значение числа $nTwo = ${roundFunction(nTwo)}');
+  print('Округленное значение числа $nTwo = ${roundFunction(nTwo)}');
 }
 
-double division(int first, int second) {
+void division(int first, int second) {
   final double result = first / second;
-
-  return result;
+  print('Результат деления $first на $second = $result');
 }
 
 int summary(int value) {
@@ -31,6 +30,5 @@ int summary(int value) {
 }
 
 int roundFunction(double value) {
-
   return value.round();
 }
