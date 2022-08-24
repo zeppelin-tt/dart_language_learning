@@ -13,7 +13,7 @@ void main() {
 
 // Задание 4;
 
-  print(daysOfWeek((value) {}, time: 1, day: 1, lang: Lang.ru));
+  print(daysOfWeek((value) {}, time: 111, day: 2, lang: Lang.ru));
   print(daysOfWeek(print, time: 1, day: 1, lang: Lang.ru));
 }
 
@@ -76,62 +76,56 @@ String daysOfWeek(
     case 1:
       {
         lang == Lang.ru
-            ? result = 'Понедельник ${partOfDayFunc(time, lang)}'
-            : result = 'Monday ${partOfDayFunc(time, lang)}';
-        partOfDayFunc(time, lang);
+            ? result = 'Понедельник ${getPartOfDay(time, lang)}'
+            : result = 'Monday ${getPartOfDay(time, lang)}';
         break;
       }
     case 2:
       {
         lang == Lang.ru
-            ? result = 'Вторник ${partOfDayFunc(time, lang)}'
-            : result = 'Tuesday ${partOfDayFunc(time, lang)}';
-        partOfDayFunc(time, lang);
+            ? result = 'Вторник ${getPartOfDay(time, lang)}'
+            : result = 'Tuesday ${getPartOfDay(time, lang)}';
         break;
       }
     case 3:
       {
         lang == Lang.ru
-            ? result = 'Среда ${partOfDayFunc(time, lang)}'
-            : result = 'Wednesday $day ${partOfDayFunc(time, lang)}';
-
+            ? result = 'Среда ${getPartOfDay(time, lang)}'
+            : result = 'Wednesday $day ${getPartOfDay(time, lang)}';
         break;
       }
     case 4:
       {
         lang == Lang.ru
-            ? print('Четверг ${partOfDayFunc(time, lang)}')
-            : print('Thursday ${partOfDayFunc(time, lang)}');
-        partOfDayFunc(time, lang);
+            ? result = 'Четверг ${getPartOfDay(time, lang)}'
+            : result = 'Thursday ${getPartOfDay(time, lang)}';
+
         break;
       }
     case 5:
       {
         lang == Lang.ru
-            ? print('Пятница ${partOfDayFunc(time, lang)}')
-            : print('Friday ${partOfDayFunc(time, lang)}');
-        partOfDayFunc(time, lang);
+            ? result = 'Пятница ${getPartOfDay(time, lang)}'
+            : result = 'Friday ${getPartOfDay(time, lang)}';
         break;
       }
     case 6:
       {
         lang == Lang.ru
-            ? print('Суббота ${partOfDayFunc(time, lang)}')
-            : print('Weekend ${partOfDayFunc(time, lang)}');
-        partOfDayFunc(time, lang);
+            ? result = 'Суббота ${getPartOfDay(time, lang)}'
+            : result = 'Weekend ${getPartOfDay(time, lang)}';
         break;
       }
     case 7:
       {
         lang == Lang.ru
-            ? print('Воскресение ${partOfDayFunc(time, lang)}')
-            : print('Weekend ${partOfDayFunc(time, lang)}');
-        partOfDayFunc(time, lang);
+            ? result = 'Воскресение ${getPartOfDay(time, lang)}'
+            : result = 'Weekend ${getPartOfDay(time, lang)}';
         break;
       }
     default:
       {
-        result = 'Вы ввели неверный день >>> $day ${partOfDayFunc(time, lang)}';
+        result = 'Вы ввели неверный день >>> $day ${getPartOfDay(time, lang)}';
       }
   }
   returnResult(result);
@@ -139,24 +133,22 @@ String daysOfWeek(
 }
 //Вспомогательная функция к заданию №4, позволяющая узнать, к какой части дня относится введенное значение
 
-String partOfDayFunc(int value, Lang lang) {
+String getPartOfDay(int dayNumber, Lang lang) {
   String result = '';
-  if (value > 0 && value <= 8) {
-    lang == Lang.ru ? result = 'Ночь $value' : result = 'Night $value';
+  if (dayNumber > 0 && dayNumber <= 8) {
+    lang == Lang.ru ? result = 'Ночь $dayNumber' : result = 'Night $dayNumber';
   }
-  if (value > 8 && value <= 12) {
-    lang == Lang.ru ? result = 'Утро $value' : result = 'Morning $value';
+  if (dayNumber > 8 && dayNumber <= 12) {
+    lang == Lang.ru ? result = 'Утро $dayNumber' : result = 'Morning $dayNumber';
   }
-  if (value > 12 && value <= 20) {
-    lang == Lang.ru ? result = 'День $value' : result = 'Day $value';
+  if (dayNumber > 12 && dayNumber <= 20) {
+    lang == Lang.ru ? result = 'День $dayNumber' : result = 'Day $dayNumber';
   }
-  if (value > 20 && value < 23) {
-    lang == Lang.ru ? result = 'Вечер $value' : result = 'Evening $value';
+  if (dayNumber > 20 && dayNumber < 23) {
+    lang == Lang.ru ? result = 'Вечер $dayNumber' : result = 'Evening $dayNumber';
   }
-  if (value > 23 || value < 0) {
-    lang == Lang.ru
-        ? result = 'Вы ввели неверный час >>> $value'
-        : result = 'Incorrect value $value';
+  if (dayNumber > 23 || dayNumber < 0) {
+    lang == Lang.ru ? result = 'Вы ввели неверный час >>> $dayNumber' : result = 'Incorrect value $dayNumber';
   }
   return result;
 }
