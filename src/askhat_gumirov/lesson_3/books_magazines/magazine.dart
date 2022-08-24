@@ -1,4 +1,4 @@
-import '../main.dart';
+import '../burnable.dart';
 import 'printable.dart';
 
 class Magazine with Burnable implements Printable {
@@ -6,8 +6,8 @@ class Magazine with Burnable implements Printable {
   Magazine({required this.name});
 
   @override
-  String printable(String value) {
-    print(value);
-    return value;
+  void printTitle() {
+    print(name);
   }
+
 }

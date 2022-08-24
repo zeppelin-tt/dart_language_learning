@@ -1,4 +1,4 @@
-import '../main.dart';
+import '../burnable.dart';
 import 'printable.dart';
 
 class Book with Burnable implements Printable {
@@ -7,8 +7,9 @@ class Book with Burnable implements Printable {
   Book({required this.name});
 
   @override
-  String printable(String value) {
-    print(value);
-    return value;
+  void printTitle() {
+    print(name);
   }
+
+
 }

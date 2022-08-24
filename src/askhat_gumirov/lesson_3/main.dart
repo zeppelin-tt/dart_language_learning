@@ -6,6 +6,7 @@ import 'Hens/russian_hen.dart';
 import 'books_magazines/book.dart';
 import 'books_magazines/magazine.dart';
 
+
 void main() {
   final RussianHen russianHen =
       RussianHen(countryName: 'Россия', eggsPerMonth: 25);
@@ -37,17 +38,11 @@ void main() {
   final Magazine magazineOne = Magazine(name: 'PlayBoy');
   final Magazine magazineTwo = Magazine(name: 'New York Times');
 
-  bookOne.printable(bookOne.name);
-  bookTwo.printable(bookTwo.name);
-  magazineOne.printable(magazineOne.name);
-  magazineTwo.printable(magazineTwo.name);
+  bookOne.printTitle();
+  bookTwo.printTitle();
+  magazineOne.printTitle();
+  magazineTwo.printTitle();
 
   bookOne.burn();
   magazineOne.burn();
-}
-
-mixin Burnable {
-  void burn() {
-    print('This object is burnable');
-  }
 }
