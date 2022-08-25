@@ -17,7 +17,6 @@
 // где N - количество яиц в месяц
 // 1.8. В классе HenFactory реализовать меетод getHen, который возвращает соответствующую стране породу кур
 // 1.9. Все созданные вами классы должны быть в отдельных файлах
-
 // 2.1 Создать интерфейс Printable, содержащий метод void print().
 // 2.2 Создать класс Book с полем name, реализующий интерфейс Printable. (писать в консоль имя книги)
 // 2.3 Создать класс Magazine с полем name, реализующий интерфейс Printable. (писать в консоль имя журнала)
@@ -35,7 +34,6 @@ import 'task 1/moldovahen.dart';
 import 'task 1/russianhen.dart';
 import 'task 2/book.dart';
 import 'task 2/magazine.dart';
-import 'task 2/printable.dart';
 
 void main() {
   //Задание первое
@@ -44,25 +42,21 @@ void main() {
   final moldovaHen = MoldovaHen();
   final belarusianHen = BelarusHen();
   final henFactory = HenFactory();
-  print(
-      'К микрофону приглашается курица номер 1\n${russianHen.description} ${henFactory.getHen('Russia')}\n');
-  print(
-      'К микрофону приглашается курица номер 2\n${germanHen.description} ${henFactory.getHen('Germany')}\n');
-  print(
-      'К микрофону приглашается курица номер 3\n${moldovaHen.description} ${henFactory.getHen('Moldova')}\n');
-  print(
-      'К микрофону приглашается курица номер 4\n${belarusianHen.description} ${henFactory.getHen('Belarus')}\n');
+  print('К микрофону приглашается курица номер 1\n${russianHen.description} ${henFactory.getHen('Russia')}\n');
+  print('К микрофону приглашается курица номер 2\n${germanHen.description} ${henFactory.getHen('Germany')}\n');
+  print('К микрофону приглашается курица номер 3\n${moldovaHen.description} ${henFactory.getHen('Moldova')}\n');
+  print('К микрофону приглашается курица номер 4\n${belarusianHen.description} ${henFactory.getHen('Belarus')}\n');
 
   //Задание второе
   final myFavoriteBookOne = Book('P. Johnson - Churchill');
   final myFavoriteBookTwo = Book('N. Gogol - Dead Souls');
   final myMagazineOne = Magazine('KyivPost');
   final myMgazineTwo = Magazine('Forbes');
-  myFavoriteBookOne.print();
-  myFavoriteBookTwo.print();
-  myMagazineOne.print();
-  myMgazineTwo.print();
-  newPrint('\nПоджигаем\n');
+  myFavoriteBookOne.printable();
+  myFavoriteBookTwo.printable();
+  myMagazineOne.printable();
+  myMgazineTwo.printable();
+  print('\nПоджигаем\n');
   myFavoriteBookOne.burn();
   myFavoriteBookTwo.burn();
   myMagazineOne.burn();

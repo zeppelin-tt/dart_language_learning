@@ -7,7 +7,7 @@ class Book with Burnable implements Printable {
   Book(this.name);
 
   @override
-  void print() {
-    newPrint(name);
+  void printable() {
+    print(name);
   }
 }
