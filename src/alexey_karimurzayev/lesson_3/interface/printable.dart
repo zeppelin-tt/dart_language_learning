@@ -1,3 +1,3 @@
 abstract class Printable {
-  void printable() {}
+  void printName() {}
 }
