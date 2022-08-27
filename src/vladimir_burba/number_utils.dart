@@ -25,4 +25,7 @@ extension Range on num {
   {
     return from < this && this < to || inclusive & 2 == 2 && this == from || inclusive & 1 == 1 && this == to;
   }
+  bool isDouble() {
+    return abs() >= double.minPositive && abs() <= double.maxFinite || this == 0;
+  }
 }

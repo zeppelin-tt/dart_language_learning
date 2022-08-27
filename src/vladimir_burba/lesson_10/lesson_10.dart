@@ -2,121 +2,107 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import '../number_utils.dart';
+
 void main() {
+  const exitCommand = 'exit';
   final calculator = Calculator();
 
   StreamSubscription<String>? consoleInput;
   consoleInput = stdin.transform(utf8.decoder).transform(const LineSplitter()).listen((input) {
-    if (input == 'exit') {
+    if (input == exitCommand) {
       consoleInput?.cancel();
     } else {
-      calculator.calculate(input);
+      try {
+        print(calculator.calculate(input));
+      } on WrongOperationStringException catch (e) {
+        print('${e.message} или $exitCommand для выхода');
+      } on LimitExceededException catch (e) {
+        print(e.message);
+      }
     }
   });
 }
 
-class Calculator {
-  bool isSecondary = false;
-  bool gotResult = false;
+class CalculationOperands {
+  double? operand1;
+  late double operand2;
+  late String operator;
 
-  late String mathSign;
-  late List<double> listOfDoubles;
-  late double result;
-  late double num1;
-  late double num2;
+  CalculationOperands(this.operand1, this.operand2, this.operator);
 
-  void calculate(String input) {
-    if (!isAcceptedAndPrepared(input)) {
-      return;
-    } else {
-      if (isSecondary) {
-        num1 = result;
-        num2 = listOfDoubles[0];
-      } else {
-        num1 = listOfDoubles[0];
-        num2 = listOfDoubles[1];
-      }
-      if (mathSign == '+') {
-        result = num1 + num2;
-      }
-      if (mathSign == '-') {
-        result = num1 - num2;
-      }
-      if (mathSign == '*') {
-        result = num1 * num2;
-      }
-      if (mathSign == '/') {
-        if (num2 == 0) {
-          print('Делить на ноль нельзя!');
-          return;
-        } else {
-          result = num1 / num2;
-        }
-      }
-      if (mathSign == '%') {
-        result = num1 % num2;
-      }
-      if((double.minPositive > result.abs() || result.abs() > double.maxFinite) && result.abs() != 0){
-        print('Введенные аргументы выходит за границы типа Double');
-        return;
-      }
-      gotResult = true;
-      print(result);
+  CalculationOperands.fromString(String input) {
+    const doubleRE = r'(\d*\.\d*|\d+)';
+    const operatorRE = r'[+\-*/%~]';
+    const mathOperationRE = '^$doubleRE?$operatorRE$doubleRE\$';
+    input.replaceAll(r'\s', '');
+    if (!RegExp(mathOperationRE).hasMatch(input)) {
+      throw WrongOperationStringException(
+          'Неверная строка вычисления. Допустим ввод в формате: [ <число с плавающей запятой> ]<знак операции +, -, *, /, %, ~><число с плавающей запятой>');
     }
+    if (RegExp('^$doubleRE').hasMatch(input)) {
+      operand1 =
+          double.parse(RegExp('^$doubleRE').stringMatch(input) == '.' ? '0' : RegExp('^$doubleRE').stringMatch(input)!);
+      if (!operand1!.isDouble()) {
+        throw LimitExceededException.def();
+      }
+    }
+    operand2 =
+        double.parse(RegExp('$doubleRE\$').stringMatch(input) == '.' ? '0' : RegExp('$doubleRE\$').stringMatch(input)!);
+    if (!operand2.isDouble()) {
+      throw LimitExceededException.def();
+    }
+    operator = RegExp(operatorRE).stringMatch(input)!;
   }
+}
 
-  bool isAcceptedAndPrepared(String input) {
-    final firstSpaceRegExp = RegExp('^[ ]');
-    final wrongSymbolsRegExp = RegExp(r'[^\d+\-/*%. ]');
-    if (firstSpaceRegExp.hasMatch(input) || wrongSymbolsRegExp.hasMatch(input)) {
-      print('Выражение содержит недопустимые символы');
-      return false;
-    } else {}
+class WrongOperationStringException implements Exception {
+  final String message;
 
-    final mathSignsRegExp = RegExp(r'[+\-*/%]');
-    final Iterable<Match> mathSignsMatches = mathSignsRegExp.allMatches(input);
-    if (mathSignsMatches.isEmpty) {
-      print('Выражение не содержит знаков математической операции');
-      return false;
-    }
-    if (mathSignsMatches.length > 1) {
-      print('Выражение содержит более одного знака математической операции');
-      return false;
-    } else {
-      final mathSignList = (mathSignsMatches.map((e) => e.input.substring(e.start, e.end))).toList();
-      mathSign = mathSignList[0];
-    }
+  WrongOperationStringException(this.message);
 
-    final doublesRegExp = RegExp(r'[.\d]+');
-    final Iterable<Match> doublesMatches = doublesRegExp.allMatches(input);
-    if (doublesMatches.isEmpty || doublesMatches.length > 2) {
-      print('Выражение содержит неправильное количество аргументов');
-      return false;
-    } else {
-      final List<String> listOfStrings = (doublesMatches.map((e) => e.input.substring(e.start, e.end))).toList();
-      listOfDoubles = listOfStrings.map(double.parse).toList();
-      isSecondary = false;
-    }
-    for (final number in listOfDoubles) {
-      if ((double.minPositive > number.abs() || number.abs() > double.maxFinite) && number.abs() != 0) {
-        print('Введенные аргументы выходит за границы типа Double');
-      }
-    }
+  WrongOperationStringException.toParent(this.message) : super();
+}
 
-    final startsWithMathSignRegExp = RegExp(r'^[+\-*/%]');
-    if (startsWithMathSignRegExp.hasMatch(input)) {
-      if (doublesMatches.length != 1 || !gotResult) {
-        print('Выражение содержит неправильное количество аргументов');
-        return false;
-      } else {
-        isSecondary = true;
-      }
-    } else {
-      if (doublesMatches.length == 1) {
-        print('Выражение содержит неправильное количество аргументов');
-        return false;
-      } else {}
+class LimitExceededException implements Exception {
+  static const defMessage = 'Число выходит за границы Double';
+  final String message;
+
+  LimitExceededException(this.message);
+
+  LimitExceededException.def() : message = defMessage;
+
+  LimitExceededException.toParent(this.message) : super();
+}
+
+class Calculator {
+  double? result;
+
+  double calculate(String input) {
+    final CalculationOperands calculationOperands = CalculationOperands.fromString(input);
+    switch (calculationOperands.operator) {
+      case '+':
+        result = (calculationOperands.operand1 ?? result ?? 0) + calculationOperands.operand2;
+        break;
+      case '-':
+        result = (calculationOperands.operand1 ?? result ?? 0) - calculationOperands.operand2;
+        break;
+      case '*':
+        result = (calculationOperands.operand1 ?? result ?? 0) * calculationOperands.operand2;
+        break;
+      case '/':
+        result = (calculationOperands.operand1 ?? result ?? 0) / calculationOperands.operand2;
+        break;
+      case '%':
+        result = (calculationOperands.operand1 ?? result ?? 0) % calculationOperands.operand2;
+        break;
+      case '~':
+        result = ((calculationOperands.operand1 ?? result ?? 0) ~/ calculationOperands.operand2).toDouble();
     }
-    return true;
+    if (!result!.isDouble()) {
+      result = null;
+      throw LimitExceededException.def();
+    }
+    return result!;
   }
 }
