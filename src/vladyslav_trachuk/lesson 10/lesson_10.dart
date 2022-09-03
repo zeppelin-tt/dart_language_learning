@@ -1,28 +1,36 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:decimal/decimal.dart';
 
 void main() {
   print(
-      '${'_' * 20}Клакулятор Pre-alpha 0.1.0${'_' * 20}\n|${' ' * 5} Вводить можно только цифры${' ' * 33}|\n|${' ' * 5} Для математический операций используй "- + / % *"${' ' * 10}|\n|${' ' * 5} Пробуй, но осторожно, все хрупкое =)${' ' * 23}|\n${'_' * 67}');
+      '${'_' * 20}Клакулятор Pre-alpha 0.1.1${'_' * 20}\n|${' ' * 5} Вводить можно только цифры${' ' * 33}|\n|${' ' * 5} Для математический операций используй "- + / % *"${' ' * 10}|\n|${' ' * 5} Пробуй, но осторожно, все хрупкое =)${' ' * 23}|\n${'_' * 67}');
   final calc = Calc();
-  var terminal;
+  StreamSubscription<String>? terminal;
   terminal = stdin.transform(utf8.decoder).transform(const LineSplitter()).listen((input) {
     if (input == 'exit') {
-      terminal.cancel();
+      terminal?.cancel();
     } else {
-      calc.claculator(input);
+      calc.clalculate(input);
     }
   });
 }
 
 bool checkError(String input) {
-  final firstError = RegExp(r'[ ][^\d+\-/*%. ]');
-  if (firstError.hasMatch(input)) {
+  if (RegExp('[А-Яа-яa-zA-Z]').hasMatch(input)) {
+    print('Это не чат бот! Это кЛакулятор');
+    return false;
+  }
+  if (RegExp('[0-9]').allMatches(input).isEmpty) {
+    print('Нет цифр');
+    return false;
+  }
+  if (RegExp(r'[ ][^\d+\-/*%. ]').hasMatch(input)) {
     print('Введены лишние символы');
     return false;
   }
-  final secondError = RegExp(r'[+\-*/%]');
-  final operators = secondError.allMatches(input);
+  final operators = RegExp(r'[+\-*/%]').allMatches(input);
   if (operators.isEmpty) {
     print('Нет операторов');
     return false;
@@ -30,74 +38,68 @@ bool checkError(String input) {
   if (operators.length > 1) {
     print('Много знаков');
     return false;
-  }
-  final checkArg = RegExp(r'[.\d]+');
-  final checkDouble = checkArg.allMatches(input);
-  if (checkDouble.isEmpty || checkDouble.length > 2) {
-    print('Это не чат бот! Это кЛакулятор');
-    return false;
   } else {}
   return true;
 }
 
 class Calc {
   late String operand;
-  late double number1;
-  late double number2;
-  late double saveResult = 0;
+  late Decimal number1;
+  late Decimal number2;
+  late Decimal saveResult = 0.toDecimal();
 
-  void claculator(String input) {
+  void clalculate(String input) {
     try {
       if (checkError(input)) {
-        final ss = RegExp(r'[+\-*/%]');
-        final act = input.split('').firstWhere(ss.hasMatch);
-        void swittches(double number1, double number2) {
-          if (act.isEmpty || act.length > 2) {
+        final mathOperators = input.split('').firstWhere(RegExp(r'[+\-*/%]').hasMatch);
+        void findMathOperation(Decimal number1, Decimal number2) {
+          if (mathOperators.isEmpty || mathOperators.length > 2) {
             print('Ошибка!');
           } else {
-            switch (act) {
+            switch (mathOperators) {
               case '-':
-                saveResult = double.parse((number1 - number2).toStringAsFixed(2));
+                saveResult = number1 - number2;
                 print(saveResult);
                 break;
               case '+':
-                saveResult = double.parse((number1 + number2).toStringAsFixed(2));
+                saveResult = number1 + number2;
                 print(saveResult);
                 break;
               case '*':
-                saveResult = double.parse((number1 * number2).toStringAsFixed(2));
+                saveResult = number1 * number2;
                 print(saveResult);
                 break;
               case '/':
-                if (number2 != 0) {
-                  saveResult = double.parse((number1 / number2).toStringAsFixed(2));
+                if (number2 != 0.toDecimal()) {
+                  saveResult = (number1 / number2).toDecimal();
                   print(saveResult);
                 } else {
                   print('На ноль делить нельзя');
                 }
                 break;
               case '%':
-                saveResult = double.parse((number1 % number2).toStringAsFixed(2));
-                print(saveResult);
+                final onePercentFromNumber = number1 / 100.toDecimal();
+                saveResult = Decimal.parse('${onePercentFromNumber.toDouble()}') * number2;
+                print('$saveResult');
                 break;
             }
           }
         }
 
-        final save = input.split(act);
+        final save = input.split(mathOperators);
         if (save[0] == '') {
           final number1 = saveResult;
-          final number2 = double.parse(save[1]);
-          swittches(number1, number2);
+          final number2 = Decimal.parse(save[1].replaceAll(',', '.'));
+          findMathOperation(number1, number2);
         } else {
-          saveResult = 0;
-          final number1 = double.parse(save[0]);
-          final number2 = double.parse(save[1]);
-          swittches(number1, number2);
+          saveResult = 0.toDecimal();
+          final number1 = Decimal.parse(save[0].replaceAll(',', '.'));
+          final number2 = Decimal.parse(save[1].replaceAll(',', '.'));
+          findMathOperation(number1, number2);
         }
       }
     } on Exception catch (e) {
-      print('Упс! Что-то пошло не так!\n $e');
+      print('Упс! Что-то пошло не так!');
     }
   }
 }
