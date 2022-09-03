@@ -121,7 +121,7 @@ void findFirst() {
 //Находим соответсвие
 void findElement() {
   final findNewElement =
-      sortList.where((element) => element == 100 || element == 37 || element == 55 || element == 99 || element == 64);
+  sortList.where((element) => [100, 37, 55, 99, 64].contains(element));
   print('Задание 9 находим элементы 100, 37, 55, 99, 64 и и выводим их $findNewElement');
 }
 
