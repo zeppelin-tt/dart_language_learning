@@ -21,14 +21,14 @@ int reverse(int number) {
 // c) Прочитайте про различные виды сортировок.
 // d) Реализуйте "сортировку пузырьком" данного листа.
 
-int next(int min, int max) {
+int generateNewInt(int min, int max) {
   return min + Random().nextInt(max - min);
 }
 
 void task2() {
   final list = [];
   for (list.length = 0; list.length < 15;) {
-    final randomInt = next(5, 60);
+    final randomInt = generateNewInt(5, 60);
     list.add(randomInt);
   }
   print('Задание 2 а) $list');
