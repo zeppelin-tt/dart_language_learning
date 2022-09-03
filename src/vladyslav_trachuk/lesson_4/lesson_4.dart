@@ -86,7 +86,7 @@ String timeOfDay(int time, Lang lang) {
   }
 }
 
-dynamic giveMeToday(
+String giveMeToday(
   int day,
   int hour,
   Lang lang,
@@ -124,7 +124,7 @@ dynamic giveMeToday(
     }
   }
 
-  dynamic giveMeDay(int day) {
+  String giveMeDay(int day) {
     switch (lang) {
       case Lang.eng:
         if (day <= 0 && day >= 8) {
@@ -168,6 +168,7 @@ dynamic giveMeToday(
           }
         }
     }
+    return day.toString();
   }
 
   final thisDay = giveMeDay(day);
