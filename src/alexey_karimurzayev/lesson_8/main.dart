@@ -1,44 +1,16 @@
 import 'package:translator/translator.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
-void main() {
-  final tranlator = GoogleTranslator();
-}
+import 'parse.dart';
 
+Future<void> main() async {
+  final translator = GoogleTranslator();
+  final poems = PoemRepository();
+  final poemsList = poems.getPoemsList();
+  poemsList.then((value) => translator.translate(value.toString(), to: 'ru')).then(print);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class ParsePoem {
-  final String title;
-  final String content;
-
-  ParsePoem({required this.title, required this.content});
-
-  factory ParsePoem.fromJson(Map<String, dynamic> json) {
-    return ParsePoem(
-        title: json['title'] as String,
-        content: json['content'] as String,
-    );
+  final poemsListAsync = await poems.getPoemsList();
+  for (final element in poemsListAsync) {
+    final poemsToConsole = await translator.translate(element.toString(), to: 'ru');
+    print(poemsToConsole);
   }
-
-  @override
-  String toString() {
-    return 'Название поэмы - $title, Описание - $content';
-}
 }
