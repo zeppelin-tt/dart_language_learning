@@ -1,11 +1,11 @@
 import 'dart:io';
+import 'task_1.dart';
 
 void main() async {
   await readTxtFile(path).then((value) => string = value);
-  string
-    ..getRepeatedWords()
-    ..getAsWordLengths()
-    ..getAsNumberOfLetters();
+  print(string.getRepeatedWords());
+  print(string.getAsWordLengths());
+  print(string.getAsNumberOfLetters());
 }
 
 String string = '';
@@ -13,34 +13,37 @@ final String path = '${Directory.current.path}/src/_homeworks/lesson_7_text.txt'
 Future<String> readTxtFile(String path) => File(path).readAsString();
 
 extension on String {
-  void getRepeatedWords() {
+  List<ViewModel> getRepeatedWords() {
+    final List<ViewModel> modelList = [];
     final String tempString = toLowerCase();
     List<String> tempList = [];
-    int counter = 0;
+    final Counter counter = Counter(count: 0);
     final Map<int, String> resultMap = {};
     tempList = RegExp('[А-Яа-я]+').allMatches(tempString).map((e) => e.group(0)!).toList();
     final Set<String> tempSet = tempList.toSet();
     for (final setElement in tempSet) {
       for (final listElement in tempList) {
         if (setElement == listElement) {
-          counter += 1;
+          counter.increment();
         }
       }
-      if (counter > 1) {
-        resultMap.addAll({counter: setElement});
+      if (counter.count > 1) {
+        resultMap.addAll({counter.count: setElement});
       }
-      counter = 0;
+      counter.reset();
     }
     List<int> sortedKeys = resultMap.keys.toList()..sort();
     sortedKeys = sortedKeys.reversed.toList();
     for (final element in sortedKeys) {
-      print('Слово "${resultMap[element]}" повторяется $element раз');
+      modelList.add(ViewModel(count: element, description: 'повторяется cлово ', value: '"${resultMap[element]}"'));
     }
+    return modelList;
   }
 }
 
 extension on String {
-  void getAsWordLengths() {
+  List<ViewModel> getAsWordLengths() {
+    final List<ViewModel> modelList = [];
     final String tempString = toLowerCase();
     List<String> tempList = [];
     final Map<int, List<String>> resultMap = {};
@@ -50,22 +53,24 @@ extension on String {
     for (int i = tempList.first.length; i > tempList.last.length; i--) {
       final List<String> tempList2 = [];
       for (final element in tempList) {
-        if (element.length == i) {
+        if (element.length == i && !tempList2.contains(element)) {
           tempList2.add(element);
         }
       }
       resultMap.addAll({i: tempList2});
     }
     resultMap.forEach((key, value) {
-      print('$key букв в словах "$value"');
+      modelList.add(ViewModel(count: key, description: 'букв в словах', value: value.toString()));
     });
+    return modelList;
   }
 }
 
 extension on String {
-  void getAsNumberOfLetters() {
+  List<ViewModel> getAsNumberOfLetters() {
+    final List<ViewModel> modelList = [];
     final String tempString = toLowerCase();
-    int counter = 0;
+    final Counter counter = Counter(count: 0);
     List<String> tempList = [];
     final Map<int, String> resultMap = {};
     Set<String> tempSet = {};
@@ -78,24 +83,36 @@ extension on String {
       ..forEach((element) {
         for (int i = 0; i < length; i++) {
           if (element == tempString[i]) {
-            counter += 1;
+            counter.increment();
           }
         }
-        resultMap.addAll({counter: element});
-        counter = 0;
+        resultMap.addAll({counter.count: element});
+        counter.reset();
       });
     resultMap.forEach((key, value) {
-      print('Буква "${value.toUpperCase()}" повторяется $key раз');
+      modelList.add(ViewModel(count: key, description: 'раз повторяется буква', value: '"${value.toUpperCase()}"'));
     });
+    return modelList;
   }
 }
 
-int wordLength(String wordA, String wordB) {
-  if (wordA.length > wordB.length) {
-    return 1;
+class Counter {
+  int count;
+
+  Counter({required this.count});
+
+  int increment() {
+    count += 1;
+    return count;
   }
-  if (wordA.length < wordB.length) {
-    return -1;
+
+  int decrement() {
+    count -= 1;
+    return count;
   }
-  return 0;
+
+  int reset() {
+    count = 0;
+    return count;
+  }
 }

@@ -2,18 +2,21 @@ import 'dart:io';
 
 void main() async {
   await readTxtFile(path).then(task1);
-  mapOfDuplicates
-    ..printAsNumberOfLetters()
-    ..printAsRepeatedWords()
-    ..printAsWordLengths();
-  final String string = 'АasDDsqweD'..capitalLettersCounter();
+  print(mapOfDuplicates.printAsRepeatedWords());
+  print(mapOfDuplicates.printAsWordLengths());
+  print(mapOfDuplicates.printAsNumberOfLetters());
+  const String string = 'AAAaaSasSDАА';
   print(string);
+  print(string.capitalLettersCounter());
   final String italicString = 'ssawE'..italicLetterCounter();
   print(italicString);
+  print(italicString.italicLetterCounter());
   final String punctuationString = 'И вот случилось то, что и должно было случиться,.!?'..punctuationMarksCounter();
   print(punctuationString);
+  print(punctuationString.punctuationMarksCounter());
   final String nubmersString = 'фыв12321ыв4'..numbersCounter();
   print(nubmersString);
+  print(nubmersString.numbersCounter());
 }
 
 final String path = '${Directory.current.path}/src/_homeworks/lesson_7_text.txt';
@@ -47,17 +50,21 @@ void task1(String text) {
 }
 
 extension on Map<int, List<String>> {
-  void printAsRepeatedWords() {
+  List<ViewModel> printAsRepeatedWords() {
+    final List<ViewModel> modelList = [];
     forEach((key, value) {
-      print('$key раз повторяются слова "${value[0]}"');
+      modelList.add(ViewModel(count: key, description: 'раз повторяются слова', value: value[0]));
     });
+
+    return modelList;
   }
 }
 
 // Сортируем и считаем сколько букв в каждом слове
 
 extension on Map<int, List<String>> {
-  void printAsWordLengths() {
+  List<ViewModel> printAsWordLengths() {
+    final List<ViewModel> modelList = [];
     final List<String> tempList = [];
     forEach((key, value) {
       tempList.addAll(value);
@@ -72,23 +79,23 @@ extension on Map<int, List<String>> {
           return;
         }
         for (int i = 0; i < listOfWords.length; i++) {
-          if (element.length == listOfWords[i].length && element != listOfWords[i]) {
-            string.contains(element) ? string = string : string += '${listOfWords[i]} ';
+          if (element.length == listOfWords[i].length) {
+            string.contains(listOfWords[i]) ? string = string : string += '${listOfWords[i]} ';
           }
         }
-        string == '' ? print('конец') : print('${element.length} букв в словах: $string');
-
+        modelList.add(ViewModel(count: element.length, description: 'букв в словах', value: string));
         elementLength = element.length;
         string = '';
       });
-    print(string);
+    return modelList;
   }
 }
 
 extension on Map<int, List<String>> {
-  void printAsNumberOfLetters() {
+  List<ViewModel> printAsNumberOfLetters() {
     //Загружаем все буквы с мапы в лист
     final List<String> tempList = [];
+    final List<ViewModel> modelList = [];
     forEach((key, value) {
       for (final element in value) {
         for (int i = 0; i != element.length; i++) {
@@ -113,8 +120,9 @@ extension on Map<int, List<String>> {
       mapOfLetters.addAll({counter: tempList2});
     }
     mapOfLetters.forEach((key, value) {
-      print('Буква "${value.first.toUpperCase()}" $key вхождений');
+      modelList.add(ViewModel(count: key, description: 'вхождений', value: value.first.toUpperCase()));
     });
+    return modelList;
   }
 }
 
@@ -129,49 +137,47 @@ int wordLength(String wordA, String wordB) {
 }
 
 extension on String {
-  void capitalLettersCounter() {
-    int counter = 0;
-    for (int i = 0; i < length; i++) {
-      if (this[i].contains(RegExp('[А-ЯA-Z]'))) {
-        counter += 1;
-      }
-    }
-    print('В строке $counter заглавных букв');
+  ViewModel capitalLettersCounter() {
+    int count;
+    count = RegExp('[A-ZА-Я]').allMatches(this).length;
+    return ViewModel(count: count, description: 'заглавных букв', value: 'в строке');
   }
 }
 
 extension on String {
-  void italicLetterCounter() {
-    int counter = 0;
-    for (int i = 0; i < length; i++) {
-      if (this[i].contains(RegExp('/__(?:(?!__).)+__/'))) {
-        counter += 1;
-      }
-    }
-    print('В строке $counter курсивных букв');
+  ViewModel italicLetterCounter() {
+    int count;
+    count = RegExp('/__(?:(?!__).)+__/').allMatches(this).length;
+    return ViewModel(count: count, description: 'курсивных букв', value: 'в строке');
   }
 }
 
 extension on String {
-  void punctuationMarksCounter() {
-    int counter = 0;
-    for (int i = 0; i < length; i++) {
-      if (this[i].contains(RegExp(r'[.!?,\\-]'))) {
-        counter += 1;
-      }
-    }
-    print('В строке $counter знаков препинания');
+  ViewModel punctuationMarksCounter() {
+    int count;
+    count = RegExp(r'[.!?,\\-]').allMatches(this).length;
+    return ViewModel(count: count, description: 'знаков препинания', value: 'в строке');
   }
 }
 
 extension on String {
-  void numbersCounter() {
-    int counter = 0;
-    for (int i = 0; i < length; i++) {
-      if (this[i].contains(RegExp('[0-9]'))) {
-        counter += 1;
-      }
-    }
-    print('В строке $counter цифр');
+  ViewModel numbersCounter() {
+    int count;
+    count = RegExp('[0-9]').allMatches(this).length;
+    return ViewModel(count: count, description: 'цифр', value: 'в строке');
+  }
+}
+
+//Единая модель для отображения данных всех заданий
+class ViewModel {
+  final int count;
+  final String description;
+  final String value;
+
+  ViewModel({required this.count, required this.description, required this.value});
+
+  @override
+  String toString() {
+    return '$count $description $value \n';
   }
 }
