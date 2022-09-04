@@ -36,14 +36,14 @@ void main() {
   // Задание №3
   final listOfSimple = [];
   for (int i = 1; i <= 500; i++) {
-    if (simpleOrNot(i)) {
+    if (primeNumbers(i)) {
       listOfSimple.add(i);
     }
   }
   print(listOfSimple);
 
   // Задание №4
-  recurs(51, 15);
+  sortRange(51, 15);
 }
 
 // Вспомогательные функции к заданию 2
@@ -64,7 +64,7 @@ int minValue(List<int> list) {
 }
 
 // Вспомогательная функция к заданию №3
-bool simpleOrNot(int value) {
+bool primeNumbers(int value) {
   for (int i = 2; i < value; i++) {
     if (value % i == 0) {
       return false;
@@ -73,18 +73,18 @@ bool simpleOrNot(int value) {
   return true;
 }
 
-// функция к заданию №4
-int recurs(int a, int b) {
+// функция к заданию №4 сортирует по возрастанию или по убыванию ренж числе от а до б
+int sortRange(int a, int b) {
   if (a == b) {
     print(a);
   }
   if (a < b) {
     print(a++);
-    recurs(a, b);
+    sortRange(a, b);
   }
   if (a > b) {
     print(a--);
-    recurs(a, b);
+    sortRange(a, b);
   }
   return 0;
 }
