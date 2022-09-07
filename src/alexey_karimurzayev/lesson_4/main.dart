@@ -150,7 +150,7 @@ String? partsOfTheDay(int hour, Lang lang) {
  */
 typedef ResultCallBack = void Function(String callback);
 
-void printMessage(message) {
+void printMessage(String message) {
   print(message.runtimeType);
 }
 
