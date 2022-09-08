@@ -24,35 +24,40 @@ void main() {
   });
 }
 
-class CalculationOperands {
+class CalculationParts {
   double? operand1;
   late double operand2;
   late String operator;
 
-  CalculationOperands(this.operand1, this.operand2, this.operator);
+  CalculationParts(this.operand1, this.operand2, this.operator);
 
-  CalculationOperands.fromString(String input) {
+  CalculationParts.fromString(String input) {
     const doubleRE = r'(\d*\.\d*|\d+)';
-    const operatorRE = r'[+\-*/%~]';
-    const mathOperationRE = '^$doubleRE?$operatorRE$doubleRE\$';
-    input.replaceAll(r'\s', '');
+    const operatorRE = r'[+\-*/]';
+    const mathOperationRE = '^($doubleRE?$operatorRE$doubleRE|$doubleRE%)\$';
+    input = input.replaceAll(RegExp(r'\s'), '');
     if (!RegExp(mathOperationRE).hasMatch(input)) {
       throw WrongOperationStringException(
           'Неверная строка вычисления. Допустим ввод в формате: [ <число с плавающей запятой> ]<знак операции +, -, *, /, %, ~><число с плавающей запятой>');
     }
-    if (RegExp('^$doubleRE').hasMatch(input)) {
-      operand1 =
+    operator = RegExp('($operatorRE|%)').stringMatch(input)!;
+    if (operator == '%') {
+      operand2 =
           double.parse(RegExp('^$doubleRE').stringMatch(input) == '.' ? '0' : RegExp('^$doubleRE').stringMatch(input)!);
-      if (!operand1!.isDouble()) {
-        throw LimitExceededException.def();
+    } else {
+      if (RegExp('^$doubleRE').hasMatch(input)) {
+        operand1 = double.parse(
+            RegExp('^$doubleRE').stringMatch(input) == '.' ? '0' : RegExp('^$doubleRE').stringMatch(input)!);
+        if (!operand1!.isDouble()) {
+          throw LimitExceededException.def();
+        }
       }
+      operand2 = double.parse(
+          RegExp('$doubleRE\$').stringMatch(input) == '.' ? '0' : RegExp('$doubleRE\$').stringMatch(input)!);
     }
-    operand2 =
-        double.parse(RegExp('$doubleRE\$').stringMatch(input) == '.' ? '0' : RegExp('$doubleRE\$').stringMatch(input)!);
     if (!operand2.isDouble()) {
       throw LimitExceededException.def();
     }
-    operator = RegExp(operatorRE).stringMatch(input)!;
   }
 }
 
@@ -79,25 +84,22 @@ class Calculator {
   double? result;
 
   double calculate(String input) {
-    final CalculationOperands calculationOperands = CalculationOperands.fromString(input);
-    switch (calculationOperands.operator) {
+    final CalculationParts calculationParts = CalculationParts.fromString(input);
+    switch (calculationParts.operator) {
       case '+':
-        result = (calculationOperands.operand1 ?? result ?? 0) + calculationOperands.operand2;
+        result = (calculationParts.operand1 ?? result ?? 0) + calculationParts.operand2;
         break;
       case '-':
-        result = (calculationOperands.operand1 ?? result ?? 0) - calculationOperands.operand2;
+        result = (calculationParts.operand1 ?? result ?? 0) - calculationParts.operand2;
         break;
       case '*':
-        result = (calculationOperands.operand1 ?? result ?? 0) * calculationOperands.operand2;
+        result = (calculationParts.operand1 ?? result ?? 0) * calculationParts.operand2;
         break;
       case '/':
-        result = (calculationOperands.operand1 ?? result ?? 0) / calculationOperands.operand2;
+        result = (calculationParts.operand1 ?? result ?? 0) / calculationParts.operand2;
         break;
       case '%':
-        result = (calculationOperands.operand1 ?? result ?? 0) % calculationOperands.operand2;
-        break;
-      case '~':
-        result = ((calculationOperands.operand1 ?? result ?? 0) ~/ calculationOperands.operand2).toDouble();
+        result = (calculationParts.operand1 ?? result ?? 0) * (calculationParts.operand2 / 100);
     }
     if (!result!.isDouble()) {
       result = null;
