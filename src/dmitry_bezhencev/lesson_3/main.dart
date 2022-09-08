@@ -1,16 +1,16 @@
-// Куриная фабрика
-// Написать Фабрику(Factory) по производству кур(Hen)
-// 1.8. В классе HenFactory реализовать меетод getHen, который возвращает соответствующую стране породу кур
 // 1.9. Все созданные вами классы должны быть в отдельных файлах
-// 2.1 Создать интерфейс Printable, содержащий метод void print().
-// 2.2 Создать класс Book с полем name, реализующий интерфейс Printable. (писать в консоль имя книги)
-// 2.3 Создать класс Magazine с полем name, реализующий интерфейс Printable. (писать в консоль имя журнала)
-// 2.4 Создать по 2 экземпляра книг и журналов.
-// 3.1 Создать миксин Burnable с методом void burn() и реализацией (писать в консоль что предмет горит)
-// 3.2 Добавить этот миксин к классам Book и Magazine из второго задания
 
 import 'classes_hen/classes_hen.dart';
+import 'part_two/part_two.dart';
 
 void main() {
   print(RussianHen());
+  print(BelarusianHen());
+  print(MoldovanHen());
+  print(GermanHen());
+  final hen = HenFactory(CountryHen.Russia);
+  print(hen.getHen);
+  const Book().printBook();
+  const Magazine().printBook();
+  const Magazine().burn();
 }

@@ -18,4 +18,7 @@ class BelarusianHen extends Hen {
   @override
   String get description =>
       'Я курица, моя страна $country. Я несу ${getCountOfEggsPerMonth()} яиц в месяц';
+
+  @override
+  String toString() => description;
 }
