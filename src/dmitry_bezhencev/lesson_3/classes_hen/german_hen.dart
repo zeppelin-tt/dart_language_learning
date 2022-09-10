@@ -9,16 +9,15 @@ import 'hen.dart';
 // где SSSSS - название страны
 // где N - количество яиц в месяц
 
+const String countryGerman = 'Германия';
+
 class GermanHen extends Hen {
-  static const String country = 'Германия';
-  
   @override
   int getCountOfEggsPerMonth() => 30;
 
   @override
-  String get description =>
-      'Я курица, моя страна $country. Я несу ${getCountOfEggsPerMonth()} яиц в месяц';
-  
+  String get description => 'Я курица, моя страна $countryGerman. Я несу ${getCountOfEggsPerMonth()} яиц в месяц';
+
   @override
   String toString() => description;
 }
