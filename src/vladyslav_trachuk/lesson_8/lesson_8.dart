@@ -21,8 +21,11 @@ Future<void> taskWithThen() async {
   final translator = GoogleTranslator();
 
   final poemRepository = PoemRepository();
-  final poemsThen = poemRepository.getFiveRandomPoems()
-    ..then((value) => translator.translate(value.toString(), to: 'uk').then(print));
+  final poemsThen = poemRepository.getFiveRandomPoems().then(
+    (value) {
+      return translator.translate(value.toString(), to: 'uk');
+    },
+  );
 }
 
 class PoemRepository {
