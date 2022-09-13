@@ -19,10 +19,10 @@ class OrkEmployee {
 }
 
 class OrkWarrior extends OrkEmployee {
-  final double physicalatack;
+  final double physicalAtack;
 
   const OrkWarrior({
-    this.physicalatack = 10.0,
+    this.physicalAtack = 10.0,
     super.health = 100.0,
   });
 }
@@ -33,7 +33,7 @@ class OrkDefender extends OrkWarrior {
   const OrkDefender({
     this.physicalDefense = 15.0,
     super.health = 150.0,
-    super.physicalatack = 8.0,
+    super.physicalAtack = 8.0,
   });
 }
 
@@ -43,7 +43,7 @@ class OrkWarlord extends OrkDefender {
   const OrkWarlord({
     this.magicAtack = 10.0,
     super.health = 200.0,
-    super.physicalatack = 20.0,
+    super.physicalAtack = 20.0,
     super.physicalDefense = 25.0,
   });
 }
@@ -54,7 +54,7 @@ class OrkKing extends OrkWarlord {
   const OrkKing({
     this.magicDefense = 40,
     super.health = 500.0,
-    super.physicalatack = 50.0,
+    super.physicalAtack = 50.0,
     super.physicalDefense = 45.0,
     super.magicAtack = 30.0,
   });
