@@ -14,8 +14,8 @@ void main() {
 }
 //job 1
 void division(int q, int w){
-  int res1 = q ~/ w;
-  int res2 = q % w;
+  final int res1 = q ~/ w;
+  final int res2 = q % w;
   print('Результат деления: $res1, остаток: $res2');
 }
 // job 2
@@ -26,7 +26,7 @@ int summ1(int n){
 }
 //job 3
 void rounding(double n) {
-  int num = n.round();
+  final int num = n.round();
   print('Ближайшее целое число от $n составляет $num');
 }
 // job 4
@@ -38,11 +38,11 @@ int summ2(int n) {
 }
 //extra job 1
 void rectangleArea(int a, int b) {
-  int recResult = a * b;
+  final int recResult = a * b;
   print('Площадь прямоугольника со сторонами $a и $b равняется $recResult');
 }
 //extra job 2
 void perimeterSquare(int n) {
-  int perResult = n * 4;
+  final int perResult = n * 4;
   print('Периметр квадрата со сторонами $n равен $perResult');
 }
