@@ -1,0 +1,55 @@
+void main() {
+  print('Домашняя работа №1');
+  print ('Задание 1');
+  const q= 21;
+  const w = 8;
+  final e = q / w;
+  final r = q % w;
+  print('Результат деления: ${e}');
+  print('Остаток: ${r}');
+}
+// не понял почему не получилось 6 (сори я - гуманитарий) округлиться должно было до 7 вроде
+
+
+
+
+void main() {
+  print('Домашняя работа №1');
+  print ('Задание 2');
+  const n = 69;
+  const q = 6;
+  const w = 9;
+  final e = q + w;
+  print('Результат cуммы: ${e}');
+ }
+
+
+
+
+void main() {
+  print('Домашняя работа №1');
+  print ('Задание 3');
+  double numberToRound = 12.34;
+  print ('Рузультат округления'); 
+  print(numberToRound.round());
+}
+
+
+
+
+void main() {
+  print('Домашняя работа №1');
+  print ('Задание 4');
+  print ('число n = 666');
+  const n = 666;
+  const q = 6;
+  const w = 6;
+  const e = 6;
+  final r = q + w + e;
+  print('Результат cуммы цифр числа n = ${r}');
+ }
+
+
+
+
+
