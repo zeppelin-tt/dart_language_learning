@@ -2,6 +2,7 @@ import '../../dennis_zaitsev/lesson_3/russian_hen.dart';
 import '../../dennis_zaitsev/lesson_3/german_hen.dart';
 import '../../dennis_zaitsev/lesson_3/belarusian_hen.dart';
 import '../../dennis_zaitsev/lesson_3/moldovan_hen.dart';
+import '../../dennis_zaitsev/lesson_3/printable.dart';
 import 'hen_factory.dart';
 
 void main() {
@@ -29,4 +30,17 @@ void main() {
   final chikenMol = HenFactory('Молдова');
   print(chikenMol.getHen());
 
+  final book = Book();
+  book.name = 'Сияние';
+  book.printOut();
+
+  book.name = 'Пролетая над гнездом кукушки';
+  book.printOut();
+
+  final magazine = Magazine();
+  magazine.name = 'Ровесник';
+  magazine.printOut();
+
+  magazine.name = 'Липецкие известия';
+  magazine.printOut();
 }
